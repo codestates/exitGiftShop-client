@@ -1,2 +1,2 @@
 # exitGiftShop-client
-# nihao
+곤니치와
