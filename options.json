@@ -1,0 +1,20 @@
+{
+  "menu": {
+    "item": "{{#levelRepeat}}  {{/levelRepeat}}* [{{{title}}}]({{{link}}})\n",
+    "category": "{{#levelRepeat}}  {{/levelRepeat}}* {{#link}}[{{{title}}}]({{{link}}}){{/link}}{{^link}}{{{title}}}{{/link}}\n{{{subitems}}}",
+    "category-1": "[![npm module\\](https://rawgit.com/wiki/adriantanasa/gi thub-wiki-sidebar/images/github-wiki-sidebar.svg)](https://www.npmjs.com/package/github-wiki-side bar)\n\n{{{subitems}}}\n"
+  },
+  "rules": {
+    "exclude": [
+      "README.md"
+    ],
+    "order": [
+      "Home.md"
+    ]
+  },
+  "separator": ":-",
+  "linkTemplate": "./%s",
+  "menuFile": "_Sidebar.md",
+  "multilang": false,
+  "menuOnly": true
+}
