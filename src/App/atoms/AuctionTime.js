@@ -10,6 +10,8 @@ const TimeStlye = styled.div`
 const TimeBox = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
+  margin-top: 20px;
   svg {
     font-size: 45px;
     margin-right: 15px;

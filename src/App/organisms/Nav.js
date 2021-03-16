@@ -32,9 +32,13 @@ const Item = styled.li`
   align-items: center;
   padding: 0 30px;
   height: 100%;
+
+  @media screen and (max-width: 1080px) {
+    padding: 0 10px;
+  }
 `;
 
-const HeaderHome = styled(Link)`
+const NavHome = styled(Link)`
   display: flex;
   ::before {
     content: "EXITGIFT";
@@ -50,21 +54,21 @@ const StyleLink = styled(Link)`
   transition: color 0.3s ease-in-out;
 `;
 
-const HeaderList = styled.div`
+const NavList = styled.div`
   display: flex;
 `;
 
-function Header() {
+function Nav() {
   return (
     <StyleHeader>
       <ListStyle>
         <Item>
-          <HeaderHome to="/">
+          <NavHome to="/">
             <h1>.SHOP</h1>
-          </HeaderHome>
+          </NavHome>
         </Item>
 
-        <HeaderList>
+        <NavList>
           <Item>
             <StyleLink to="/ongoing">Ongoing</StyleLink>
           </Item>
@@ -80,10 +84,10 @@ function Header() {
           <Item>
             <StyleLink to="/english">English</StyleLink>
           </Item>
-        </HeaderList>
+        </NavList>
       </ListStyle>
     </StyleHeader>
   );
 }
 
-export default Header;
+export default Nav;
