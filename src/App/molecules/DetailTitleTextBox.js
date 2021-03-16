@@ -23,9 +23,12 @@ const DetailTitleTextBox = styled.div`
   }
 `;
 const DetailMainTextBox = styled.div`
+  h2 {
+    margin: 15px 0px;
+  }
   padding-right: 25px;
   font-size: 25px;
-  margin: 30px 0;
+  margin: 10px 0;
 `;
 
 const DetailWrapper = styled.div`
@@ -41,16 +44,10 @@ const BtnBox = styled.div`
 `;
 
 const StyleTwit = styled.div`
-  display: flex;
-  width: 100%;
-  flex-direction: center;
-  align-items: center;
-  padding-left: 15px;
-  justify-content: space-between;
   > div {
     display: flex;
+    justify-content: center;
     width: 100%;
-    box-sizing: border-box;
   }
 `;
 

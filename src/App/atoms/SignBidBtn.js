@@ -12,8 +12,12 @@ const Btn = styled.button`
   font-weight: 600;
 `;
 
+const loginTap = () => {
+  window.open("/signup", "_");
+};
+
 function SignBidBtn() {
-  return <Btn>Sign in to bid</Btn>;
+  return <Btn onClick={loginTap}>Sign in to bid</Btn>;
 }
 
 export default SignBidBtn;
