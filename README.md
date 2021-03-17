@@ -1,2 +1,4 @@
 # exitGiftShop-client
-read me
+
+곤니치와
+
