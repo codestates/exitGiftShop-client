@@ -18,14 +18,12 @@ const TimeBox = styled.div`
   }
 `;
 
-export default function AuctionTime() {
-  // TO_DO_LOGIC:
-  // 정해진 시간에 경매가 종료된다,
-  // 경매 참여 시, 추가 시간 = 추가 시간 + 30분
-  // 정해진 시간 =  정해진 시간 + 추가 시간
+export default function App() {
+  ;
+  }, [minutes, seconds]);
 
-  // const [hours, setHours] = useState(24);
-  const [minutes, setMinutes] = useState(60);
+function AutionTime() {
+  const [minutes, setMinutes] = useState(2);
   const [seconds, setSeconds] = useState(0);
 
   useEffect(() => {
@@ -41,18 +39,16 @@ export default function AuctionTime() {
           setSeconds(59);
         }
       }
-    }, 1000); // run by 1 second
-    return () => clearInterval(countdown);
-  }, [minutes, seconds]);
-
+    }, 1000);
+    return () => clearInterval(countdown)}, [minutes, seconds])
   return (
     <>
       <TimeBox>
         <FontAwesomeIcon icon={faClock} />
-        <TimeStlye>
-          {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
-        </TimeStlye>
+        <TimeStlye>{minutes}:{seconds < 10 ? `0${seconds}` : seconds}</TimeStlye>
       </TimeBox>
     </>
   );
 }
+
+export default AutionTime;

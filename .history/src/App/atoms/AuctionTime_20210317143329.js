@@ -21,7 +21,7 @@ const TimeBox = styled.div`
 export default function AuctionTime() {
   // TO_DO_LOGIC:
   // 정해진 시간에 경매가 종료된다,
-  // 경매 참여 시, 추가 시간 = 추가 시간 + 30분
+  // 경매 참여 시, 추가 시간 = 추가 시간0 + 30분
   // 정해진 시간 =  정해진 시간 + 추가 시간
 
   // const [hours, setHours] = useState(24);
