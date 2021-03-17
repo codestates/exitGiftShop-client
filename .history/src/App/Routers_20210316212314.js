@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Nav from "./organisms/Nav";
 import Home from "../Routes/Home";
-import Bid from "../Routes/MyBid";
+import Bid from "../Routes/Bid";
 import Ongoing from "../Routes/Ongoing";
 import Collection from "../Routes/Collection";
 import Support from "../Routes/Support";

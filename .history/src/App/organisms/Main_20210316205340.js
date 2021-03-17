@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import AuctionTime from "../atoms/AuctionTime";
+import AutionTime from "../atoms/AuctionTime";
 import DetailContent from "../molecules/DetailTitleTextBox";
 import SlideContent from "../molecules/SlideContent";
 
@@ -46,7 +46,7 @@ function Main() {
     <StyledMain>
       <MainSectionLeft>
         <SlideContent />
-        <AuctionTime />
+        <AutionTime />
       </MainSectionLeft>
       <MainSectionRight>
         <DetailContent />
