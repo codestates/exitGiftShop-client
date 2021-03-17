@@ -14,13 +14,23 @@ const StyleCover = styled.div`
   }
 `;
 
+// const SelectBtn = styled.div`
+//   &:active {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     width: 250px;
+//   }
+// `;
+
 const fn = function () {};
+
 function SlideContent() {
   return (
     <>
       <StyleCover>
         <Coverflow
-          width={550}
+          width={600}
           height={450}
           displayQuantityOfSide={1}
           navigation={false}
@@ -33,7 +43,13 @@ function SlideContent() {
               style={{ display: "block", width: "100%" }}
             />
           </div>
-          <img src={beeple} alt="piture" />
+          <div>
+            <img
+              src={beeple}
+              alt="piture"
+              style={{ display: "block", width: "100%" }}
+            />
+          </div>
           <img src={beeple2} alt="piture" />
         </Coverflow>
       </StyleCover>

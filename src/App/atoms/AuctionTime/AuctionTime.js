@@ -18,15 +18,15 @@ const TimeBox = styled.div`
   }
 `;
 
-function AutionTime() {
+function AuctionTime() {
   return (
     <>
       <TimeBox>
         <FontAwesomeIcon icon={faClock} />
-        <TimeStlye>23 : 59 : 21</TimeStlye>
+        <TimeStlye>Time</TimeStlye>
       </TimeBox>
     </>
   );
 }
 
-export default AutionTime;
+export default AuctionTime;

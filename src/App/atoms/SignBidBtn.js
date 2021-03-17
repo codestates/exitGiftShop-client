@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const Btn = styled.button`
@@ -11,13 +11,13 @@ const Btn = styled.button`
   font-size: 20px;
   font-weight: 600;
 `;
-
-const loginTap = () => {
-  window.open("/signup", "_");
-};
-
 function SignBidBtn() {
-  return <Btn onClick={loginTap}>Sign in to bid</Btn>;
+  const [loginModalOn, setLoginModalOn] = useState(false);
+
+  const handlModalControl = () => {
+    setLoginModalOn(true);
+  };
+  return <Btn onClick={handlModalControl}>Sign in to bid</Btn>;
 }
 
 export default SignBidBtn;
