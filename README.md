@@ -23,6 +23,10 @@
 
 ### [:hammer_and_wrench: System Architecture](https://github.com/codestates/exitGiftShop-client/wiki/System-Architecture)
 
+### [🗄 Database Scheme](https://github.com/codestates/exitGiftShop-client/wiki/Database-Scheme)
+
+### [📘 Api Docs](https://back.exitgift.shop:4000/docs/)
+
 ## 프로젝트 소개
 
 ### 주제 선정 이유
