@@ -15,6 +15,11 @@
 
 ### [📖 Wiki](https://github.com/codestates/exitGiftShop-client/wiki)
 
+
+### [🌈  Feature Work Flow](https://github.com/codestates/exitGiftShop-client/wiki/Work-Flow)
+
+
+### [:hammer_and_wrench: System Architecture](https://github.com/codestates/exitGiftShop-client/wiki/System-Architecture)
 ## 프로젝트 소개
 
 ### 주제 선정 이유
@@ -32,22 +37,3 @@
 | `Sequlize`       | `mariaDB` | `EC2`        | `GitHub_Wiki`   | `OAuth`  |
 |                  | `Dbeaver` | `RDS`        | `Swagger`       |          |
 |                  | `Dbeaver` | `Route53`    | `Slack`         |          |
-
-###
-
-## 기능 워크플로우
-
-### 초안 워크플로우
-
-![EXITGIFT SHOP FlowChart](https://user-images.githubusercontent.com/56165665/111292433-69a03e80-8605-11eb-9865-e38e3bb971cc.png)
-
-### 완성단계 워크플로우
-
-![Hardcore  EXITGIFT SHOP](https://user-images.githubusercontent.com/56165665/111291491-7b351680-8604-11eb-89f2-613604a3fb33.png)
-
-
-## 시스템 아키텍쳐
-
-![system_architecture](https://user-images.githubusercontent.com/56165665/111292637-9eac9100-8605-11eb-8d7f-b0b200645f6c.png)
-
-
