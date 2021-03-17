@@ -38,9 +38,10 @@
 
 ### 기술 스택
 
-| Front-End        | Back-End  | Deploy       | Docs & Teample  | Etc      |
-| ---------------- | --------- | ------------ | --------------- | -------- |
-| `React`          | `Express` | `S3`         | `GitHub_Project`| `Gabia`  |
-| `Sequlize`       | `mariaDB` | `EC2`        | `GitHub_Wiki`   | `OAuth`  |
-|                  | `Dbeaver` | `RDS`        | `Swagger`       |          |
-|                  | `Dbeaver` | `Route53`    | `Slack`         |          |
+| Front-End        | Back-End    | Deploy       | Docs & Teample  | Etc            |
+| ---------------- | ----------- | ------------ | --------------- | -------------- |
+| `React`          | `Express`   | `S3`         | `GitHub_Project`| `Gabia`        |
+| `React-Hooks`    | `mariaDB`   | `EC2`        | `GitHub_Wiki`   | `OAuth`        |
+|                  | `Dbeaver`   | `RDS`        | `Slack`         | `Lets Encrypt` |
+|                  | `Sequelize` | `Route53`    |                 |                |
+|                  | `Swagger`   | `ACM`        |                 |                |
