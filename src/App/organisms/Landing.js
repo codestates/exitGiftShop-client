@@ -10,6 +10,7 @@ import MyBid from "../../Routes/MyBid";
 import Colletion from "../../Routes/Collection";
 import Main from "./Main";
 import Support from "../../Routes/Support";
+import mainBg from "../../images/mainBg.jpg";
 
 const StyleNav = styled.div`
   color: white;
@@ -23,9 +24,18 @@ const StyleNav = styled.div`
   font-size: 28px;
   font-weight: 600;
   width: 100%;
-  background-color: rgba(20, 20, 20, 1);
+  background-color: rgba(5, 5, 5, 1);
   box-shadow: 0px 1px 3px 2px rgba(0, 0, 0, 0.2);
   z-index: 1;
+`;
+
+const BackgroundImg = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
 `;
 
 const ListStyle = styled.ul`
@@ -125,6 +135,7 @@ function Landing() {
           <Support />
         </Section>
       </StyleScroll>
+      <BackgroundImg src={mainBg} alt="background" />
     </>
   );
 }

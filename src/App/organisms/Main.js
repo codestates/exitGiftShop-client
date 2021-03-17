@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import AuctionTime from "../atoms/AuctionTime";
+import AuctionTime from "../atoms/AuctionTime/AuctionTime";
 import DetailContent from "../molecules/DetailTitleTextBox";
 import SlideContent from "../molecules/SlideContent";
 
