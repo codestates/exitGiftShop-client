@@ -15,11 +15,14 @@
 
 ### [📖 Wiki](https://github.com/codestates/exitGiftShop-client/wiki)
 
+### [:mag: Wire Frame](https://github.com/codestates/exitGiftShop-client/wiki/Wire-Frame)
 
 ### [🌈  Feature Work Flow](https://github.com/codestates/exitGiftShop-client/wiki/Work-Flow)
 
+### [:package: Feature List](https://github.com/codestates/exitGiftShop-client/wiki/Feature-List)
 
 ### [:hammer_and_wrench: System Architecture](https://github.com/codestates/exitGiftShop-client/wiki/System-Architecture)
+
 ## 프로젝트 소개
 
 ### 주제 선정 이유
