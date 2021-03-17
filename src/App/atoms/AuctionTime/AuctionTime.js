@@ -18,6 +18,7 @@ const TimeBox = styled.div`
   }
 `;
 
+<<<<<<< HEAD:src/App/atoms/AuctionTime.js
 export default function AuctionTime() {
   // TO_DO_LOGIC:
   // 정해진 시간에 경매가 종료된다,
@@ -45,14 +46,26 @@ export default function AuctionTime() {
     return () => clearInterval(countdown);
   }, [minutes, seconds]);
 
+=======
+function AuctionTime() {
+>>>>>>> 4ebf6d88e28400880cae497d6af4b70998437ba1:src/App/atoms/AuctionTime/AuctionTime.js
   return (
     <>
       <TimeBox>
         <FontAwesomeIcon icon={faClock} />
+<<<<<<< HEAD:src/App/atoms/AuctionTime.js
         <TimeStlye>
           {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
         </TimeStlye>
+=======
+        <TimeStlye>Time</TimeStlye>
+>>>>>>> 4ebf6d88e28400880cae497d6af4b70998437ba1:src/App/atoms/AuctionTime/AuctionTime.js
       </TimeBox>
     </>
   );
 }
+<<<<<<< HEAD:src/App/atoms/AuctionTime.js
+=======
+
+export default AuctionTime;
+>>>>>>> 4ebf6d88e28400880cae497d6af4b70998437ba1:src/App/atoms/AuctionTime/AuctionTime.js
