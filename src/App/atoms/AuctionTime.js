@@ -18,7 +18,7 @@ const TimeBox = styled.div`
   }
 `;
 
-function AutionTime() {
+function AuctionTime() {
   return (
     <>
       <TimeBox>
@@ -29,4 +29,4 @@ function AutionTime() {
   );
 }
 
-export default AutionTime;
+export default AuctionTime;

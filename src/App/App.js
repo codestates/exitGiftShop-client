@@ -16,7 +16,7 @@ const BackgroundImg = styled.img`
 function App() {
   return (
     <>
-      <BackgroundImg src={mainBg} alt="" />;
+      <BackgroundImg src={mainBg} alt="" />
       <Routers />
       <GlobalStyles />
     </>

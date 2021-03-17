@@ -7,7 +7,7 @@ const SingupBox = styled.div`
 `;
 
 function SignUp() {
-  return <SingupBox />;
+  return <SingupBox></SingupBox>;
 }
 
 export default SignUp;

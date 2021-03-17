@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import AutionTime from "../atoms/AuctionTime";
+import AuctionTime from "../atoms/AuctionTime";
 import DetailContent from "../molecules/DetailTitleTextBox";
 import SlideContent from "../molecules/SlideContent";
 
@@ -36,6 +36,7 @@ const MainSectionRight = styled.section`
   width: 100%;
   border-left: 1px solid rgba(62, 62, 62, 0.8);
   padding: 45px 85px;
+
   @media screen and (max-width: 1080px) {
     border: none;
   }
@@ -46,8 +47,9 @@ function Main() {
     <StyledMain>
       <MainSectionLeft>
         <SlideContent />
-        <AutionTime />
+        <AuctionTime />
       </MainSectionLeft>
+
       <MainSectionRight>
         <DetailContent />
       </MainSectionRight>
