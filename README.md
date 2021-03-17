@@ -11,7 +11,7 @@
 
 > ✏ 아트경매의 FOMO열기를 온라인으로 옮기다.
 
-### [🏠 Homepage](exitgift.shop)
+### [🏠 Homepage](https://www.exitgift.shop)
 
 ### [📖 Wiki](https://github.com/codestates/exitGiftShop-client/wiki)
 
