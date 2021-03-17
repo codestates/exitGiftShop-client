@@ -1,1 +1,2 @@
 # exitGiftShop-client
+read me
