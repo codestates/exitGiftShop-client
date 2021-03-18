@@ -11,6 +11,8 @@ import Pagenotfound from "./Pages/Pagenotfound";
 import SignUp from "./molecules/SignUp";
 import LandingTemplate from "./templates/LandingTemplate";
 import Wallet from "./molecules/Wallet";
+import Account from "./molecules/Account";
+import Invite from "./molecules/Invite";
 
 const BackgroundImg = styled.img`
   position: absolute;
@@ -33,7 +35,9 @@ function App() {
           <Route path="/collection" component={Collection} />
           <Route path="/support" component={Support} />
           <Route path="/signup" component={SignUp} />
+          <Route path="#/bid/account" component={Account} />
           <Route path="#/bid/wallet" component={Wallet} />
+          <Route path="#/bid/invite" component={Invite} />
           <Route component={Pagenotfound} />
         </Switch>
       </Router>
