@@ -24,6 +24,10 @@ const MainSectionLeft = styled.section`
   height: 100%;
   border-right: 1px solid rgba(62, 62, 62, 0.8);
   padding: 45px 85px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   @media screen and (max-width: 1080px) {
     border: none;
@@ -32,17 +36,20 @@ const MainSectionLeft = styled.section`
 
 const MainSectionRight = styled.section`
   /* background-color: green; */
-  height: 100%;
   width: 100%;
+  height: 100%;
   border-left: 1px solid rgba(62, 62, 62, 0.8);
   padding: 45px 85px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   @media screen and (max-width: 1080px) {
     border: none;
   }
 `;
 
-function Main() {
+function Ongoing() {
   return (
     <StyledMain>
       <MainSectionLeft>
@@ -57,4 +64,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default Ongoing;

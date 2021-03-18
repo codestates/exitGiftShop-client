@@ -23,7 +23,7 @@ function AuctionTime() {
     <>
       <TimeBox>
         <FontAwesomeIcon icon={faClock} />
-        <TimeStlye>Time</TimeStlye>
+        <TimeStlye>23 : 05 : 43</TimeStlye>
       </TimeBox>
     </>
   );

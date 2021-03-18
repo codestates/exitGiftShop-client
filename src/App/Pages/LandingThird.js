@@ -1,7 +1,7 @@
 import React from "react";
 
-function Colletion() {
+function LandingThird() {
   return <div>Collection</div>;
 }
 
-export default Colletion;
+export default LandingThird;

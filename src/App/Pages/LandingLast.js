@@ -1,5 +1,7 @@
 import React from "react";
 
-export default function Support() {
+function LandingLast() {
   return <div>Support</div>;
 }
+
+export default LandingLast;
