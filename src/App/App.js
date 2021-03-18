@@ -10,6 +10,7 @@ import Support from "./Pages/LandingLast";
 import Pagenotfound from "./Pages/Pagenotfound";
 import SignUp from "./molecules/SignUp";
 import LandingTemplate from "./templates/LandingTemplate";
+import Wallet from "./molecules/Wallet";
 
 const BackgroundImg = styled.img`
   position: absolute;
@@ -32,6 +33,7 @@ function App() {
           <Route path="/collection" component={Collection} />
           <Route path="/support" component={Support} />
           <Route path="/signup" component={SignUp} />
+          <Route path="/bid/wallet" component={Wallet} />
           <Route component={Pagenotfound} />
         </Switch>
       </Router>
