@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Mypage from "../molecules/Mypage";
 import Slider from "@farbenmeer/react-spring-slider";
+import { Link } from "react-router-dom";
 
 const StyledMain = styled.div`
   display: flex;
@@ -9,7 +10,6 @@ const StyledMain = styled.div`
   align-items: center;
   margin-top: 20px;
   height: 600px;
-  background-color: white;
 
   @media screen and (max-width: 1080px) {
     display: flex;
@@ -66,9 +66,9 @@ function Mybid() {
       <StyledMain>
         <MainSectionLeft>
           <LeftBtnBox>
-            <div onClick={() => {}}>Account</div>
-            <div>Wallet</div>
-            <div>Invite</div>
+            <Link to={"/account"}>Account</Link>
+            <Link to={"/bid/wallet"}>Wallet</Link>
+            <Link to={"/invite"}>Invite</Link>
           </LeftBtnBox>
         </MainSectionLeft>
         <MainSectionRight></MainSectionRight>

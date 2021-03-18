@@ -99,7 +99,7 @@ function LandingTemplate() {
         <StyleNav>
           <ListStyle>
             <Item>
-              <NavHome href="#/">
+              <NavHome href="/">
                 <h1>.SHOP</h1>
               </NavHome>
             </Item>
