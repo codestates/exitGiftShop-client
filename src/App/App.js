@@ -33,7 +33,7 @@ function App() {
           <Route path="/collection" component={Collection} />
           <Route path="/support" component={Support} />
           <Route path="/signup" component={SignUp} />
-          <Route path="/bid/wallet" component={Wallet} />
+          <Route path="#/bid/wallet" component={Wallet} />
           <Route component={Pagenotfound} />
         </Switch>
       </Router>

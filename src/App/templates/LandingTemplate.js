@@ -81,7 +81,7 @@ const StyleScroll = styled(SectionsContainer)``;
 
 let options = {
   sectionClassName: "section",
-  anchors: ["/", "/bid", "/collection", "/support"],
+  anchors: ["/ongoing", "/bid", "/collection", "/support"],
   // anchors: ["sectionOne", "sectionTwo", "sectionThree"],
   scrollBar: false,
   navigation: true,
@@ -105,7 +105,7 @@ function LandingTemplate() {
             </Item>
             <NavList>
               <Item>
-                <StyleLink href="#/">Ongoing</StyleLink>
+                <StyleLink href="#/ongoing">Ongoing</StyleLink>
               </Item>
               <Item>
                 <StyleLink href="#/bid">MyBid</StyleLink>

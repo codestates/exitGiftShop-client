@@ -5,7 +5,7 @@ import LoginModal from "./LoginModal";
 const Btn = styled.div`
   width: 100%;
   > button {
-    width: 100%;
+    width: 95%;
     height: 50px;
     border-radius: 10px;
     margin-top: 20px;
