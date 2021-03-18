@@ -7,7 +7,7 @@ import Ongoing from "../Routes/Ongoing";
 import Collection from "../Routes/Collection";
 import Support from "../Routes/Support";
 import Pagenotfound from "../Routes/Pagenotfound";
-import SignUp from "./molecules/SignUp";
+import SignUp from "./atoms/Sign";
 
 function router() {
   return (

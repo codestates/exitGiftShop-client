@@ -9,7 +9,7 @@ import Support from "../Routes/Support";
 import English from "../Routes/English";
 import Pagenotfound from "../Routes/Pagenotfound";
 import Main from "./organisms/Main";
-import SignUp from "./molecules/SignUp";
+import SignUp from "./atoms/Sign";
 
 function router() {
   return (
