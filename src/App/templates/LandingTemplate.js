@@ -6,26 +6,26 @@ import {
   Section,
   Header,
 } from "react-fullpage";
-import MyBid from "../../Routes/MyBid";
-import Colletion from "../../Routes/Collection";
-import Main from "./Main";
-import Support from "../../Routes/Support";
 import mainBg from "../../images/mainBg.jpg";
+import LandingFirst from "../Pages/LandingFirst";
+import LandingSecond from "../Pages/LandingSecond";
+import LandingThird from "../Pages/LandingThird";
+import LandingLast from "../Pages/LandingLast";
 
 const StyleNav = styled.div`
   color: white;
   position: fixed;
   top: 0;
   left: 0;
-  height: 120px;
+  height: 130px;
   display: flex;
   align-items: center;
   padding: 0px 50px;
   font-size: 28px;
   font-weight: 600;
   width: 100%;
-  background-color: rgba(5, 5, 5, 1);
-  box-shadow: 0px 1px 3px 2px rgba(0, 0, 0, 0.2);
+  /* background-color: rgba(5, 5, 5, 1);
+  box-shadow: 0px 1px 3px 2px rgba(0, 0, 0, 0.2); */
   z-index: 1;
 `;
 
@@ -81,7 +81,7 @@ const StyleScroll = styled(SectionsContainer)``;
 
 let options = {
   sectionClassName: "section",
-  anchors: ["/ongoing", "/bid", "/collection", "/support"],
+  anchors: ["/", "/bid", "/collection", "/support"],
   // anchors: ["sectionOne", "sectionTwo", "sectionThree"],
   scrollBar: false,
   navigation: true,
@@ -91,7 +91,7 @@ let options = {
   arrowNavigation: true,
 };
 
-function Landing() {
+function LandingTemplate() {
   return (
     <>
       <Header>
@@ -104,7 +104,7 @@ function Landing() {
             </Item>
             <NavList>
               <Item>
-                <StyleLink href="#/ongoing">Ongoing</StyleLink>
+                <StyleLink href="#/">Ongoing</StyleLink>
               </Item>
               <Item>
                 <StyleLink href="#/bid">MyBid</StyleLink>
@@ -123,16 +123,16 @@ function Landing() {
 
       <StyleScroll {...options}>
         <Section>
-          <Main />
+          <LandingFirst />
         </Section>
         <Section>
-          <MyBid />
+          <LandingSecond />
         </Section>
         <Section>
-          <Colletion />
+          <LandingThird />
         </Section>
         <Section>
-          <Support />
+          <LandingLast />
         </Section>
       </StyleScroll>
       <BackgroundImg src={mainBg} alt="background" />
@@ -140,4 +140,4 @@ function Landing() {
   );
 }
 
-export default Landing;
+export default LandingTemplate;
