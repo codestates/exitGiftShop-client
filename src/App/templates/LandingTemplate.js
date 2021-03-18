@@ -89,6 +89,7 @@ let options = {
   sectionPaddingTop: "50px",
   sectionPaddingBottom: "50px",
   arrowNavigation: true,
+  MouseEvent: false,
 };
 
 function LandingTemplate() {

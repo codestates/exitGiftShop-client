@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import googleImg from "../../../images/google.jpg";
@@ -40,7 +40,7 @@ const ModalInner = styled.div`
   top: 10%;
   transform: translateY(-50%);
   margin: 0 auto;
-  padding: 35px 40px;
+  padding: 15px 20px;
   color: black;
   outline: none;
   display: flex;
@@ -57,7 +57,7 @@ const ModalBtn = styled.button`
   width: 100%;
   height: 50px;
   border-radius: 10px;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   outline: none;
   cursor: pointer;
 `;
@@ -70,14 +70,14 @@ const ModalBtnBox = styled.div`
 
 const ModalInput = styled.input`
   width: 100%;
-  height: 55px;
+  height: 40px;
   margin: 10px 0px;
   border-radius: 5px;
   border: 1px solid rgba(20, 20, 20, 0.3);
 `;
 
 const LogInInfo = styled.div`
-  font-size: 1.1rem;
+  font-size: 1rem;
   span {
     opacity: 0.5;
   }
@@ -85,7 +85,7 @@ const LogInInfo = styled.div`
 
 const ForgotPasswordBox = styled.div`
   text-align: center;
-  margin-top: 35px;
+  margin-top: 15px;
 `;
 
 const GoogleLogInBtn = styled.button`
@@ -93,7 +93,7 @@ const GoogleLogInBtn = styled.button`
   color: white;
   height: 50px;
   border-radius: 3px;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -107,8 +107,8 @@ const GoogleLogInBtnBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 25px 0px;
-  padding: 25px 0px;
+  margin: 15px 0px;
+  padding: 15px 0px;
   width: 100%;
 `;
 
@@ -149,14 +149,15 @@ const LogoBox = styled.div`
 const AllLogoBox = styled.div`
   display: flex;
   width: 50%;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 35px;
 `;
 
 const OrStlye = styled.span`
   font-size: 1rem;
   position: absolute;
-  bottom: 345px;
+  bottom: 260px;
   width: 40px;
   text-align: center;
   background-color: rgba(255, 255, 255, 1);
@@ -184,6 +185,11 @@ function LoginModal({
   //   }
   // };
 
+  useEffect(() => {}, []);
+  // todo: 구글,exitgift로고 상태변화
+  // todo: axios email, password post요청
+  // todo: OAuth 구글 자동로그인
+  // todo: sign up 누르면 회원가입창으로 이동
   return (
     <>
       <ModalOverlay visible={visible} />
@@ -195,9 +201,10 @@ function LoginModal({
       >
         <ModalInner tabIndex="0" className="modal-inner">
           <AllLogoBox>
-            <LogoBox>
+            {/* <LogoBox>
               <GmailImg src={gmailImg} alt="gmail" />
-            </LogoBox>
+            </LogoBox> */}
+            {/* // todo: GoogleLogInBtn 눌리면 exitgift로고랑 같이나옴 useEffect()*/}
             <LogoBox>
               <GmailImg src={gmailImg} alt="gmail" />
             </LogoBox>
@@ -209,7 +216,7 @@ function LoginModal({
           </SignUpText>
 
           <GoogleLogInBtnBox>
-            <GoogleLogInBtn>
+            <GoogleLogInBtn onClick={() => {}}>
               <GoogleImg src={googleImg} alt="google"></GoogleImg>
               Continue with Google
             </GoogleLogInBtn>
