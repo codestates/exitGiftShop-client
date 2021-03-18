@@ -11,10 +11,11 @@ const TimeBox = styled.div`
     margin-right: 15px;
   }
 `;
+
 const TimerStlye = styled.div`
+  margin-top: 5px;
   font-family: "Roboto Mono", monospace;
-  font-size: 35px;
-  font-weight: bold;
+  font-size: 30px;
   display: flex;
   flex: column;
   align-items: center;
@@ -25,10 +26,12 @@ const TimerStlye = styled.div`
 `;
 
 const TimerChild = styled.section`
-  box-sizing: border-box;
-  width: 100%;
-  padding-left: 15px;
-  padding-right: 15px;
+  border: 1px;
+  border-radius: 2x;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-top: 3em;
+  padding: 1em
   text-align: center;
 `;
 
@@ -43,11 +46,14 @@ const AuctionTime = () => {
   const [timerSeconds, setTimerSeconds] = useState("00");
 
   let interval = useRef();
+
   const startTimer = () => {
     const countdownDate = new Date("March 25, 2021 16:05:00").getTime();
+
     interval = setInterval(() => {
       const now = new Date().getTime();
       const distance = countdownDate - now;
+
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor(
         (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
@@ -113,4 +119,5 @@ const AuctionTime = () => {
     </>
   );
 };
+
 export default AuctionTime;

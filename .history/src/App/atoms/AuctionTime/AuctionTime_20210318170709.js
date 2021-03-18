@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const TimeBox = styled.div`
   display: flex;
@@ -11,24 +12,21 @@ const TimeBox = styled.div`
     margin-right: 15px;
   }
 `;
+
 const TimerStlye = styled.div`
-  font-family: "Roboto Mono", monospace;
-  font-size: 35px;
-  font-weight: bold;
+  margin-top: 5px;
+  font-size: 20px;
   display: flex;
   flex: column;
   align-items: center;
   justify-content: center;
-  padding-
+  padding-botton: 7em;
+  padding-top: 2em;
   width: 100%;
   height: 100%;
 `;
 
 const TimerChild = styled.section`
-  box-sizing: border-box;
-  width: 100%;
-  padding-left: 15px;
-  padding-right: 15px;
   text-align: center;
 `;
 
@@ -43,17 +41,24 @@ const AuctionTime = () => {
   const [timerSeconds, setTimerSeconds] = useState("00");
 
   let interval = useRef();
+
   const startTimer = () => {
     const countdownDate = new Date("March 25, 2021 16:05:00").getTime();
+
     interval = setInterval(() => {
       const now = new Date().getTime();
       const distance = countdownDate - now;
+
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor(
         (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
       );
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      if (days < 10 || hours < 10 || minutes < 10 || seconds < 10) {
+        return `0${days}` || `0${hours}` || `0${minutes}` || `0${seconds}`;
+      }
 
       if (distance < 0) {
         // stop our timer
@@ -89,14 +94,14 @@ const AuctionTime = () => {
           </TimerChild>
           <span>:</span>
           <TimerChild>
-            <p>{timerHours}</p>
+            <p>{timerHours}:</p>
             <p>
               <small>HOUR</small>
             </p>
           </TimerChild>
           <span>:</span>
           <TimerChild>
-            <p>{timerMinutes}</p>
+            <p>{timerMinutes}:</p>
             <p>
               <small>MIN</small>
             </p>
@@ -113,4 +118,5 @@ const AuctionTime = () => {
     </>
   );
 };
+
 export default AuctionTime;

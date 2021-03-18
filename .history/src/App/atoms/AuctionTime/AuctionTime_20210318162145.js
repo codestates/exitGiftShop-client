@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import { faClock } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const TimeBox = styled.div`
   display: flex;
@@ -11,24 +13,21 @@ const TimeBox = styled.div`
     margin-right: 15px;
   }
 `;
+
 const TimerStlye = styled.div`
-  font-family: "Roboto Mono", monospace;
-  font-size: 35px;
-  font-weight: bold;
+  margin-top: 5px;
+  font-size: 20px;
   display: flex;
   flex: column;
   align-items: center;
   justify-content: center;
-  padding-
+  padding-botton: 7em;
+  padding-top: 2em;
   width: 100%;
   height: 100%;
 `;
 
 const TimerChild = styled.section`
-  box-sizing: border-box;
-  width: 100%;
-  padding-left: 15px;
-  padding-right: 15px;
   text-align: center;
 `;
 
@@ -43,23 +42,24 @@ const AuctionTime = () => {
   const [timerSeconds, setTimerSeconds] = useState("00");
 
   let interval = useRef();
+
   const startTimer = () => {
-    const countdownDate = new Date("March 25, 2021 16:05:00").getTime();
+    const countdownDate = new Date("March 31, 2021 00:00:00").getTime();
+
     interval = setInterval(() => {
       const now = new Date().getTime();
       const distance = countdownDate - now;
+
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor(
-        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        distance / (1000 * 60 * 60 * 24) / (1000 * 60 * 60)
       );
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      const minutes = Math.floor(distance / (1000 * 60 * 60) / (1000 * 60));
+      const seconds = Math.floor(distance / (1000 * 60) / 1000);
 
       if (distance < 0) {
-        // stop our timer
         clearInterval(interval.current); // from ref
       } else {
-        // update timer
         setTimerDays(days);
         setTimerHours(hours);
         setTimerMinutes(minutes);
@@ -72,7 +72,6 @@ const AuctionTime = () => {
   useEffect(() => {
     startTimer();
     return () => {
-      // eslint-disable-next-line
       clearInterval(interval.current);
     };
   });
@@ -80,32 +79,33 @@ const AuctionTime = () => {
   return (
     <>
       <TimeBox>
+        <FontAwesomeIcon icon={faClock} />
         <TimerStlye>
           <TimerChild>
-            <p>{timerDays}</p>
+            <p>87</p>
             <p>
-              <small>DAY</small>
+              <small>Days</small>
             </p>
           </TimerChild>
           <span>:</span>
           <TimerChild>
-            <p>{timerHours}</p>
+            <p>87</p>
             <p>
-              <small>HOUR</small>
+              <small>Hours</small>
             </p>
           </TimerChild>
           <span>:</span>
           <TimerChild>
-            <p>{timerMinutes}</p>
+            <p>87</p>
             <p>
-              <small>MIN</small>
+              <small>Minutes</small>
             </p>
           </TimerChild>
           <span>:</span>
           <TimerChild>
-            <p>{timerSeconds}</p>
+            <p>87</p>
             <p>
-              <small>SEC</small>
+              <small>seconds</small>
             </p>
           </TimerChild>
         </TimerStlye>
@@ -113,4 +113,5 @@ const AuctionTime = () => {
     </>
   );
 };
+
 export default AuctionTime;

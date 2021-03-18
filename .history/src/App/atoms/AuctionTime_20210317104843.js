@@ -1,0 +1,61 @@
+import React from "react";
+import styled from "styled-components";
+import { faClock } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+const TimeStlye = styled.div`
+  margin-top: 5px;
+  font-size: 40px;
+`;
+const TimeBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  svg {
+    font-size: 45px;
+    margin-right: 15px;
+  }
+`;
+
+function AuctionTime() {
+  return (
+    <>
+      <TimeBox>
+        <FontAwesomeIcon icon={faClock} />
+        <TimeStlye>{
+        
+  
+  let countDownDate = new Date("Jan 5, 2022 15:37:25").getTime();
+
+  // Update the count down every 1 second
+  let x = setInterval(function() {
+
+  // Get today's date and time
+  let now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  let distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+
+  // If the count down is finished, write some text
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "EXPIRED";
+  }
+}, 1000)}</TimeStlye>
+      </TimeBox>
+    </>
+  );
+}
+
+export default AuctionTime;
