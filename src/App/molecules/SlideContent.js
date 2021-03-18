@@ -42,8 +42,8 @@ const FontStyle = styled.div`
   text-align: center;
   svg {
     position: absolute;
-    top: 80px;
-    left: 85px;
+    top: 95px;
+    left: 100px;
     color: rgba(20, 20, 20, 0.7);
   }
 `;
@@ -59,8 +59,8 @@ function SlideContent() {
     <>
       <StyleCover>
         <Coverflow
-          width={650}
-          height={450}
+          width={780}
+          height={500}
           displayQuantityOfSide={1}
           navigation={false}
           enableHeading={false}

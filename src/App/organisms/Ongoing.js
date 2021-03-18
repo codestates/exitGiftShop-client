@@ -10,7 +10,6 @@ const StyledMain = styled.div`
   align-items: center;
   margin-top: 20px;
   height: 600px;
-  padding: 0 80px;
 
   @media screen and (max-width: 1080px) {
     display: flex;
@@ -43,6 +42,8 @@ const MainSectionRight = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: stretch;
+  overflow: hidden;
 
   @media screen and (max-width: 1080px) {
     border: none;
