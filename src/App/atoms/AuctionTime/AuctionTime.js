@@ -11,7 +11,6 @@ const TimeBox = styled.div`
     margin-right: 15px;
   }
 `;
-
 const TimerStlye = styled.div`
   font-family: "Roboto Mono", monospace;
   font-size: 35px;
@@ -44,14 +43,11 @@ const AuctionTime = () => {
   const [timerSeconds, setTimerSeconds] = useState("00");
 
   let interval = useRef();
-
   const startTimer = () => {
     const countdownDate = new Date("March 25, 2021 16:05:00").getTime();
-
     interval = setInterval(() => {
       const now = new Date().getTime();
       const distance = countdownDate - now;
-
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor(
         (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
@@ -117,5 +113,4 @@ const AuctionTime = () => {
     </>
   );
 };
-
 export default AuctionTime;

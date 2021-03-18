@@ -41,13 +41,16 @@ const BtnBox = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
+  margin-top: 37px;
 `;
 
 const StyleTwit = styled.div`
   > div {
     display: flex;
     justify-content: center;
-    width: 100%;
+    align-items: center;
+    margin-left: 2.5px;
+    margin-top: 20px;
   }
 `;
 
@@ -72,7 +75,10 @@ function DetailContent() {
         </DetailMainTextBox>
 
         <StyleTwit>
-          <TwitterTweetEmbed tweetId={"933354946111705097"} />
+          <TwitterTweetEmbed
+            tweetId={"463440424141459456"}
+            options={{ cards: "hidden", width: 550 }}
+          />
         </StyleTwit>
 
         <BtnBox>
