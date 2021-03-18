@@ -64,6 +64,7 @@ function SlideContent() {
           displayQuantityOfSide={1}
           navigation={false}
           enableHeading={false}
+          currentFigureScale={2}
         >
           <SelectBtn onClick={() => fn()} onKeyUp={() => fn()} role="menuitem">
             <SlideImg

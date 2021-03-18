@@ -42,7 +42,7 @@ const MainSectionRight = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: stretch;
+  align-items: center;
   overflow: hidden;
 
   @media screen and (max-width: 1080px) {

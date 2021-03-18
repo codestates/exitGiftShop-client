@@ -19,7 +19,6 @@ const TimerStlye = styled.div`
   flex: column;
   align-items: center;
   justify-content: center;
-  padding-
   width: 100%;
   height: 100%;
 `;

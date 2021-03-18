@@ -67,7 +67,7 @@ function Mybid() {
         <MainSectionLeft>
           <LeftBtnBox>
             <Link to={"/account"}>Account</Link>
-            <Link to={"/bid/wallet"}>Wallet</Link>
+            <Link to={"#/bid/wallet"}>Wallet</Link>
             <Link to={"/invite"}>Invite</Link>
           </LeftBtnBox>
         </MainSectionLeft>
