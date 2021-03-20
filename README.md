@@ -45,3 +45,5 @@
 |                  | `Dbeaver`   | `RDS`        | `Slack`         | `Lets Encrypt` |
 |                  | `Sequelize` | `Route53`    |                 |                |
 |                  | `Swagger`   | `ACM`        |                 |                |
+
+
