@@ -6,7 +6,6 @@ import {
   Section,
   Header,
 } from "react-fullpage";
-import mainBg from "../../images/mainBg.jpg";
 import LandingFirst from "../Pages/LandingFirst";
 import LandingSecond from "../Pages/LandingSecond";
 import LandingThird from "../Pages/LandingThird";
@@ -27,15 +26,6 @@ const StyleNav = styled.div`
   /* background-color: rgba(5, 5, 5, 1);
   box-shadow: 0px 1px 3px 2px rgba(0, 0, 0, 0.2); */
   z-index: 1;
-`;
-
-const BackgroundImg = styled.img`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  z-index: -1;
 `;
 
 const ListStyle = styled.ul`
@@ -77,19 +67,17 @@ const NavList = styled.div`
   display: flex;
 `;
 
-const StyleScroll = styled(SectionsContainer)``;
-
 let options = {
   sectionClassName: "section",
-  anchors: ["/ongoing", "/bid", "/collection", "/support"],
+  anchors: ["/ongoing", "/mybid/wallet", "/collection", "/support"],
   // anchors: ["sectionOne", "sectionTwo", "sectionThree"],
   scrollBar: false,
   navigation: true,
   verticalAlign: false,
-  sectionPaddingTop: "50px",
-  sectionPaddingBottom: "50px",
+  sectionPaddingTop: "0px",
+  sectionPaddingBottom: "0px",
   arrowNavigation: true,
-  MouseEvent: false,
+  autoScrolling: true,
 };
 
 function LandingTemplate() {
@@ -108,7 +96,7 @@ function LandingTemplate() {
                 <StyleLink href="#/ongoing">Ongoing</StyleLink>
               </Item>
               <Item>
-                <StyleLink href="#/bid">MyBid</StyleLink>
+                <StyleLink href="#/mybid/wallet">MyBid</StyleLink>
               </Item>
               <Item>
                 <StyleLink href="#/collection">Collection</StyleLink>
@@ -136,7 +124,6 @@ function LandingTemplate() {
           <LandingLast />
         </Section>
       </SectionsContainer>
-      <BackgroundImg src={mainBg} alt="background" />
     </>
   );
 }
