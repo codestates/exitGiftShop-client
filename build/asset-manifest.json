@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/static/js/main.ea328a3b.chunk.js",
-    "main.js.map": "/static/js/main.ea328a3b.chunk.js.map",
+    "main.js": "/static/js/main.b77aa7a7.chunk.js",
+    "main.js.map": "/static/js/main.b77aa7a7.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.705a4aee.js",
     "runtime-main.js.map": "/static/js/runtime-main.705a4aee.js.map",
-    "static/js/2.ff293cd9.chunk.js": "/static/js/2.ff293cd9.chunk.js",
-    "static/js/2.ff293cd9.chunk.js.map": "/static/js/2.ff293cd9.chunk.js.map",
+    "static/js/2.07f9cbf0.chunk.js": "/static/js/2.07f9cbf0.chunk.js",
+    "static/js/2.07f9cbf0.chunk.js.map": "/static/js/2.07f9cbf0.chunk.js.map",
     "index.html": "/index.html",
-    "static/js/2.ff293cd9.chunk.js.LICENSE.txt": "/static/js/2.ff293cd9.chunk.js.LICENSE.txt",
+    "static/js/2.07f9cbf0.chunk.js.LICENSE.txt": "/static/js/2.07f9cbf0.chunk.js.LICENSE.txt",
     "static/media/beeple.616628fc.jpg": "/static/media/beeple.616628fc.jpg",
     "static/media/beeple2.8888feda.jpg": "/static/media/beeple2.8888feda.jpg",
     "static/media/beeples.16016a54.jpg": "/static/media/beeples.16016a54.jpg",
@@ -16,7 +16,7 @@
   },
   "entrypoints": [
     "static/js/runtime-main.705a4aee.js",
-    "static/js/2.ff293cd9.chunk.js",
-    "static/js/main.ea328a3b.chunk.js"
+    "static/js/2.07f9cbf0.chunk.js",
+    "static/js/main.b77aa7a7.chunk.js"
   ]
 }

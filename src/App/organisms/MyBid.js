@@ -66,9 +66,9 @@ function Mybid() {
       <StyledMain>
         <MainSectionLeft>
           <LeftBtnBox>
-            <Link to={"/account"}>Account</Link>
+            <Link to={"#/bid/account"}>Account</Link>
             <Link to={"#/bid/wallet"}>Wallet</Link>
-            <Link to={"/invite"}>Invite</Link>
+            <Link to={"#/bid/invite"}>Invite</Link>
           </LeftBtnBox>
         </MainSectionLeft>
         <MainSectionRight></MainSectionRight>

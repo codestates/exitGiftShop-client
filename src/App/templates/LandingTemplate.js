@@ -122,7 +122,7 @@ function LandingTemplate() {
       </Header>
       <ScrollToTopOnMount />
 
-      <StyleScroll {...options}>
+      <SectionsContainer {...options}>
         <Section>
           <LandingFirst />
         </Section>
@@ -135,7 +135,7 @@ function LandingTemplate() {
         <Section>
           <LandingLast />
         </Section>
-      </StyleScroll>
+      </SectionsContainer>
       <BackgroundImg src={mainBg} alt="background" />
     </>
   );

@@ -35,15 +35,15 @@ const SlideImg = styled.img`
 `;
 const FontStyle = styled.div`
   position: absolute;
-  width: 220px;
-  height: 240px;
+  width: 300px;
+  height: 380px;
   opacity: 0;
   top: 0px;
   text-align: center;
   svg {
     position: absolute;
-    top: 95px;
-    left: 100px;
+    top: 90px;
+    left: 90px;
     color: rgba(20, 20, 20, 0.7);
   }
 `;
@@ -59,7 +59,7 @@ function SlideContent() {
     <>
       <StyleCover>
         <Coverflow
-          width={780}
+          width={600}
           height={500}
           displayQuantityOfSide={1}
           navigation={false}
@@ -73,7 +73,7 @@ function SlideContent() {
               style={{ display: "block", width: "100%" }}
             />
             <FontStyle>
-              <FontAwesomeIcon icon={faSearch} size="4x" />
+              <FontAwesomeIcon icon={faSearch} size="2x" />
             </FontStyle>
           </SelectBtn>
           <SelectBtn onClick={() => fn()} onKeyUp={() => fn()} role="menuitem">
@@ -83,7 +83,7 @@ function SlideContent() {
               style={{ display: "block", width: "100%" }}
             />
             <FontStyle>
-              <FontAwesomeIcon icon={faSearch} size="4x" />
+              <FontAwesomeIcon icon={faSearch} size="2x" />
             </FontStyle>
           </SelectBtn>
 
@@ -94,7 +94,7 @@ function SlideContent() {
               style={{ display: "block", width: "100%" }}
             />
             <FontStyle>
-              <FontAwesomeIcon icon={faSearch} size="4x" />
+              <FontAwesomeIcon icon={faSearch} size="2x" />
             </FontStyle>
           </SelectBtn>
         </Coverflow>
