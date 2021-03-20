@@ -8,7 +8,7 @@ const ModalOverlay = styled.div`
   box-sizing: border-box;
   display: ${(props) => (props.visible ? "block" : "none")};
   position: fixed;
-  top: 0;
+  top: -200px;
   left: 0px;
   bottom: 0;
   right: 0px;

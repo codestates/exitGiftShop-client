@@ -11,9 +11,11 @@ const StyledMain = styled.div`
   margin-top: 20px;
   height: 600px;
 
-  @media screen and (max-width: 1080px) {
-    display: flex;
+  @media screen and (max-width: 1300px) {
     flex-wrap: wrap;
+  }
+  @media screen and (max-width: 800px) {
+    display: none;
   }
 `;
 
@@ -28,8 +30,11 @@ const MainSectionLeft = styled.section`
   justify-content: center;
   align-items: center;
 
-  @media screen and (max-width: 1080px) {
+  @media screen and (max-width: 1300px) {
     border: none;
+  }
+  @media screen and (max-width: 800px) {
+    display: none;
   }
 `;
 
@@ -43,10 +48,13 @@ const MainSectionRight = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
 
-  @media screen and (max-width: 1080px) {
+  @media screen and (max-width: 1300px) {
     border: none;
+    margin-top: 20px;
+  }
+  @media screen and (max-width: 800px) {
+    display: none;
   }
 `;
 
