@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
-import beeple from "../../images/beeple.jpg";
-import beeple2 from "../../images/beeple2.jpg";
-import beeple3 from "../../images/beeples.jpg";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Coverflow from "react-coverflow";
+import { fetchArt } from "../../reducers/slideContentSlice";
 
 const StyleCover = styled.div`
   .coverflow__container__1P-xE {
@@ -51,9 +50,20 @@ const FontStyle = styled.div`
 const fn = function () {};
 
 function SlideContent() {
-  useEffect(() => {});
+  const dispatch = useDispatch();
+  const { arts, loading, error } = useSelector((state) => state.slideContentSliceReducer);
   // todo: onClick=false > onClick=true state 변화
   // todo: 첫번째 클릭하고 나면 디테일이 바뀌고 그뒤로는 모달창이 뜨는 클릭으로 바뀜
+
+  dispatch(fetchArt());
+
+  if (error) {
+    return <p>Something went wrong! please, try again.</p>;
+  }
+
+  if (loading) {
+    return <p>Loading</p>;
+  }
 
   return (
     <>
@@ -68,7 +78,7 @@ function SlideContent() {
         >
           <SelectBtn onClick={() => fn()} onKeyUp={() => fn()} role="menuitem">
             <SlideImg
-              src={beeple3}
+              src={`${process.env.API_URL}:${process.env.API_PORT}/file/${arts[0].art_file_id}`}
               alt="piture"
               style={{ display: "block", width: "100%" }}
             />
@@ -78,7 +88,7 @@ function SlideContent() {
           </SelectBtn>
           <SelectBtn onClick={() => fn()} onKeyUp={() => fn()} role="menuitem">
             <SlideImg
-              src={beeple}
+              src={`${process.env.API_URL}:${process.env.API_PORT}/file/${arts[1].art_file_id}`}
               alt="piture"
               style={{ display: "block", width: "100%" }}
             />
@@ -89,7 +99,7 @@ function SlideContent() {
 
           <SelectBtn onClick={() => fn()} onKeyUp={() => fn()} role="menuitem">
             <SlideImg
-              src={beeple2}
+              src={`${process.env.API_URL}:${process.env.API_PORT}/file/${arts[2].art_file_id}`}
               alt="piture"
               style={{ display: "block", width: "100%" }}
             />

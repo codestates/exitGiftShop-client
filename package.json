@@ -18,6 +18,7 @@
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^13.0.6",
     "axios": "^0.21.1",
+    "dotenv": "^8.2.0",
     "mime": "^2.5.2",
     "mime-db": "^1.46.0",
     "mime-lookup": "^0.0.2",
