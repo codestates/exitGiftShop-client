@@ -56,14 +56,24 @@ function SlideContent() {
   // componentDidMount, componentDidUpdate와 같은 방식으로
   useEffect(() => {
     dispatch(fetchArt());
-  },[]);
+  },[dispatch]);
 
-  if (error) {
-    return <p>Something went wrong! please, try again.</p>;
-  }
+  const renderSlide = () => {
+    if (loading) return <p>Loading...</p>
+    if (error) return <p>Cannot display</p>
 
-  if (loading) {
-    return <p>Loading</p>;
+    return arts.map(art =>
+      <SelectBtn onClick={() => fn()} onKeyUp={() => fn()} role="menuitem">
+        <SlideImg
+          src={`${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/file/${art.art_file_id}`}
+          alt="piture"
+          style={{ display: "block", width: "100%" }}
+        />
+        <FontStyle>
+          <FontAwesomeIcon icon={faSearch} size="2x" />
+        </FontStyle>
+      </SelectBtn>
+    )
   }
 
   return (
@@ -77,37 +87,7 @@ function SlideContent() {
           enableHeading={false}
           currentFigureScale={2}
         >
-          <SelectBtn onClick={() => fn()} onKeyUp={() => fn()} role="menuitem">
-            <SlideImg
-              src={`${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/file/${arts[0].art_file_id}`}
-              alt="piture"
-              style={{ display: "block", width: "100%" }}
-            />
-            <FontStyle>
-              <FontAwesomeIcon icon={faSearch} size="2x" />
-            </FontStyle>
-          </SelectBtn>
-          <SelectBtn onClick={() => fn()} onKeyUp={() => fn()} role="menuitem">
-            <SlideImg
-              src={`${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/file/${arts[1].art_file_id}`}
-              alt="piture"
-              style={{ display: "block", width: "100%" }}
-            />
-            <FontStyle>
-              <FontAwesomeIcon icon={faSearch} size="2x" />
-            </FontStyle>
-          </SelectBtn>
-
-          <SelectBtn onClick={() => fn()} onKeyUp={() => fn()} role="menuitem">
-            <SlideImg
-              src={`${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/file/${arts[2].art_file_id}`}
-              alt="piture"
-              style={{ display: "block", width: "100%" }}
-            />
-            <FontStyle>
-              <FontAwesomeIcon icon={faSearch} size="2x" />
-            </FontStyle>
-          </SelectBtn>
+          {renderSlide()}
         </Coverflow>
       </StyleCover>
     </>
