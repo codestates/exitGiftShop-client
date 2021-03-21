@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect  } from "react";
 import styled from "styled-components";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -47,7 +47,10 @@ const FontStyle = styled.div`
   }
 `;
 
-const fn = function () {};
+const fn = (e) => {
+  console.log(e);
+};
+
 
 function SlideContent() {
   const dispatch = useDispatch();
@@ -61,9 +64,8 @@ function SlideContent() {
   const renderSlide = () => {
     if (loading) return <p>Loading...</p>
     if (error) return <p>Cannot display</p>
-
     return arts.map(art =>
-      <SelectBtn onClick={() => fn()} onKeyUp={() => fn()} role="menuitem">
+      <SelectBtn onClick={(e) => { fn(e) }} onKeyUp={() => fn()} role="menuitem">
         <SlideImg
           src={`${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/file/${art.art_file_id}`}
           alt="piture"
@@ -74,6 +76,7 @@ function SlideContent() {
         </FontStyle>
       </SelectBtn>
     )
+    
   }
 
   return (
@@ -86,6 +89,7 @@ function SlideContent() {
           navigation={false}
           enableHeading={false}
           currentFigureScale={2}
+          active={1}
         >
           {renderSlide()}
         </Coverflow>
