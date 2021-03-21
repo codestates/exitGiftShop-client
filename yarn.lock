@@ -1705,10 +1705,10 @@
     "@babel/runtime" "^7.12.5"
     "@testing-library/dom" "^7.28.1"
 
-"@testing-library/user-event@^13.0.1":
-  "integrity" "sha512-7n3Y5Vohib6yVFW60JlCvQOqBDIlE1SRyo78nmoHwePAg3SVhnfyOI30RYNj3yFF7qy7e0uVlewzTyvNxyJjEA=="
-  "resolved" "https://registry.npmjs.org/@testing-library/user-event/-/user-event-13.0.1.tgz"
-  "version" "13.0.1"
+"@testing-library/user-event@^13.0.6":
+  "integrity" "sha512-61Rv1/9pr7rCilwnQ+uLdiaCBFSQp2GRmF2PHrX6gIy0mWqnR43p5pMJAdMA7PZ3JUN+8YyN5S2d1fq9DyYnYw=="
+  "resolved" "https://registry.npmjs.org/@testing-library/user-event/-/user-event-13.0.6.tgz"
+  "version" "13.0.6"
   dependencies:
     "@babel/runtime" "^7.12.5"
 
@@ -8027,15 +8027,15 @@
   dependencies:
     "mime-db" "1.46.0"
 
-"mime@^1.6.0", "mime@1.6.0":
-  "integrity" "sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg=="
-  "resolved" "https://registry.npmjs.org/mime/-/mime-1.6.0.tgz"
-  "version" "1.6.0"
-
-"mime@^2.4.4":
+"mime@^2.4.4", "mime@^2.5.2":
   "integrity" "sha512-tqkh47FzKeCPD2PUiPB6pkbMzsCasjxAfC62/Wap5qrUWcb+sFasXUC5I3gYM5iBM8v/Qpn4UK0x+j0iHyFPDg=="
   "resolved" "https://registry.npmjs.org/mime/-/mime-2.5.2.tgz"
   "version" "2.5.2"
+
+"mime@1.6.0":
+  "integrity" "sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg=="
+  "resolved" "https://registry.npmjs.org/mime/-/mime-1.6.0.tgz"
+  "version" "1.6.0"
 
 "mimic-fn@^2.1.0":
   "integrity" "sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg=="
