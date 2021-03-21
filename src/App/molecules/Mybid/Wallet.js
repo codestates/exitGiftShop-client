@@ -1,5 +1,5 @@
-import React from "react";
-import { faWallet, faCog } from "@fortawesome/free-solid-svg-icons";
+import React, { useState } from "react";
+import { faCog } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 import paddle from "../../../images/paddle.png";
@@ -52,16 +52,28 @@ const BidTitle = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  margin-left: 15px;
 `;
 
 const BidDetail = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  div {
+  font-size: 20px;
+  height: 300px;
+  > :first-child {
+    display: flex;
+    margin-top: 20px;
+  }
+  > :not(:first-child) div {
     height: 80px;
     display: flex;
     align-items: center;
+    cursor: pointer;
+    background-color: white;
+    outline: none;
+    border: none;
+    font-size: 20px;
   }
 `;
 const DetailHeaderBox = styled.div`
@@ -72,29 +84,48 @@ const DetailHeaderBox = styled.div`
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    padding-bottom: 12px;
     opacity: 0.7;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 
     /* border-bottom: 5px solid
       ${(props) => (props.current ? "#00A1EE" : "transparent")}; */
   }
+  button {
+    font-size: 16px;
+
+    width: 100%;
+    outline: none;
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    padding-bottom: 10px;
+  }
+  .handle_click {
+    border-bottom: 5px solid #00a1ee;
+  }
 `;
 
-const DetailBodyBox = styled.div`
+const DetailBodyBox = styled(Link)`
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 `;
 
 function Wallet() {
+  const [click, setClick] = useState(true);
+
+  const handlCilck = () => {
+    setClick(true);
+  };
+  const handleClick2 = () => {
+    setClick(false);
+  };
+
   return (
     <>
       <MybidBox>
         <BidTitle>
-          <Link to="/mybid/faucetbeta">
-            <FontAwesomeIcon icon={faWallet} size="2x" />
-          </Link>
+          {/* <Link to="/mybid/faucetbeta"></Link> */}
+          <div></div>
           <TextBox>
             <h1>Mr.Rhee</h1>
             <span>￦ 23,950,000,000</span>
@@ -108,34 +139,70 @@ function Wallet() {
         <BidDetail>
           <DetailHeaderBox>
             <div>
-              <span>ASSETS</span>
-            </div>
-            <div>
-              <span>COLLECTABLES</span>
+              <button
+                onClick={handlCilck}
+                className={click ? "handle_click" : ""}
+              >
+                <span>ASSETS</span>
+              </button>
+              <button
+                onClick={handleClick2}
+                className={click ? "" : "handle_click"}
+              >
+                <span>COLLECTABLES</span>
+              </button>
             </div>
           </DetailHeaderBox>
 
-          <DetailBodyBox>
-            <div>
-              <LogoImg src={puzzle} alt="" />
-              <span>Puzzle</span>
-            </div>
-            <div>
-              <span>12</span>
-            </div>
-          </DetailBodyBox>
-          <DetailBodyBox>
-            <div>
-              <LogoImg src={bitcoin} alt="" />
-              <span>Bitcoin</span>
-            </div>
-          </DetailBodyBox>
-          <DetailBodyBox>
-            <div>
-              <LogoImg src={paddle} alt="" />
-              <span>Paddle</span>
-            </div>
-          </DetailBodyBox>
+          {click ? (
+            <>
+              <DetailBodyBox to="/mybid/faucetbeta">
+                <div>
+                  <LogoImg src={puzzle} alt="puzzle" />
+                  <span>Puzzle</span>
+                </div>
+                <div>
+                  <span>Assets</span>
+                </div>
+              </DetailBodyBox>
+              <DetailBodyBox to="/mybid/faucetbeta">
+                <div>
+                  <LogoImg src={bitcoin} alt="bitcoin" />
+                  <span>Bitcoin</span>
+                </div>
+              </DetailBodyBox>
+              <DetailBodyBox to="/mybid/faucetbeta">
+                <div>
+                  <LogoImg src={paddle} alt="paddle" />
+                  <span>Paddle</span>
+                </div>
+              </DetailBodyBox>
+            </>
+          ) : (
+            <>
+              <DetailBodyBox to="/mybid/faucetbeta">
+                <div>
+                  <LogoImg src={puzzle} alt="puzzle" />
+                  <span>Puzzle</span>
+                </div>
+                <div>
+                  <span>COLLECTABLES</span>
+                </div>
+              </DetailBodyBox>
+              <DetailBodyBox to="/mybid/faucetbeta">
+                <div>
+                  <LogoImg src={bitcoin} alt="bitcoin" />
+                  <span>Bitcoin</span>
+                </div>
+              </DetailBodyBox>
+              <DetailBodyBox to="/mybid/faucetbeta">
+                <div>
+                  <LogoImg src={paddle} alt="paddle" />
+                  <span>Paddle</span>
+                </div>
+              </DetailBodyBox>
+            </>
+          )}
         </BidDetail>
       </MybidBox>
     </>
