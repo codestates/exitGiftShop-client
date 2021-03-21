@@ -1,7 +1,8 @@
 import React from "react";
+import Collection from "../organisms/Collection";
 
 function LandingThird() {
-  return <div>Collection</div>;
+  return <Collection />;
 }
 
 export default LandingThird;

@@ -83,12 +83,14 @@ let options = {
   sectionClassName: "section",
   anchors: ["/", "/bid", "/collection", "/support"],
   // anchors: ["sectionOne", "sectionTwo", "sectionThree"],
+  keyboardScrolling: false,
   scrollBar: false,
   navigation: true,
   verticalAlign: false,
   sectionPaddingTop: "50px",
   sectionPaddingBottom: "50px",
-  arrowNavigation: true,
+  arrowNavigation: false,
+  autoScrolling: false,
 };
 
 function LandingTemplate() {

@@ -5,22 +5,22 @@ import slideContent from "../reducers/slideContent";
 require("dotenv").config();
 // reducer 목록
 const reducer = {
-    counter: counterReducer,
-    userReducer,
-    slideContent,
-}
+
+  counter: counterReducer,
+  userContent: userReducer,
+  slideContent: slideContentSliceReducer,
+};
+
 
 // 추가 middleware 목록
-const middleware = [...getDefaultMiddleware()]
+const middleware = [...getDefaultMiddleware()];
 
 // 초기 state 목록
-const preloadedState = {
-  
-}
+const preloadedState = {};
 
 export default configureStore({
   reducer,
   middleware,
   devTools: true,
-  preloadedState
+  preloadedState,
 });

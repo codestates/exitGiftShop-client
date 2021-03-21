@@ -14,16 +14,13 @@ const StyledMain = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 70px;
   height: 600px;
   overflow: auto;
 
   @media screen and (max-width: 1300px) {
     flex-wrap: wrap;
     border: none;
-  }
-  @media screen and (max-width: 800px) {
-    display: none;
   }
 `;
 
@@ -39,9 +36,6 @@ const MainSectionLeft = styled.section`
 
   @media screen and (max-width: 1300px) {
     border: none;
-  }
-  @media screen and (max-width: 800px) {
-    display: none;
   }
 `;
 
