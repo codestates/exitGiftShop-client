@@ -2,17 +2,9 @@ import React from "react";
 import GlobalStyles from "./GlobalStyles";
 import styled from "styled-components";
 import mainBg from "../images/mainBg.jpg";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import MyBid from "./Pages/LandingSecond";
-import Ongoing from "./Pages/LandingFirst";
-import Collection from "./Pages/LandingThird";
-import Support from "./Pages/LandingLast";
-import Pagenotfound from "./Pages/Pagenotfound";
-import SignUp from "./molecules/SignUp";
 import LandingTemplate from "./templates/LandingTemplate";
-import Wallet from "./molecules/Wallet";
-import Account from "./molecules/Account";
-import Invite from "./molecules/Invite";
+
+import { HashRouter as Router } from "react-router-dom";
 
 const BackgroundImg = styled.img`
   position: absolute;
@@ -26,21 +18,24 @@ const BackgroundImg = styled.img`
 function App() {
   return (
     <>
+      {/* <BackgroundImg autoPlay={true} src={video} alt="background" /> */}
       <BackgroundImg src={mainBg} alt="background" />
       <Router>
+        <LandingTemplate />
+      </Router>
+      {/* <Router>
         <Switch>
-          <LandingTemplate />
           <Route path="/" exact component={Ongoing} />
-          <Route path="/bid" component={MyBid} />
+          <Route path="/mybid" component={MyBid} />
           <Route path="/collection" component={Collection} />
           <Route path="/support" component={Support} />
           <Route path="/signup" component={SignUp} />
-          <Route path="#/bid/account" component={Account} />
-          <Route path="#/bid/wallet" component={Wallet} />
-          <Route path="#/bid/invite" component={Invite} />
+          <Route path="#/mybid/account" component={Account} />
+          <Route path="#/mybid/wallet" component={Wallet} />
+          <Route path="#/mybid/invite" component={Invite} />
           <Route component={Pagenotfound} />
         </Switch>
-      </Router>
+      </Router> */}
       <GlobalStyles />
     </>
   );
