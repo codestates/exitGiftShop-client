@@ -5,7 +5,8 @@ import mainBg from "../images/mainBg.jpg";
 import LandingTemplate from "./templates/LandingTemplate";
 
 import { HashRouter as Router } from "react-router-dom";
-
+// require("dotenv").config();
+// console.log(process.env.API_KEY);
 const BackgroundImg = styled.img`
   position: absolute;
   top: 0;

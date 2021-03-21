@@ -1,16 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// todo: 알림기능 구현시 createAsyncThunk 사용
-
 export const userSlice = createSlice({
-  name: "user",
+  name: "counter",
   initialState: {
-    value: "namkyu",
+    value: 0,
   },
-  reducers: {},
+  reducers: {
+    increment: (state) => {
+      state.value += 1;
+    },
+    decrement: (state) => {
+      state.value -= 1;
+    },
+    incrementByAmount: (state, action) => {
+      state.value += action.payload;
+    },
+  },
 });
 
-export const {} = userSlice.actions;
+export const { increment, decrement, incrementByAmount } = userSlice.actions;
+
+export const incrementAsync = (amount) => (dispatch) => {
+  setTimeout(() => {
+    dispatch(incrementByAmount(amount));
+  }, 1000);
+};
 
 export const selectCount = (state) => state.counter.value;
 

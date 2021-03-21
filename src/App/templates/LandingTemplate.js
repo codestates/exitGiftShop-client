@@ -10,6 +10,8 @@ import LandingFirst from "../Pages/LandingFirst";
 import LandingSecond from "../Pages/LandingSecond";
 import LandingThird from "../Pages/LandingThird";
 import LandingLast from "../Pages/LandingLast";
+import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const StyleNav = styled.div`
   color: white;
@@ -40,7 +42,6 @@ const Item = styled.li`
   display: flex;
   align-items: center;
   padding: 0 30px;
-  height: 100%;
 
   @media screen and (max-width: 1080px) {
     padding: 0 10px;
@@ -65,22 +66,29 @@ const StyleLink = styled.a`
 
 const NavList = styled.div`
   display: flex;
+  overflow: visible;
 `;
 
-let options = {
-  sectionClassName: "section",
-  anchors: ["/ongoing", "/mybid/wallet", "/collection", "/support"],
-  // anchors: ["sectionOne", "sectionTwo", "sectionThree"],
-  scrollBar: false,
-  navigation: true,
-  verticalAlign: false,
-  sectionPaddingTop: "0px",
-  sectionPaddingBottom: "0px",
-  arrowNavigation: true,
-  autoScrolling: true,
-};
-
+const LogoutBtn = styled(FontAwesomeIcon)`
+  cursor: pointer;
+  color: #ce7777;
+  margin-right: 50px;
+  margin-left: 30px;
+`;
 function LandingTemplate() {
+  let options = {
+    sectionClassName: "section",
+    anchors: ["/ongoing", "/mybid/wallet", "/collection", "/support"],
+    // anchors: ["sectionOne", "sectionTwo", "sectionThree"],
+    scrollbars: false,
+    navigation: true,
+    verticalAlign: false,
+    sectionPaddingTop: "0px",
+    sectionPaddingBottom: "0px",
+    fitToSectionDelay: 500,
+    autoScrolling: false,
+    normalScrollElements: "collection",
+  };
   return (
     <>
       <Header>
@@ -93,19 +101,28 @@ function LandingTemplate() {
             </Item>
             <NavList>
               <Item>
-                <StyleLink href="#/ongoing">Ongoing</StyleLink>
+                <StyleLink className="ongoing" href="#/ongoing">
+                  Ongoing
+                </StyleLink>
               </Item>
               <Item>
-                <StyleLink href="#/mybid/wallet">MyBid</StyleLink>
+                <StyleLink className="mybid" href="#/mybid/wallet">
+                  MyBid
+                </StyleLink>
               </Item>
               <Item>
-                <StyleLink href="#/collection">Collection</StyleLink>
+                <StyleLink className="collection" href="#/collection">
+                  Collection
+                </StyleLink>
               </Item>
               <Item>
-                <StyleLink href="#/support">Support</StyleLink>
+                <StyleLink className="support" href="#/support">
+                  Support
+                </StyleLink>
               </Item>
             </NavList>
           </ListStyle>
+          <LogoutBtn icon={faPowerOff} />
         </StyleNav>
       </Header>
       <ScrollToTopOnMount />

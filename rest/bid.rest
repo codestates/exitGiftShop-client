@@ -1,0 +1,31 @@
+# 테스트 완료
+
+
+GET https://back.exitgift.shop:4000/bid
+
+###
+
+GET https://back.exitgift.shop:4000/bid/c39eccb9-eefb-408e-a6fa-b6eccf27439c
+
+###
+
+GET https://back.exitgift.shop:4000/bid/auction/34a67ed4-6f29-477e-936c-5427a07cbf7f
+
+###
+
+GET https://back.exitgift.shop:4000/bid/user/82865d2f-26b8-4611-85f1-933643995e79
+
+###
+
+POST https://back.exitgift.shop:4000/bid
+content-type: application/json
+
+{
+  "auction_uuid": "34a67ed4-6f29-477e-936c-5427a07cbf7f",
+  "user_uuid": "82865d2f-26b8-4611-85f1-933643995e79",
+  "price": "4000"
+}
+
+###
+
+DELETE https://back.exitgift.shop:4000/bid/c39eccb9-eefb-408e-a6fa-b6eccf27439c

@@ -8,14 +8,11 @@ const StyledMain = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
   height: 600px;
+  margin-top: 20px;
 
   @media screen and (max-width: 1300px) {
     flex-wrap: wrap;
-  }
-  @media screen and (max-width: 800px) {
-    display: none;
   }
 `;
 
@@ -32,9 +29,6 @@ const MainSectionLeft = styled.section`
 
   @media screen and (max-width: 1300px) {
     border: none;
-  }
-  @media screen and (max-width: 800px) {
-    display: none;
   }
 `;
 
