@@ -3,6 +3,7 @@ import GlobalStyles from "./GlobalStyles";
 import styled from "styled-components";
 import mainBg from "../images/mainBg.jpg";
 import LandingTemplate from "./templates/LandingTemplate";
+
 import { HashRouter as Router } from "react-router-dom";
 
 const BackgroundImg = styled.img`

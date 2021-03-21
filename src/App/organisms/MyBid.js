@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Link, Route, Switch, withRouter } from "react-router-dom";
 import Account from "../molecules/Mybid/Account";
@@ -133,7 +133,7 @@ function Mybid({ location: { pathname } }) {
             </Link>
           </LeftBtnBox>
           <Switch>
-            <Route path="/mybid/wallet" component={Likes} />
+            <Route path="/mybid" component={Likes} />
             <Route component={Pagenotfound} />
           </Switch>
         </MainSectionRight>

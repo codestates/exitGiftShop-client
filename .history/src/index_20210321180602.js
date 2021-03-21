@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import store from "./store/store";
 import { Provider } from "react-redux";
 import App from "./App/App";
-require("dotenv").config();
 
 ReactDOM.render(
   <React.StrictMode>
