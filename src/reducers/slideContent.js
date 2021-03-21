@@ -12,7 +12,7 @@ export const fetchArt = createAsyncThunk("slideContent/fetchArt", async () => {
     .catch((error) => error);
 });
 
-export const slideContentSlice = createSlice({
+export const slideContent = createSlice({
   name: "slideContent",
   initialState: {
     loading: true,
@@ -39,4 +39,4 @@ export const slideContentSlice = createSlice({
   }
 });
 
-export default slideContentSlice.reducer;
+export default slideContent.reducer;

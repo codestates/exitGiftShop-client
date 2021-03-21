@@ -4,7 +4,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Coverflow from "react-coverflow";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchArt } from "../../reducers/slideContentSlice";
+import { fetchArt } from "../../reducers/slideContent";
 
 const StyleCover = styled.div`
   .coverflow__container__1P-xE {
