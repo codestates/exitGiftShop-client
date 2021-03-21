@@ -8,7 +8,7 @@ const reducer = {
 
   counter: counterReducer,
   userContent: userReducer,
-  slideContent: slideContentSliceReducer,
+  slideContent: slideContent,
 };
 
 
