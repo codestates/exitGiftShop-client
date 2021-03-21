@@ -7,7 +7,7 @@ require("dotenv").config();
 const reducer = {
   counter: counterReducer,
   userReducer,
-  slideContent: slideContentSliceReducer,
+  SlideContent: slideContentSliceReducer,
 };
 
 // 추가 middleware 목록

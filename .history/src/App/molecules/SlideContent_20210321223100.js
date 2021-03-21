@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -51,12 +51,11 @@ const fn = function () {};
 
 function SlideContent() {
   const dispatch = useDispatch();
-  const { arts, loading, error } = useSelector((state) => state.slideContent);
+  const { arts, loading, error } = useSelector(
+    (state) => state.slideContentSliceReducer
+  );
   // todo: onClick=false > onClick=true state 변화
   // todo: 첫번째 클릭하고 나면 디테일이 바뀌고 그뒤로는 모달창이 뜨는 클릭으로 바뀜
-  useEffect(() => {
-    dispatch(fetchArt());
-  }, []);
 
   if (error) {
     return <p>Something went wrong! please, try again.</p>;

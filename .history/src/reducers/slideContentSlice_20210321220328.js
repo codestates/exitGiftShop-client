@@ -34,7 +34,7 @@ export const slideContentSlice = createSlice({
       state.error = "";
     },
     [fetchArt.rejected]: (state, action) => {
-      state.loading = false;
+      state.loading = true;
       state.arts = [];
       state.error = action.payload;
     },
