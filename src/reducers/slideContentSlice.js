@@ -1,12 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-
 // todo: 알림기능 구현시 createAsyncThunk 사용
 
 export const fetchArt = createAsyncThunk("slideContent/fetchArt", async () => {
   return axios
-    .get(`${process.env.API_URL}:${process.env.API_PORT}/`)
+    .get(`${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/art`)
     .then((res) => { 
       return res.data;
     })
