@@ -3,9 +3,8 @@ import styled from "styled-components";
 import googleImg from "../../../images/google.jpg";
 import gmailImg from "../../../images/gmail.png";
 import SignUp from "../SignUp/SignUp";
-import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchUser } from "../../../reducers/userSlice";
+import { fetchUser } from "../../../reducers/user";
 
 const ModalOverlay = styled.div`
   box-sizing: border-box;

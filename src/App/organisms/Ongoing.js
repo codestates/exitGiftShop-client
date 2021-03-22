@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import AuctionTime from "../atoms/AuctionTime/AuctionTime";
-import DetailContent from "../molecules/DetailTitleTextBox";
-import SlideContent from "../molecules/SlideContent";
+import DetailContent from "../molecules/onGoing/DetailTitleTextBox";
+import SlideContent from "../molecules/onGoing/SlideContent";
 
 const StyledMain = styled.div`
   display: flex;

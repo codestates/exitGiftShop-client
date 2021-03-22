@@ -1,20 +1,19 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-import counterReducer from "../reducers/counterSlice";
-import userReducer from "../reducers/userSlice";
-import slideContentSliceReducer from "../reducers/slideContentSlice";
+import auction from "../reducers/auction";
+import user from "../reducers/user";
 require("dotenv").config();
-// reducer 목록
+
 const reducer = {
-  counter: counterReducer,
-  user: userReducer,
-  slideContent: slideContentSliceReducer,
+  auction,
+  user,
 };
 
-// 추가 middleware 목록
 const middleware = [...getDefaultMiddleware()];
 
-// 초기 state 목록
-const preloadedState = {};
+const preloadedState = {
+  isLogin: false,
+  user: null,
+};
 
 export default configureStore({
   reducer,

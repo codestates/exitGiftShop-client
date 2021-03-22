@@ -38,36 +38,8 @@ export const fetchUser = createAsyncThunk(
     }
     console.log(data3.data);
     return data3.data;
-
-    // const todos = await unwrapResult(data2);
   }
 );
-
-// const handleResponseSuccess = async (token) => {
-//   const data = await axios.get("https://localhost:4000/accesstokenrequest", {
-//     headers: {
-//       authorization: `Bearer ${token.data.accessToken}`,
-//       "Content-Type": "application/json",
-//     },
-//     withCredentials: true,
-//   });
-//   if (!data) {
-//     return;
-//   }
-//   return refreshTokenRequest();
-// };
-
-// const refreshTokenRequest = async () => {
-//   const data = await axios.get("https://localhost:4000/refreshtokenrequest", {
-//     withCredentials: true,
-//   });
-//   if (!data) {
-//     return;
-//   }
-//   const todos = await unwrapResult(data);
-//   console.log(todos);
-//   return todos;
-// };
 
 export const userSlice = createSlice({
   name: "user",
