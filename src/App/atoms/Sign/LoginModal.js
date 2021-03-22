@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import googleImg from "../../../images/google.jpg";
 import gmailImg from "../../../images/gmail.png";
+import SignUp from "../SignUp/SignUp";
+import axios from "axios";
 
 const ModalOverlay = styled.div`
   box-sizing: border-box;
@@ -117,19 +118,13 @@ const GoogleImg = styled.img`
   margin-right: 5px;
 `;
 
-const SignUpText = styled.div`
-  display: flex;
-  h1 {
-    opacity: 0.5;
-    margin-right: 3px;
-  }
-  font-size: 1rem;
-  font-weight: 450;
-`;
-
-const LinkUnderStyle = styled(Link)`
+const SignUpTextBtn = styled.button`
+  background-color: white;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
   text-decoration: underline;
-  opacity: 1px solid rgba(20, 20, 20, 0.2);
 `;
 
 const GmailImg = styled.img`
@@ -179,74 +174,132 @@ function LoginModal({
     }
   };
 
-  // const close = (e) => {
-  //   if (onClose) {
-  //     onClose(e);
-  //   }
-  // };
-
-  useEffect(() => {}, []);
   // todo: 구글,exitgift로고 상태변화
   // todo: axios email, password post요청
   // todo: OAuth 구글 자동로그인
   // todo: sign up 누르면 회원가입창으로 이동
+  const [signUpModal, SetSignUpModal] = useState(false);
+
+  const handleSignOn = (e) => {
+    SetSignUpModal(true);
+    maskClosable = null;
+  };
+  const handleSignOff = () => {
+    SetSignUpModal(false);
+  };
+
+  const [inputs, setInputs] = useState({
+    user_email: "",
+    user_password: "",
+  });
+
+  const { user_email, user_password } = inputs;
+
+  const inputHandler = (e) => {
+    const { name, value } = e.target;
+
+    setInputs({
+      ...inputs,
+      [name]: value,
+    });
+  };
+  const loginRequestHandler = async () => {
+    const token = await axios.post(
+      "https://localhost:4000/signin",
+      {
+        user_email: user_email,
+        user_password: user_password,
+      },
+      { headers: { "Content-Type": "application/json" }, withCredentials: true }
+    );
+    console.log(token);
+    handleResponseSuccess();
+  };
+
+  const handleResponseSuccess = async () => {
+    const refreshToken = await axios.get(
+      "https://localhost:4000/refreshTokenRequest",
+      { withCredentials: true }
+    );
+    console.log(refreshToken);
+  };
   return (
     <>
-      <ModalOverlay visible={visible} />
-      <ModalWrapper
-        onClick={maskClosable ? onMaskClick : null}
-        className={className}
-        tabIndex="-1"
-        visible={visible}
-      >
-        <ModalInner tabIndex="0" className="modal-inner">
-          <AllLogoBox>
-            {/* <LogoBox>
+      {!signUpModal ? (
+        <>
+          <ModalOverlay visible={visible} />
+          <ModalWrapper
+            onClick={maskClosable ? onMaskClick : null}
+            className={className}
+            tabIndex="-1"
+            visible={visible}
+          >
+            <ModalInner tabIndex="0" className="modal-inner">
+              <AllLogoBox>
+                {/* <LogoBox>
               <GmailImg src={gmailImg} alt="gmail" />
             </LogoBox> */}
-            {/* // todo: GoogleLogInBtn 눌리면 exitgift로고랑 같이나옴 useEffect()*/}
-            <LogoBox>
-              <GmailImg src={gmailImg} alt="gmail" />
-            </LogoBox>
-          </AllLogoBox>
+                {/* // todo: GoogleLogInBtn 눌리면 exitgift로고랑 같이나옴 useEffect()*/}
+                <LogoBox>
+                  <GmailImg src={gmailImg} alt="gmail" />
+                </LogoBox>
+              </AllLogoBox>
+              <GoogleLogInBtnBox>
+                <GoogleLogInBtn onClick={() => {}}>
+                  <GoogleImg src={googleImg} alt="google"></GoogleImg>
+                  Continue with Google
+                </GoogleLogInBtn>
+              </GoogleLogInBtnBox>
+              <OrStlye>Or</OrStlye>
+              <LogInInfo>
+                <div>
+                  <span>Email</span>
+                  <ModalInput
+                    name="user_email"
+                    onChange={(e) => {
+                      inputHandler(e);
+                    }}
+                  />
+                  <span>Password</span>
+                  <ModalInput
+                    type="password"
+                    name="user_password"
+                    onChange={(e) => {
+                      inputHandler(e);
+                    }}
+                  />
+                </div>
 
-          <SignUpText>
-            <h1>Dont`t have an accout?</h1>
-            <LinkUnderStyle to=""> Sign up</LinkUnderStyle>
-          </SignUpText>
-
-          <GoogleLogInBtnBox>
-            <GoogleLogInBtn onClick={() => {}}>
-              <GoogleImg src={googleImg} alt="google"></GoogleImg>
-              Continue with Google
-            </GoogleLogInBtn>
-          </GoogleLogInBtnBox>
-          <OrStlye>Or</OrStlye>
-          <LogInInfo>
-            <div>
-              <span>Email</span>
-              <ModalInput />
-              <span>Password</span>
-              <ModalInput />
-            </div>
-
-            <ModalBtnBox>
-              <ModalBtn>Explore</ModalBtn>
-              <ModalBtn>Login</ModalBtn>
-            </ModalBtnBox>
-            <ForgotPasswordBox>
-              <LinkUnderStyle to="">I forgot my password</LinkUnderStyle>
-            </ForgotPasswordBox>
-          </LogInInfo>
-
-          {/* {closable && (
-            <CloseBtn className="modal-close" onClick={close}>
-              닫기
-            </CloseBtn>
-          )} */}
-          {children}
-        </ModalInner>
-      </ModalWrapper>
+                <ModalBtnBox>
+                  <ModalBtn>Explore</ModalBtn>
+                  <ModalBtn type="submit" onClick={loginRequestHandler}>
+                    Login
+                  </ModalBtn>
+                </ModalBtnBox>
+                <ForgotPasswordBox>
+                  <SignUpTextBtn onClick={handleSignOn}> Sign up</SignUpTextBtn>
+                </ForgotPasswordBox>
+              </LogInInfo>
+              {/* 
+              {closable && (
+                <CloseBtn className="modal-close" onClick={close}>
+                  닫기
+                </CloseBtn>
+              )} */}
+              {children}
+            </ModalInner>
+          </ModalWrapper>
+        </>
+      ) : (
+        <>
+          <SignUp
+            visible={signUpModal}
+            closable={true}
+            maskClosable={true}
+            onClose={handleSignOff}
+          />
+        </>
+      )}
     </>
   );
 }

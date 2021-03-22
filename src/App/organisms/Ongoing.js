@@ -1,21 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import AuctionTime from "../atoms/AuctionTime/AuctionTime";
-import DetailContent from "../molecules/DetailTitleTextBox";
-import SlideContent from "../molecules/SlideContent";
+import DetailContent from "../molecules/onGoing/DetailTitleTextBox";
+import SlideContent from "../molecules/onGoing/SlideContent";
 
 const StyledMain = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
   height: 600px;
+  margin-top: 20px;
 
   @media screen and (max-width: 1300px) {
     flex-wrap: wrap;
-  }
-  @media screen and (max-width: 800px) {
-    display: none;
   }
 `;
 
@@ -32,9 +29,6 @@ const MainSectionLeft = styled.section`
 
   @media screen and (max-width: 1300px) {
     border: none;
-  }
-  @media screen and (max-width: 800px) {
-    display: none;
   }
 `;
 

@@ -1,16 +1,13 @@
 {
   "files": {
-    "main.js": "/static/js/main.8df75fbb.chunk.js",
-    "main.js.map": "/static/js/main.8df75fbb.chunk.js.map",
+    "main.js": "/static/js/main.3ad35eb3.chunk.js",
+    "main.js.map": "/static/js/main.3ad35eb3.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.705a4aee.js",
     "runtime-main.js.map": "/static/js/runtime-main.705a4aee.js.map",
-    "static/js/2.c1b6e0b4.chunk.js": "/static/js/2.c1b6e0b4.chunk.js",
-    "static/js/2.c1b6e0b4.chunk.js.map": "/static/js/2.c1b6e0b4.chunk.js.map",
+    "static/js/2.49ae0e3e.chunk.js": "/static/js/2.49ae0e3e.chunk.js",
+    "static/js/2.49ae0e3e.chunk.js.map": "/static/js/2.49ae0e3e.chunk.js.map",
     "index.html": "/index.html",
-    "static/js/2.c1b6e0b4.chunk.js.LICENSE.txt": "/static/js/2.c1b6e0b4.chunk.js.LICENSE.txt",
-    "static/media/beeple.616628fc.jpg": "/static/media/beeple.616628fc.jpg",
-    "static/media/beeple2.8888feda.jpg": "/static/media/beeple2.8888feda.jpg",
-    "static/media/beeples.16016a54.jpg": "/static/media/beeples.16016a54.jpg",
+    "static/js/2.49ae0e3e.chunk.js.LICENSE.txt": "/static/js/2.49ae0e3e.chunk.js.LICENSE.txt",
     "static/media/bitcoin.e5d84dda.png": "/static/media/bitcoin.e5d84dda.png",
     "static/media/google.fb4ee34b.jpg": "/static/media/google.fb4ee34b.jpg",
     "static/media/mainBg.fbf85d29.jpg": "/static/media/mainBg.fbf85d29.jpg",
@@ -20,7 +17,7 @@
   },
   "entrypoints": [
     "static/js/runtime-main.705a4aee.js",
-    "static/js/2.c1b6e0b4.chunk.js",
-    "static/js/main.8df75fbb.chunk.js"
+    "static/js/2.49ae0e3e.chunk.js",
+    "static/js/main.3ad35eb3.chunk.js"
   ]
 }

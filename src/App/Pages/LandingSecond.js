@@ -6,7 +6,7 @@ function LandingSecond() {
   return (
     <>
       <Router>
-        <MyBid />;
+        <MyBid />
       </Router>
     </>
   );
