@@ -1,14 +1,21 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const getAuction = createAsyncThunk("auction/getAuction", async () => {
-  return axios
-    .get(`${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/auction`)
-    .then((res) => { 
-      return res.data;
-    })
-    .catch((error) => error);
+export const getAuctions = createAsyncThunk("auction/getAuctions", async () => {
+  const auction = await axios.get(`${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/auction`);
+  if (!auction) {
+    return;
+  }
+  return auction.data;
 });
+
+// export const getAuctionOne = createAsyncThunk("auction/getAuctions", async (req) => {
+//   const auction = await axios.get(`${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/auction/${req.uuid}`);
+//   if (!auction) {
+//     return;
+//   }
+//   return auction.data;
+// });
 
 export const auction = createSlice({
   name: "auction",
@@ -19,25 +26,29 @@ export const auction = createSlice({
     selectedAuction: {}
   },
   reducers: {
-    selected: state => state.selectedAuction
+    selected: (state, action) => {
+      state.selectedAuction = action.payload;
+    }
   },
   extraReducers: {
-    [getAuction.pending]: (state) => {
+    [getAuctions.pending]: (state) => {
       state.loading = true;
       state.auctions = [];
       state.error = "";
     },
-    [getAuction.fulfilled]: (state, action) => {
+    [getAuctions.fulfilled]: (state, action) => {
       state.loading = false;
       state.auctions = action.payload;
       state.error = "";
     },
-    [getAuction.rejected]: (state, action) => {
+    [getAuctions.rejected]: (state, action) => {
       state.loading = false;
       state.auctions = [];
       state.error = action.payload;
     }
   }
 });
+
+export const { selected } = auction.actions;
 
 export default auction.reducer;

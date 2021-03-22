@@ -4,7 +4,10 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Coverflow from "react-coverflow";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchArt } from "../../reducers/slideContent";
+import { 
+  getAuctions,
+  selected
+} from "../../../reducers/auction";
 
 const StyleCover = styled.div`
   .coverflow__container__1P-xE {
@@ -48,26 +51,26 @@ const FontStyle = styled.div`
 `;
 
 const fn = (e) => {
-  console.log(e);
 };
 
 
 function SlideContent() {
   const dispatch = useDispatch();
-  const { arts, loading, error } = useSelector((state) => state.slideContent);
+  const {auctions, loading, error} = useSelector((state) => state.auction);
+  const file_path = `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/file/`
   
   // componentDidMount, componentDidUpdate와 같은 방식으로
   useEffect(() => {
-    dispatch(fetchArt());
+    dispatch(getAuctions());
   },[dispatch]);
 
   const renderSlide = () => {
     if (loading) return <p>Loading...</p>
     if (error) return <p>Cannot display</p>
-    return arts.map(art =>
-      <SelectBtn onClick={(e) => { fn(e) }} onKeyUp={() => fn()} role="menuitem">
+    return auctions.map((auction, i) =>
+      <SelectBtn key={i} onClick={() => dispatch(selected(auction))} onKeyUp={() => fn()} role="menuitem">
         <SlideImg
-          src={`${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/file/${art.art_file_id}`}
+          src={file_path + auction.art_uu.art_file_id}
           alt="piture"
           style={{ display: "block", width: "100%" }}
         />

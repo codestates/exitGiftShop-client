@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect  } from "react";
 import { TwitterTweetEmbed } from "react-twitter-embed";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SignBidBtn from "../../atoms/Sign/SignInBtn";
 import FollowBtn from "../../atoms/FollowBtn";
 import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
 
 const DetailTitleTextBox = styled.div`
   display: flex;
@@ -55,13 +56,26 @@ const StyleTwit = styled.div`
 `;
 
 function DetailContent() {
+  const dispatch = useDispatch();
+  const { auctions, selectedAuction, loading, error } = useSelector((state) => state.auction);
+  useEffect(() => {
+    // dispatch(getAuctions());
+  },[dispatch]);
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Cannot display</p>
+  console.log(auctions[0]);
   return (
     <>
       <DetailWrapper>
         <DetailTitleTextBox>
           <h1>
-            Beepel'S<br></br>
-            CROSSROAD #1/4
+            {Object.keys(selectedAuction).length === 0  
+            ? auctions.map((auction, i) => {
+              if (i === 0) {
+                return auction.art_uu.art_title;
+              }
+            })
+            :selectedAuction.art_uu.art_title}
           </h1>
           <div>
             <FontAwesomeIcon icon={faHeart} />
@@ -70,8 +84,35 @@ function DetailContent() {
         </DetailTitleTextBox>
 
         <DetailMainTextBox>
-          <h2>Last Bid(24Bids) KRW 33,965,000,000</h2>
-          <h2>Hammer Price KRW -</h2>
+          <span>Last Bid({Object.keys(selectedAuction).length === 0 
+          ? auctions.map((auction, i) => {
+            if (i === 0) {
+              return auction.bids.length;
+            }
+          }) 
+          : selectedAuction.bids.length}Bids) 
+          </span>
+          <h2>KRW {Object.keys(selectedAuction).length === 0 
+          ? auctions.map((auction, i) => {
+            if (i === 0) {
+              return auction.auction_now_price;
+            }
+          }) 
+          : selectedAuction.auction_now_price}</h2>
+          <h2>Hammer Price KRW {Object.keys(selectedAuction).length === 0 
+          ? auctions.map((auction, i) => {
+            if (i === 0) {
+              if (auction.auction_hammer_price === 0) {
+                return `-`;
+              }
+              return auction.auction_hammer_price
+            }
+          }) : 
+            selectedAuction.auction_hammer_price === 0 
+            ? `-`
+            :selectedAuction.auction_hammer_price
+            }
+          </h2>
         </DetailMainTextBox>
 
         <StyleTwit>
