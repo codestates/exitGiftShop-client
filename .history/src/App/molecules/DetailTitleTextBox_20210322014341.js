@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SignBidBtn from "../atoms/Sign/SignInBtn";
 import FollowBtn from "../atoms/FollowBtn";
 import styled from "styled-components";
-import { useState, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { fetchArt } from "../../reducers/slideContent";
 
 const DetailTitleTextBox = styled.div`

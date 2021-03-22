@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SignBidBtn from "../atoms/Sign/SignInBtn";
 import FollowBtn from "../atoms/FollowBtn";
 import styled from "styled-components";
-import { useState, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { fetchArt } from "../../reducers/slideContent";
 
 const DetailTitleTextBox = styled.div`
@@ -69,6 +69,14 @@ function DetailContent() {
   useEffect(() => {
     dispatch(fetchArt());
   }, []);
+
+  if (error) {
+    return <p>Something went wrong! please, try again.</p>;
+  }
+
+  if (loading) {
+    return <p>Loading</p>;
+  }
 
   return (
     <>

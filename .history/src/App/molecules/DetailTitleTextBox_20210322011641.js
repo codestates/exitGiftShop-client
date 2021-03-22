@@ -6,8 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SignBidBtn from "../atoms/Sign/SignInBtn";
 import FollowBtn from "../atoms/FollowBtn";
 import styled from "styled-components";
-import { useState, useDispatch } from "react-redux";
-import { fetchArt } from "../../reducers/slideContent";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchArtDetail } from "../../reducers/artDetail";
 
 const DetailTitleTextBox = styled.div`
   display: flex;
@@ -25,9 +25,7 @@ const DetailTitleTextBox = styled.div`
   }
 `;
 
-const ArtTitle = styled.div`
-  border-radius: 10px;
-`;
+const ArtTitle = styled.div``;
 
 const DetailMainTextBox = styled.div`
   h2 {
@@ -63,18 +61,29 @@ const StyleTwit = styled.div`
 
 function DetailContent() {
   const dispatch = useDispatch();
-  const selected = useState((state) => state.slideContent.selected);
+  const { arts, loading, error } = useSelector((state) => state.artDetail);
   // todo: onClick=false > onClick=true state 변화
   // todo: 첫번째 클릭하고 나면 디테일이 바뀌고 그뒤로는 모달창이 뜨는 클릭으로 바뀜
   useEffect(() => {
-    dispatch(fetchArt());
+    dispatch(fetchArtDetail());
   }, []);
+
+  if (error) {
+    return <p>Something went wrong! please, try again.</p>;
+  }
+
+  if (loading) {
+    return <p>Loading</p>;
+  }
 
   return (
     <>
       <DetailWrapper>
         <DetailTitleTextBox>
-          <ArtTitle>{!selected ? "" : selected.art_title}</ArtTitle>
+          <ArtTitle
+            src={`${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/art/${arts[1].art_title}`}
+            alt="title"
+          />
           <div>
             <FontAwesomeIcon icon={faHeart} />
             <FontAwesomeIcon icon={faSignOutAlt} rotation={270} />

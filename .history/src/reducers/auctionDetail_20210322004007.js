@@ -1,20 +1,23 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// todo: 알림기능 구현시 createAsyncThunk 사용
+// todo: Show detailed info in accordance to clicked slideContent
 
-export const fetchArt = createAsyncThunk("slideContent/fetchArt", async () => {
-  return axios
-    .get(
-      `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/art`
-    )
-    .then((res) => {
-      return res.data;
-    })
-    .catch((error) => error);
-});
+export const fetchAuctionDetail = createAsyncThunk(
+  "slideContent/fetchArt",
+  async () => {
+    return axios
+      .get(
+        `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/art`
+      )
+      .then((res) => {
+        return res.data;
+      })
+      .catch((error) => error);
+  }
+);
 
-export const slideContentSlice = createSlice({
+export const slideContent = createSlice({
   name: "slideContent",
   initialState: {
     loading: true,
@@ -41,4 +44,4 @@ export const slideContentSlice = createSlice({
   },
 });
 
-export default slideContentSlice.reducer;
+export default slideContent.reducer;

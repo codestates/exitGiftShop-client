@@ -2,12 +2,14 @@ import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import counterReducer from "../reducers/counterSlice";
 import userReducer from "../reducers/userSlice";
 import slideContent from "../reducers/slideContent";
+import artDetail from "../reducers/slideContent";
 require("dotenv").config();
 // reducer 목록
 const reducer = {
   counter: counterReducer,
   userReducer,
   slideContent,
+  artDetail,
 };
 
 // 추가 middleware 목록

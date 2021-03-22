@@ -1,0 +1,47 @@
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+
+// todo: Show detailed info in accordance to clicked slideContent
+
+export const fetchAuctionDetail = createAsyncThunk(
+  "auctionDetail/fetchAuctionDetail",
+  async () => {
+    return axios
+      .get(
+        `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/auction`
+      )
+      .then((res) => {
+        return res.data;
+      })
+      .catch((error) => error);
+  }
+);
+
+export const auctionDetail = createSlice({
+  name: "auctionDetail",
+  initialState: {
+    loading: true,
+    auctions: [],
+    error: "",
+  },
+  reducers: {},
+  extraReducers: {
+    [fetchAuctionDetail.pending]: (state) => {
+      state.loading = true;
+      state.auctions = [];
+      state.error = "";
+    },
+    [fetchAuctionDetail.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.auctions = action.payload;
+      state.error = "";
+    },
+    [fetchAuctionDetail.rejected]: (state, action) => {
+      state.loading = false;
+      state.auctions = [];
+      state.error = action.payload;
+    },
+  },
+});
+
+export default auctionDetail.reducer;

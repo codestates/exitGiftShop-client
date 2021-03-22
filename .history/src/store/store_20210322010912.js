@@ -8,6 +8,7 @@ const reducer = {
   counter: counterReducer,
   userReducer,
   slideContent,
+  DetailContent,
 };
 
 // 추가 middleware 목록
