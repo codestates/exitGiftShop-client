@@ -9,13 +9,6 @@ export const getAuctions = createAsyncThunk("auction/getAuctions", async () => {
   return auction.data;
 });
 
-// export const getAuctionOne = createAsyncThunk("auction/getAuctions", async (req) => {
-//   const auction = await axios.get(`${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/auction/${req.uuid}`);
-//   if (!auction) {
-//     return;
-//   }
-//   return auction.data;
-// });
 
 export const auction = createSlice({
   name: "auction",

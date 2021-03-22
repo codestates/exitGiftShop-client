@@ -59,7 +59,6 @@ function SlideContent() {
   const {auctions, loading, error} = useSelector((state) => state.auction);
   const file_path = `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/file/`
   
-  // componentDidMount, componentDidUpdate와 같은 방식으로
   useEffect(() => {
     dispatch(getAuctions());
   },[dispatch]);

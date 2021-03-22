@@ -7,6 +7,10 @@ import SignBidBtn from "../../atoms/Sign/SignInBtn";
 import FollowBtn from "../../atoms/FollowBtn";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
+// import { 
+//   put,
+//   selected
+// } from "../../../reducers/auction";
 
 const DetailTitleTextBox = styled.div`
   display: flex;
