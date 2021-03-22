@@ -2,13 +2,14 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const getAuctions = createAsyncThunk("auction/getAuctions", async () => {
-  const auction = await axios.get(`${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/auction`);
+  const auction = await axios.get(
+    `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/auction`
+  );
   if (!auction) {
     return;
   }
   return auction.data;
 });
-
 
 export const auction = createSlice({
   name: "auction",
@@ -16,12 +17,12 @@ export const auction = createSlice({
     auctions: [],
     loading: true,
     error: "",
-    selectedAuction: {}
+    selectedAuction: {},
   },
   reducers: {
     selected: (state, action) => {
       state.selectedAuction = action.payload;
-    }
+    },
   },
   extraReducers: {
     [getAuctions.pending]: (state) => {
@@ -38,8 +39,8 @@ export const auction = createSlice({
       state.loading = false;
       state.auctions = [];
       state.error = action.payload;
-    }
-  }
+    },
+  },
 });
 
 export const { selected } = auction.actions;

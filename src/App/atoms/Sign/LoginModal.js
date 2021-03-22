@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import googleImg from "../../../images/google.jpg";
 import gmailImg from "../../../images/gmail.png";
 import SignUp from "../SignUp/SignUp";
-import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchUser } from "../../../reducers/user";
+import { siginin } from "../../../reducers/login";
 
 const ModalOverlay = styled.div`
   box-sizing: border-box;
@@ -188,12 +190,35 @@ function LoginModal({
     SetSignUpModal(false);
   };
 
+  const dispatch = useDispatch();
+  const { currentUser, currentUserLoading, currentUserError } = useSelector(
+    (state) => state.user
+  );
+  const { islogin } = useSelector((state) => state.login);
+
   const [inputs, setInputs] = useState({
     user_email: "",
     user_password: "",
+    accessToken: "",
   });
 
+  const [isClicklogin, setIsClicklogin] = useState(false);
+
+  const handleIslogin = (e) => {
+    if (currentUser) {
+      dispatch(siginin());
+      onClose(e);
+    }
+  };
   const { user_email, user_password } = inputs;
+
+  // if (currentUserError) {
+  //   return <p>Something went wrong! please, try again.</p>;
+  // }
+
+  // if (currentUserLoading) {
+  //   return <p>Loading</p>;
+  // }
 
   const inputHandler = (e) => {
     const { name, value } = e.target;
@@ -203,26 +228,7 @@ function LoginModal({
       [name]: value,
     });
   };
-  const loginRequestHandler = async () => {
-    const token = await axios.post(
-      "https://localhost:4000/signin",
-      {
-        user_email: user_email,
-        user_password: user_password,
-      },
-      { headers: { "Content-Type": "application/json" }, withCredentials: true }
-    );
-    console.log(token);
-    handleResponseSuccess();
-  };
 
-  const handleResponseSuccess = async () => {
-    const refreshToken = await axios.get(
-      "https://localhost:4000/refreshTokenRequest",
-      { withCredentials: true }
-    );
-    console.log(refreshToken);
-  };
   return (
     <>
       {!signUpModal ? (
@@ -252,30 +258,42 @@ function LoginModal({
               </GoogleLogInBtnBox>
               <OrStlye>Or</OrStlye>
               <LogInInfo>
-                <div>
-                  <span>Email</span>
-                  <ModalInput
-                    name="user_email"
-                    onChange={(e) => {
-                      inputHandler(e);
-                    }}
-                  />
-                  <span>Password</span>
-                  <ModalInput
-                    type="password"
-                    name="user_password"
-                    onChange={(e) => {
-                      inputHandler(e);
-                    }}
-                  />
-                </div>
+                <form>
+                  <div>
+                    <span>Email</span>
+                    <ModalInput
+                      required
+                      type="email"
+                      name="user_email"
+                      onChange={(e) => {
+                        inputHandler(e);
+                      }}
+                    />
+                    <span>Password</span>
+                    <ModalInput
+                      required
+                      type="password"
+                      name="user_password"
+                      onChange={(e) => {
+                        inputHandler(e);
+                      }}
+                    />
+                  </div>
 
-                <ModalBtnBox>
-                  <ModalBtn>Explore</ModalBtn>
-                  <ModalBtn type="submit" onClick={loginRequestHandler}>
-                    Login
-                  </ModalBtn>
-                </ModalBtnBox>
+                  <ModalBtnBox>
+                    <ModalBtn>Explore</ModalBtn>
+                    <ModalBtn
+                      onClick={(e) => {
+                        e.preventDefault();
+                        dispatch(fetchUser({ user_password, user_email }));
+                        handleIslogin();
+                      }}
+                    >
+                      Login
+                    </ModalBtn>
+                  </ModalBtnBox>
+                </form>
+
                 <ForgotPasswordBox>
                   <SignUpTextBtn onClick={handleSignOn}> Sign up</SignUpTextBtn>
                 </ForgotPasswordBox>
