@@ -41,7 +41,7 @@ export const fetchUser = createAsyncThunk(
   }
 );
 
-export const userSlice = createSlice({
+export const user = createSlice({
   name: "user",
   initialState: {
     currentUserLoading: true,
@@ -52,7 +52,7 @@ export const userSlice = createSlice({
   extraReducers: {
     [fetchUser.pending]: (state) => {
       state.currentUserLoading = true;
-      state.currentUser = [];
+      state.currentUser = {};
       state.currentUserError = "";
     },
     [fetchUser.fulfilled]: (state, action) => {
@@ -62,10 +62,10 @@ export const userSlice = createSlice({
     },
     [fetchUser.rejected]: (state, action) => {
       state.currentUserLoading = false;
-      state.currentUser = [];
+      state.currentUser = {};
       state.currentUserError = action.payload;
     },
   },
 });
 
-export default userSlice.reducer;
+export default user.reducer;

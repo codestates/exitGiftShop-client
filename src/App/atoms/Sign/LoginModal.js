@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import googleImg from "../../../images/google.jpg";
 import gmailImg from "../../../images/gmail.png";
@@ -189,20 +189,17 @@ function LoginModal({
     SetSignUpModal(false);
   };
 
+  const dispatch = useDispatch();
   const { currentUser, currentUserLoading, currentUserError } = useSelector(
     (state) => state.user
   );
-  const dispatch = useDispatch();
+
   const [inputs, setInputs] = useState({
     user_email: "",
     user_password: "",
     accessToken: "",
   });
   const { user_email, user_password } = inputs;
-
-  useEffect(() => {
-    console.log(currentUser);
-  }, []);
 
   // if (currentUserError) {
   //   return <p>Something went wrong! please, try again.</p>;
