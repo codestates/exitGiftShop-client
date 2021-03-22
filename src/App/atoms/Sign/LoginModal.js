@@ -5,6 +5,7 @@ import gmailImg from "../../../images/gmail.png";
 import SignUp from "../SignUp/SignUp";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUser } from "../../../reducers/user";
+import { siginin } from "../../../reducers/login";
 
 const ModalOverlay = styled.div`
   box-sizing: border-box;
@@ -193,12 +194,22 @@ function LoginModal({
   const { currentUser, currentUserLoading, currentUserError } = useSelector(
     (state) => state.user
   );
+  const { islogin } = useSelector((state) => state.login);
 
   const [inputs, setInputs] = useState({
     user_email: "",
     user_password: "",
     accessToken: "",
   });
+
+  const [isClicklogin, setIsClicklogin] = useState(false);
+
+  const handleIslogin = (e) => {
+    if (currentUser) {
+      dispatch(siginin());
+      onClose(e);
+    }
+  };
   const { user_email, user_password } = inputs;
 
   // if (currentUserError) {
@@ -273,7 +284,9 @@ function LoginModal({
                     <ModalBtn>Explore</ModalBtn>
                     <ModalBtn
                       onClick={(e) => {
+                        e.preventDefault();
                         dispatch(fetchUser({ user_password, user_email }));
+                        handleIslogin();
                       }}
                     >
                       Login

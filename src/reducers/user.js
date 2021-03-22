@@ -44,7 +44,7 @@ export const fetchUser = createAsyncThunk(
 export const user = createSlice({
   name: "user",
   initialState: {
-    currentUserLoading: true,
+    currentUserloading: true,
     currentUser: {},
     currentUserError: "",
   },

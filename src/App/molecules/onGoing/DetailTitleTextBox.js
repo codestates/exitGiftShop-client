@@ -69,7 +69,6 @@ function DetailContent() {
   }, [dispatch]);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Cannot display</p>;
-  console.log(auctions[0]);
   return (
     <>
       <DetailWrapper>
