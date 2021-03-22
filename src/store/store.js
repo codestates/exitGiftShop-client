@@ -10,12 +10,9 @@ const reducer = {
 
 const middleware = [...getDefaultMiddleware()];
 
-const preloadedState = {
-};
 
 export default configureStore({
   reducer,
   middleware,
   devTools: true,
-  preloadedState,
 });
