@@ -1,31 +1,99 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+
+export const fetchUser = createAsyncThunk(
+  "user/fetchUser",
+  async (data, thunkAPI) => {
+    const res = await axios.post(
+      `https://localhost:4000/signin`,
+      {
+        user_email: data.user_email,
+        user_password: data.user_password,
+      },
+      {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      }
+    );
+    if (!res) {
+      return;
+    }
+
+    const data2 = await axios.get(
+      "https://localhost:4000/refreshtokenrequest",
+      {
+        withCredentials: true,
+      }
+    );
+    if (!data2) {
+      return;
+    }
+    console.log(data2.data.data.userInfo.uuid);
+    const userUuid = data2.data.data.userInfo.uuid;
+    const data3 = await axios.get(`https://localhost:4000/user/${userUuid}`, {
+      withCredentials: true,
+    });
+    if (!data3) {
+      return;
+    }
+    console.log(data3.data);
+    return data3.data;
+
+    // const todos = await unwrapResult(data2);
+  }
+);
+
+// const handleResponseSuccess = async (token) => {
+//   const data = await axios.get("https://localhost:4000/accesstokenrequest", {
+//     headers: {
+//       authorization: `Bearer ${token.data.accessToken}`,
+//       "Content-Type": "application/json",
+//     },
+//     withCredentials: true,
+//   });
+//   if (!data) {
+//     return;
+//   }
+//   return refreshTokenRequest();
+// };
+
+// const refreshTokenRequest = async () => {
+//   const data = await axios.get("https://localhost:4000/refreshtokenrequest", {
+//     withCredentials: true,
+//   });
+//   if (!data) {
+//     return;
+//   }
+//   const todos = await unwrapResult(data);
+//   console.log(todos);
+//   return todos;
+// };
 
 export const userSlice = createSlice({
-  name: "counter",
+  name: "user",
   initialState: {
-    value: 0,
+    currentUserLoading: true,
+    currentUser: {},
+    currentUserError: "",
   },
-  reducers: {
-    increment: (state) => {
-      state.value += 1;
+  reducers: {},
+  extraReducers: {
+    [fetchUser.pending]: (state) => {
+      state.currentUserLoading = true;
+      state.currentUser = [];
+      state.currentUserError = "";
     },
-    decrement: (state) => {
-      state.value -= 1;
+    [fetchUser.fulfilled]: (state, action) => {
+      state.currentUserLoading = false;
+      state.currentUser = action.payload;
+      state.currentUserError = "";
     },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload;
+    [fetchUser.rejected]: (state, action) => {
+      state.currentUserLoading = false;
+      state.currentUser = [];
+      state.currentUserError = action.payload;
     },
   },
 });
-
-export const { increment, decrement, incrementByAmount } = userSlice.actions;
-
-export const incrementAsync = (amount) => (dispatch) => {
-  setTimeout(() => {
-    dispatch(incrementByAmount(amount));
-  }, 1000);
-};
-
-export const selectCount = (state) => state.counter.value;
 
 export default userSlice.reducer;

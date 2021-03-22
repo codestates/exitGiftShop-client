@@ -4,6 +4,8 @@ import googleImg from "../../../images/google.jpg";
 import gmailImg from "../../../images/gmail.png";
 import SignUp from "../SignUp/SignUp";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchUser } from "../../../reducers/userSlice";
 
 const ModalOverlay = styled.div`
   box-sizing: border-box;
@@ -188,12 +190,28 @@ function LoginModal({
     SetSignUpModal(false);
   };
 
+  const { currentUser, currentUserLoading, currentUserError } = useSelector(
+    (state) => state.user
+  );
+  const dispatch = useDispatch();
   const [inputs, setInputs] = useState({
     user_email: "",
     user_password: "",
+    accessToken: "",
   });
-
   const { user_email, user_password } = inputs;
+
+  useEffect(() => {
+    console.log(currentUser);
+  }, []);
+
+  // if (currentUserError) {
+  //   return <p>Something went wrong! please, try again.</p>;
+  // }
+
+  // if (currentUserLoading) {
+  //   return <p>Loading</p>;
+  // }
 
   const inputHandler = (e) => {
     const { name, value } = e.target;
@@ -203,26 +221,7 @@ function LoginModal({
       [name]: value,
     });
   };
-  const loginRequestHandler = async () => {
-    const token = await axios.post(
-      "https://localhost:4000/signin",
-      {
-        user_email: user_email,
-        user_password: user_password,
-      },
-      { headers: { "Content-Type": "application/json" }, withCredentials: true }
-    );
-    console.log(token);
-    handleResponseSuccess();
-  };
 
-  const handleResponseSuccess = async () => {
-    const refreshToken = await axios.get(
-      "https://localhost:4000/refreshTokenRequest",
-      { withCredentials: true }
-    );
-    console.log(refreshToken);
-  };
   return (
     <>
       {!signUpModal ? (
@@ -252,30 +251,40 @@ function LoginModal({
               </GoogleLogInBtnBox>
               <OrStlye>Or</OrStlye>
               <LogInInfo>
-                <div>
-                  <span>Email</span>
-                  <ModalInput
-                    name="user_email"
-                    onChange={(e) => {
-                      inputHandler(e);
-                    }}
-                  />
-                  <span>Password</span>
-                  <ModalInput
-                    type="password"
-                    name="user_password"
-                    onChange={(e) => {
-                      inputHandler(e);
-                    }}
-                  />
-                </div>
+                <form>
+                  <div>
+                    <span>Email</span>
+                    <ModalInput
+                      required
+                      type="email"
+                      name="user_email"
+                      onChange={(e) => {
+                        inputHandler(e);
+                      }}
+                    />
+                    <span>Password</span>
+                    <ModalInput
+                      required
+                      type="password"
+                      name="user_password"
+                      onChange={(e) => {
+                        inputHandler(e);
+                      }}
+                    />
+                  </div>
 
-                <ModalBtnBox>
-                  <ModalBtn>Explore</ModalBtn>
-                  <ModalBtn type="submit" onClick={loginRequestHandler}>
-                    Login
-                  </ModalBtn>
-                </ModalBtnBox>
+                  <ModalBtnBox>
+                    <ModalBtn>Explore</ModalBtn>
+                    <ModalBtn
+                      onClick={(e) => {
+                        dispatch(fetchUser({ user_password, user_email }));
+                      }}
+                    >
+                      Login
+                    </ModalBtn>
+                  </ModalBtnBox>
+                </form>
+
                 <ForgotPasswordBox>
                   <SignUpTextBtn onClick={handleSignOn}> Sign up</SignUpTextBtn>
                 </ForgotPasswordBox>

@@ -6,7 +6,7 @@ require("dotenv").config();
 // reducer 목록
 const reducer = {
   counter: counterReducer,
-  userContent: userReducer,
+  user: userReducer,
   slideContent: slideContentSliceReducer,
 };
 
