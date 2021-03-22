@@ -5,15 +5,12 @@ require("dotenv").config();
 
 const reducer = {
   auction,
-  user
+  user,
 };
 
 const middleware = [...getDefaultMiddleware()];
 
-
 const preloadedState = {
-  isLogin: false,
-  user: null
 };
 
 export default configureStore({

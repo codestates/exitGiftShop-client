@@ -76,6 +76,7 @@ function Collection() {
   const handleModalOff = () => {
     setLoginModalOn(false);
   };
+  
   // todo: 하드코딩 > data.map으로 데이터뿌려주기
   return (
     <>
