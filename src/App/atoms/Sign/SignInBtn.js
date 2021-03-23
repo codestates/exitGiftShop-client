@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import LoginModal from "./LoginModal";
-import { siginin } from "../../../reducers/login";
+import { siginin } from "../../../reducers/user";
 import { useSelector, useDispatch } from "react-redux";
 
 const Btn = styled.div`
@@ -18,8 +18,7 @@ const Btn = styled.div`
 `;
 function SignBidBtn() {
   const [loginModalOn, setLoginModalOn] = useState(false);
-  const { islogin } = useSelector((state) => state.login);
-  const { currentUser } = useSelector((state) => state.user);
+  const { currentUser, islogin } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   const handleModalOn = () => {
