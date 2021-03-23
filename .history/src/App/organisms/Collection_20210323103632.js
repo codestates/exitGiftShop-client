@@ -1,8 +1,14 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import ReadMeModal from "../molecules/Collcetion/ReadMeModal";
 import { useSelector, useDispatch } from "react-redux";
 import { getAuctions, selectedCollection } from "../../reducers/auction";
+=======
+import React, { useState } from "react";
+import styled from "styled-components";
+import ReadMeModal from "../molecules/Collcetion/ReadMeModal";
+>>>>>>> 073ea8f7ea8d8efc98df06290f3c3b08fc0a578d
 
 const StyledMain = styled.div`
   display: flex;

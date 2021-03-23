@@ -18,7 +18,6 @@ export const auction = createSlice({
     loading: true,
     error: "",
     selectedAuction: {},
-    selectedCollection: {},
   },
   reducers: {
     selected: (state, action) => {

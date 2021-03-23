@@ -18,15 +18,21 @@ export const auction = createSlice({
     loading: true,
     error: "",
     selectedAuction: {},
+<<<<<<< HEAD
     selectedCollection: {},
+=======
+>>>>>>> 073ea8f7ea8d8efc98df06290f3c3b08fc0a578d
   },
   reducers: {
     selected: (state, action) => {
       state.selectedAuction = action.payload;
     },
+<<<<<<< HEAD
     selectedCollection: (state, action) => {
       state.selectedCollection = action.payload;
     },
+=======
+>>>>>>> 073ea8f7ea8d8efc98df06290f3c3b08fc0a578d
   },
   extraReducers: {
     [getAuctions.pending]: (state) => {
@@ -47,6 +53,10 @@ export const auction = createSlice({
   },
 });
 
+<<<<<<< HEAD
 export const { selected, selectedCollection } = auction.actions;
+=======
+export const { selected } = auction.actions;
+>>>>>>> 073ea8f7ea8d8efc98df06290f3c3b08fc0a578d
 
 export default auction.reducer;
