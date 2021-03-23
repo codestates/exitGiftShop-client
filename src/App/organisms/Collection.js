@@ -97,7 +97,10 @@ function Collection() {
                 <div>
                   <h1>{auction.art_uu.art_title}</h1>
                   <p>{auction.art_uu.art_desc}</p>
-                  <button onClick={handleModalOn}>Read more</button>
+                  <button onClick={() => {
+                    dispatch(selectedCollection(auction))
+                    handleModalOn()
+                  }}>Read more</button>
                 </div>
               </ItemBox>
             );
