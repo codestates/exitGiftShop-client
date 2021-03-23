@@ -79,7 +79,7 @@ function Collection() {
   const handleModalOff = () => {
     setCollectionModalOn(false);
   };
-  
+
   // todo: 하드코딩 > data.map으로 데이터뿌려주기
   const { auctions } = useSelector((state) => state.auction);
   useEffect(() => {
@@ -92,15 +92,19 @@ function Collection() {
         <GridSection>
           {auctions.map((auction, i) => {
             return (
-              <ItemBox>
+              <ItemBox key={i}>
                 <img src={file_path + auction.art_uu.art_file_id} alt="img" />
                 <div>
                   <h1>{auction.art_uu.art_title}</h1>
                   <p>{auction.art_uu.art_desc}</p>
-                  <button onClick={() => {
-                    dispatch(selectedCollection(auction))
-                    handleModalOn()
-                  }}>Read more</button>
+                  <button
+                    onClick={() => {
+                      dispatch(selectedCollection(auction));
+                      handleModalOn();
+                    }}
+                  >
+                    Read more
+                  </button>
                 </div>
               </ItemBox>
             );

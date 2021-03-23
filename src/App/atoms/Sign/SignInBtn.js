@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import LoginModal from "./LoginModal";
-import { siginin } from "../../../reducers/user";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const Btn = styled.div`
   width: 100%;
@@ -16,10 +15,15 @@ const Btn = styled.div`
     font-size: 20px;
   }
 `;
+const BtnStyle = styled.button`
+  &:active {
+    transform: translate3d(2px, 2px, 0px);
+  }
+`;
+
 function SignBidBtn() {
   const [loginModalOn, setLoginModalOn] = useState(false);
-  const { currentUser, islogin } = useSelector((state) => state.user);
-  const dispatch = useDispatch();
+  const { islogin } = useSelector((state) => state.user);
 
   const handleModalOn = () => {
     setLoginModalOn(true);
@@ -28,23 +32,17 @@ function SignBidBtn() {
   const handleModalOff = () => {
     setLoginModalOn(false);
   };
-  const handleIslogin = () => {
-    console.log(currentUser, "ddddddddddddd");
-    if (currentUser.uuid) {
-      dispatch(siginin());
-    }
-  };
 
   const handleBiding = () => {};
   return (
     <Btn>
       {islogin ? (
         <>
-          <button onClick={handleBiding}>Bid</button>
+          <BtnStyle onClick={handleBiding}>Bid</BtnStyle>
         </>
       ) : (
         <>
-          <button onClick={handleModalOn}>Sign in to bid</button>
+          <BtnStyle onClick={handleModalOn}>Sign in to bid</BtnStyle>
         </>
       )}
 

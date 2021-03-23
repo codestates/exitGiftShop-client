@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import googleImg from "../../../images/google.jpg";
 import gmailImg from "../../../images/gmail.png";
 import SignUp from "../SignUp/SignUp";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchUser, siginin } from "../../../reducers/user";
+import { fetchUser, signin, oAuthGoogleLogin } from "../../../reducers/user";
+import { GoogleLogin } from "react-google-login";
 
 const ModalOverlay = styled.div`
   box-sizing: border-box;
@@ -62,6 +62,14 @@ const ModalBtn = styled.button`
   font-size: 1.2rem;
   outline: none;
   cursor: pointer;
+  /* &:hover {
+    background-color: #ce7777;
+    color: white;
+    transition: background-color 0.3s ease-in-out;
+  } */
+  &:active {
+    transform: translate3d(2px, 2px, 0px);
+  }
 `;
 const ModalBtnBox = styled.div`
   display: flex;
@@ -90,19 +98,6 @@ const ForgotPasswordBox = styled.div`
   margin-top: 15px;
 `;
 
-const GoogleLogInBtn = styled.button`
-  background-color: #4285f4;
-  color: white;
-  height: 50px;
-  border-radius: 3px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  padding: 2px 3px;
-  outline: none;
-`;
-
 const GoogleLogInBtnBox = styled.div`
   border-top: 1px solid rgba(20, 20, 20, 0.2);
   border-bottom: 1px solid rgba(20, 20, 20, 0.2);
@@ -112,11 +107,6 @@ const GoogleLogInBtnBox = styled.div`
   margin: 15px 0px;
   padding: 15px 0px;
   width: 100%;
-`;
-
-const GoogleImg = styled.img`
-  height: 100%;
-  margin-right: 5px;
 `;
 
 const SignUpTextBtn = styled.button`
@@ -161,6 +151,17 @@ const OrStlye = styled.span`
 
 // const CloseBtn = styled.button``;
 
+const GoogleStyle = styled(GoogleLogin)`
+  outline: none;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:active {
+    transform: translate3d(2px, 2px, 0px);
+  }
+`;
+
 function LoginModal({
   className,
   onClose,
@@ -183,41 +184,19 @@ function LoginModal({
 
   const handleSignOn = (e) => {
     SetSignUpModal(true);
-    maskClosable = null;
   };
-  const handleSignOff = () => {
-    SetSignUpModal(false);
+  const handleSignOff = (e) => {
+    onClose(e);
   };
 
   const dispatch = useDispatch();
-  const {
-    currentUser,
-    islogin,
-    currentUserLoading,
-    currentUserError,
-  } = useSelector((state) => state.user);
 
   const [inputs, setInputs] = useState({
     user_email: "",
     user_password: "",
-    accessToken: "",
   });
 
-  const handleIslogin = (e) => {
-    if (currentUser) {
-      dispatch(siginin());
-      onClose(e);
-    }
-  };
   const { user_email, user_password } = inputs;
-
-  // if (currentUserError) {
-  //   return <p>Something went wrong! please, try again.</p>;
-  // }
-
-  // if (currentUserLoading) {
-  //   return <p>Loading</p>;
-  // }
 
   const inputHandler = (e) => {
     const { name, value } = e.target;
@@ -227,6 +206,16 @@ function LoginModal({
       [name]: value,
     });
   };
+
+  const responseGoogle = (response) => {
+    dispatch(oAuthGoogleLogin(response.tokenObj.id_token));
+    dispatch(signin());
+    onClose(response);
+  };
+  const validateCheck = (e) => {
+    e.preventDefault();
+  };
+  // todo:일반로그인 유효성검사 새로고침안되게 하고 Invailid account메세지 알림 css수정해야됨
 
   return (
     <>
@@ -244,20 +233,21 @@ function LoginModal({
                 {/* <LogoBox>
               <GmailImg src={gmailImg} alt="gmail" />
             </LogoBox> */}
-                {/* // todo: GoogleLogInBtn 눌리면 exitgift로고랑 같이나옴 useEffect()*/}
                 <LogoBox>
                   <GmailImg src={gmailImg} alt="gmail" />
                 </LogoBox>
               </AllLogoBox>
               <GoogleLogInBtnBox>
-                <GoogleLogInBtn onClick={() => {}}>
-                  <GoogleImg src={googleImg} alt="google"></GoogleImg>
-                  Continue with Google
-                </GoogleLogInBtn>
+                <GoogleStyle
+                  clientId="724060049648-nnacpoao7gftdukk1gurp600rfgme79k.apps.googleusercontent.com"
+                  onSuccess={responseGoogle}
+                  onFailure={responseGoogle}
+                  cookiePolicy={"single_host_origin"}
+                />
               </GoogleLogInBtnBox>
               <OrStlye>Or</OrStlye>
               <LogInInfo>
-                <form>
+                <form onSubmit={validateCheck}>
                   <div>
                     <span>Email</span>
                     <ModalInput
@@ -278,19 +268,28 @@ function LoginModal({
                       }}
                     />
                   </div>
-
                   <ModalBtnBox>
                     <ModalBtn>Explore</ModalBtn>
                     <ModalBtn
-                      onClick={(e) => {
-                        e.preventDefault();
-                        dispatch(fetchUser({ user_password, user_email }));
-                        handleIslogin();
+                      onClick={async (e) => {
+                        const login = await dispatch(
+                          fetchUser({ user_password, user_email })
+                        );
+                        if (!login) {
+                          return;
+                        }
+                        if (login.type === "user/fetchUser/rejected") {
+                          return;
+                        }
+                        dispatch(signin());
+                        onClose(e);
+                        return;
                       }}
                     >
                       Login
                     </ModalBtn>
                   </ModalBtnBox>
+                  {/* todo: 비밀번호 틀렸을때 에러메세지 Login */}
                 </form>
 
                 <ForgotPasswordBox>

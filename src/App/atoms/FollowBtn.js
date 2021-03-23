@@ -15,6 +15,9 @@ const Btn = styled.div`
     font-size: 20px;
     color: white;
     font-weight: 600;
+    &:active {
+      transform: translate3d(2px, 2px, 0px);
+    }
   }
 `;
 
