@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import googleImg from "../../../images/google.jpg";
 import gmailImg from "../../../images/gmail.png";
@@ -203,13 +203,13 @@ function LoginModal({
     accessToken: "",
   });
 
-  const handleIslogin = (e) => {
-    if (currentUser) {
-      dispatch(siginin());
-      onClose(e);
-    }
-  };
+  // const handleIslogin = (e) => {
+  //   if (islogin) {
+  //     onClose(e);
+  //   }
+  // };
   const { user_email, user_password } = inputs;
+
 
   // if (currentUserError) {
   //   return <p>Something went wrong! please, try again.</p>;
@@ -282,10 +282,17 @@ function LoginModal({
                   <ModalBtnBox>
                     <ModalBtn>Explore</ModalBtn>
                     <ModalBtn
-                      onClick={(e) => {
+                      onClick={async (e) => {
                         e.preventDefault();
-                        dispatch(fetchUser({ user_password, user_email }));
-                        handleIslogin();
+                        const login = await dispatch(fetchUser({ user_password, user_email }));
+                        if(!login) {
+                          return;
+                        }
+                        if(login.type === `user/fetchUser/rejected`) {
+                          return;
+                        }
+                        onClose(e);
+                        return;
                       }}
                     >
                       Login

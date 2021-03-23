@@ -1,8 +1,10 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styled from "styled-components";
 import AuctionTime from "../atoms/AuctionTime/AuctionTime";
 import DetailContent from "../molecules/onGoing/DetailTitleTextBox";
 import SlideContent from "../molecules/onGoing/SlideContent";
+import { getAuctions } from "../../reducers/auction";
+import { useDispatch } from "react-redux";
 
 const StyledMain = styled.div`
   display: flex;
@@ -53,6 +55,10 @@ const MainSectionRight = styled.section`
 `;
 
 function Ongoing() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAuctions());
+  }, [dispatch]);
   return (
     <StyledMain>
       <MainSectionLeft>

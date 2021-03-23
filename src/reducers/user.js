@@ -4,23 +4,22 @@ import axios from "axios";
 export const fetchUser = createAsyncThunk(
   "user/fetchUser",
   async (data, thunkAPI) => {
+    
     const res = await axios.post(
-      `https://localhost:4000/signin`,
+      `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/signin`,
       {
         user_email: data.user_email,
         user_password: data.user_password,
       },
       {
-        headers: { "Content-Type": "application/json" },
         withCredentials: true,
       }
     );
     if (!res) {
       return;
     }
-
     const data2 = await axios.get(
-      "https://localhost:4000/refreshtokenrequest",
+      `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/refreshtokenrequest`,
       {
         withCredentials: true,
       }
@@ -28,15 +27,13 @@ export const fetchUser = createAsyncThunk(
     if (!data2) {
       return;
     }
-    console.log(data2.data.data.userInfo.uuid);
     const userUuid = data2.data.data.userInfo.uuid;
-    const data3 = await axios.get(`https://localhost:4000/user/${userUuid}`, {
+    const data3 = await axios.get(`${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/user/${userUuid}`, {
       withCredentials: true,
     });
     if (!data3) {
       return;
     }
-    console.log(data3.data);
     return data3.data;
   }
 );
@@ -53,6 +50,9 @@ export const user = createSlice({
     siginin: (state) => {
       state.islogin = true;
     },
+    userBid: (state, action) => {
+      state.currentUser = action.payload;
+    }
   },
   extraReducers: {
     [fetchUser.pending]: (state) => {
@@ -64,6 +64,7 @@ export const user = createSlice({
       state.currentUserLoading = false;
       state.currentUser = action.payload;
       state.currentUserError = "";
+      state.islogin = true;
     },
     [fetchUser.rejected]: (state, action) => {
       state.currentUserLoading = false;
@@ -72,7 +73,5 @@ export const user = createSlice({
     },
   },
 });
-export const { siginin } = user.actions;
-export const handleLogin = (state) => state.user.islogin;
-
+export const { siginin, userBid } = user.actions;
 export default user.reducer;
