@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import LoginModal from "./LoginModal";
-import { siginin } from "../../../reducers/user";
+import { siginin, userBid } from "../../../reducers/user";
 import { selected, postBid } from "../../../reducers/auction";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
@@ -48,7 +48,16 @@ function SignBidBtn() {
   const handleBiding = async () => {
     let bidObj = {};
     let auctionObj = {};
+    let userObj = {};
     if(Object.keys(selectedAuction).length === 0) {
+      if (currentUser.wallet_now_deposit < auctions[0].auction_now_price) {
+        return;
+      }
+      if (currentUser.pd <= 0) {
+        return;
+      }
+      userObj.wallet_now_deposit = currentUser.wallet_now_deposit - auctions[0].auction_now_price;
+      userObj.pd = currentUser.pd - 1;
       bidObj.auction_uuid = auctions[0].uuid;
       bidObj.user_uuid = currentUser.uuid;
       bidObj.price = Math.floor((auctions[0].auction_now_price + 1000) * 1.5);
@@ -56,6 +65,14 @@ function SignBidBtn() {
       auctionObj.end_time = endTime;
       auctionObj.now_price = Math.floor((auctions[0].auction_now_price + 1000) * 1.5);
     } else {
+      if (currentUser.wallet_now_deposit < selectedAuction.auction_now_price) {
+        return;
+      }
+      if (currentUser.pd <= 0) {
+        return;
+      }
+      userObj.wallet_now_deposit = currentUser.wallet_now_deposit - selectedAuction.auction_now_price;
+      userObj.pd = currentUser.pd - 1;
       bidObj.auction_uuid = selectedAuction.uuid;
       bidObj.user_uuid = currentUser.uuid;
       bidObj.price = Math.floor((selectedAuction.auction_now_price + 1000) * 1.5);
@@ -63,11 +80,10 @@ function SignBidBtn() {
       auctionObj.end_time = endTime;
       auctionObj.now_price = Math.floor((selectedAuction.auction_now_price + 1000) * 1.5);
     }
-    const bid = await dispatch(postBid({bidObj, auctionObj}));
+    const bid = await dispatch(postBid({bidObj, auctionObj, userObj}));
     if(!bid) {
       return;
     }
-    dispatch(selected(bid.payload));
   };
   return (
     <Btn>

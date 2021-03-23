@@ -23,14 +23,27 @@ export const postBid = createAsyncThunk("auction/postBid", async (req) => {
   if (!auction) {
     return;
   }
-  // console.log(auction.data);
-  // const auctions = await axios.get(
-  //   `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/auction`
-  // );
-  // if (!auctions) {
-  //   return;
-  // }
-  return auction.data;
+  const user = await axios.put(
+    `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/user/${req.bidObj.user_uuid}`,
+    req.userObj,{withCredentials: true});
+  if (!user) {
+    return;
+  }
+  const auctionFind = await axios.get(`${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/auction/${req.bidObj.auction_uuid}`,
+  req.auctionObj,{withCredentials: true});
+  if (!auctionFind) {
+    return;
+  }
+  const userFind = await axios.get(
+    `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/user/${req.bidObj.user_uuid}`,
+    req.userObj,{withCredentials: true});
+  if (!userFind) {
+    return;
+  }
+  return { 
+    auction : auctionFind.data,
+    user: userFind.data
+  };
 });
 
 
@@ -68,19 +81,14 @@ export const auction = createSlice({
       state.error = action.payload;
     },
     [postBid.pending]: (state) => {
-      state.loading = true;
-      state.selectedAuction = [];
-      state.error = "";
     },
     [postBid.fulfilled]: (state, action) => {
       state.loading = false;
-      state.selectedAuction = action.payload;
+      state.selectedAuction = action.payload.auction;
+      state.currentUser = action.payload.user;
       state.error = "";
     },
     [postBid.rejected]: (state, action) => {
-      state.loading = false;
-      state.selectedAuction = [];
-      state.error = action.payload;
     },
   },
 });

@@ -50,6 +50,9 @@ export const user = createSlice({
     siginin: (state) => {
       state.islogin = true;
     },
+    userBid: (state, action) => {
+      state.currentUser = action.payload;
+    }
   },
   extraReducers: {
     [fetchUser.pending]: (state) => {
@@ -70,5 +73,5 @@ export const user = createSlice({
     },
   },
 });
-export const { siginin } = user.actions;
+export const { siginin, userBid } = user.actions;
 export default user.reducer;
