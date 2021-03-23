@@ -47,8 +47,13 @@ export const user = createSlice({
     currentUserloading: true,
     currentUser: {},
     currentUserError: "",
+    islogin: false,
   },
-  reducers: {},
+  reducers: {
+    siginin: (state) => {
+      state.islogin = true;
+    },
+  },
   extraReducers: {
     [fetchUser.pending]: (state) => {
       state.currentUserLoading = true;
@@ -67,5 +72,7 @@ export const user = createSlice({
     },
   },
 });
+export const { siginin } = user.actions;
+export const handleLogin = (state) => state.user.islogin;
 
 export default user.reducer;
