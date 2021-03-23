@@ -79,6 +79,7 @@ function Collection() {
   const handleModalOff = () => {
     setCollectionModalOn(false);
   };
+  
   // todo: 하드코딩 > data.map으로 데이터뿌려주기
   const { auctions } = useSelector((state) => state.auction);
   useEffect(() => {

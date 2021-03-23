@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import googleImg from "../../../images/google.jpg";
 import gmailImg from "../../../images/gmail.png";
 import SignUp from "../SignUp/SignUp";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUser } from "../../../reducers/user";
-import { siginin } from "../../../reducers/login";
 
 const ModalOverlay = styled.div`
   box-sizing: border-box;
@@ -170,18 +169,19 @@ function LoginModal({
   visible,
   children,
 }) {
+  const [signUpModal, SetSignUpModal] = useState(false);
+  const dispatch = useDispatch();
+  const { currentUser } = useSelector(
+    (state) => state.user
+    );
+    
+  useEffect(() => {
+  }, [dispatch]);
   const onMaskClick = (e) => {
     if (e.target === e.currentTarget) {
       onClose(e);
     }
   };
-
-  // todo: 구글,exitgift로고 상태변화
-  // todo: axios email, password post요청
-  // todo: OAuth 구글 자동로그인
-  // todo: sign up 누르면 회원가입창으로 이동
-  const [signUpModal, SetSignUpModal] = useState(false);
-
   const handleSignOn = (e) => {
     SetSignUpModal(true);
     maskClosable = null;
@@ -189,49 +189,25 @@ function LoginModal({
   const handleSignOff = () => {
     SetSignUpModal(false);
   };
-
-  const dispatch = useDispatch();
-  const { currentUser, currentUserLoading, currentUserError } = useSelector(
-    (state) => state.user
-  );
-  const { islogin } = useSelector((state) => state.login);
-
+  const { user_email, user_password } = inputs;
   const [inputs, setInputs] = useState({
     user_email: "",
     user_password: "",
     accessToken: "",
   });
-
-  const [isClicklogin, setIsClicklogin] = useState(false);
-
-  const handleIslogin = (e) => {
-    if (currentUser) {
-      dispatch(siginin());
-      onClose(e);
-    }
-  };
-  const { user_email, user_password } = inputs;
-
-  // if (currentUserError) {
-  //   return <p>Something went wrong! please, try again.</p>;
-  // }
-
-  // if (currentUserLoading) {
-  //   return <p>Loading</p>;
-  // }
-
+  
   const inputHandler = (e) => {
     const { name, value } = e.target;
-
+    
     setInputs({
       ...inputs,
       [name]: value,
     });
   };
   return (
-    <>
-      {!signUpModal ? (
-        <>
+      <>
+        {!signUpModal ? (
+          <>
           <ModalOverlay visible={visible} />
           <ModalWrapper
             onClick={maskClosable ? onMaskClick : null}
@@ -240,22 +216,22 @@ function LoginModal({
             visible={visible}
           >
             <ModalInner tabIndex="0" className="modal-inner">
+
               <AllLogoBox>
-                {/* <LogoBox>
-              <GmailImg src={gmailImg} alt="gmail" />
-            </LogoBox> */}
-                {/* // todo: GoogleLogInBtn 눌리면 exitgift로고랑 같이나옴 useEffect()*/}
                 <LogoBox>
                   <GmailImg src={gmailImg} alt="gmail" />
                 </LogoBox>
               </AllLogoBox>
+
               <GoogleLogInBtnBox>
                 <GoogleLogInBtn onClick={() => {}}>
                   <GoogleImg src={googleImg} alt="google"></GoogleImg>
                   Continue with Google
                 </GoogleLogInBtn>
               </GoogleLogInBtnBox>
+
               <OrStlye>Or</OrStlye>
+
               <LogInInfo>
                 <form>
                   <div>
@@ -282,11 +258,7 @@ function LoginModal({
                   <ModalBtnBox>
                     <ModalBtn>Explore</ModalBtn>
                     <ModalBtn
-                      onClick={(e) => {
-                        e.preventDefault();
-                        dispatch(fetchUser({ user_password, user_email }));
-                        handleIslogin();
-                      }}
+                      onClick={() => dispatch(fetchUser({ user_password, user_email }))}
                     >
                       Login
                     </ModalBtn>
@@ -296,13 +268,9 @@ function LoginModal({
                 <ForgotPasswordBox>
                   <SignUpTextBtn onClick={handleSignOn}> Sign up</SignUpTextBtn>
                 </ForgotPasswordBox>
+
               </LogInInfo>
-              {/* 
-              {closable && (
-                <CloseBtn className="modal-close" onClick={close}>
-                  닫기
-                </CloseBtn>
-              )} */}
+
               {children}
             </ModalInner>
           </ModalWrapper>
