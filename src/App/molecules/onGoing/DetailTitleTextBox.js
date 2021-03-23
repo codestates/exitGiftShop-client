@@ -65,7 +65,6 @@ function DetailContent() {
     (state) => state.auction
   );
   useEffect(() => {
-    // dispatch(getAuctions());
   }, [dispatch]);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Cannot display</p>;
@@ -79,6 +78,7 @@ function DetailContent() {
                   if (i === 0) {
                     return auction.art_uu.art_title;
                   }
+                  return '';
                 })
               : selectedAuction.art_uu.art_title}
           </h1>
@@ -96,6 +96,7 @@ function DetailContent() {
                   if (i === 0) {
                     return auction.bids.length;
                   }
+                  return '';
                 })
               : selectedAuction.bids.length}
             Bids)
@@ -107,6 +108,7 @@ function DetailContent() {
                   if (i === 0) {
                     return auction.auction_now_price;
                   }
+                  return '';
                 })
               : selectedAuction.auction_now_price}
           </h2>
@@ -120,6 +122,7 @@ function DetailContent() {
                     }
                     return auction.auction_hammer_price;
                   }
+                  return '';
                 })
               : selectedAuction.auction_hammer_price === 0
               ? `-`
