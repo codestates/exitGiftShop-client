@@ -10,14 +10,6 @@ export const getAuctions = createAsyncThunk("auction/getAuctions", async () => {
   }
   return auction.data;
 });
-// export const postBid = createAsyncThunk("auction/getAuctions", async () => {
-//   const auction = await axios.get(`${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/auction`);
-//   if (!auction) {
-//     return;
-//   }
-//   return auction.data;
-// });
-
 
 export const auction = createSlice({
   name: "auction",
@@ -26,7 +18,6 @@ export const auction = createSlice({
     loading: true,
     error: "",
     selectedAuction: {},
-    selectedCollection: {},
   },
   reducers: {
     selected: (state, action) => {

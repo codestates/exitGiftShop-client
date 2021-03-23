@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
+<<<<<<< HEAD
 import { useSelector, useDispatch } from "react-redux";
+=======
+>>>>>>> 073ea8f7ea8d8efc98df06290f3c3b08fc0a578d
 
 const ModalOverlay = styled.div`
   box-sizing: border-box;
@@ -49,14 +52,18 @@ function ReadMeModal({
   visible,
   children,
 }) {
+<<<<<<< HEAD
   const dispatch = useDispatch();
 
+=======
+>>>>>>> 073ea8f7ea8d8efc98df06290f3c3b08fc0a578d
   const onMaskClick = (e) => {
     if (e.target === e.currentTarget) {
       onClose(e);
     }
   };
 
+<<<<<<< HEAD
   const close = (e) => {
     if (onClose) {
       onClose(e);
@@ -67,6 +74,19 @@ function ReadMeModal({
   // useEffect(() => {
   //   dispatch(selectedCollection());
   // }, [dispatch]);
+=======
+  // const close = (e) => {
+  //   if (onClose) {
+  //     onClose(e);
+  //   }
+  // };
+
+  useEffect(() => {}, []);
+  // todo: 구글,exitgift로고 상태변화
+  // todo: axios email, password post요청
+  // todo: OAuth 구글 자동로그인
+  // todo: sign up 누르면 회원가입창으로 이동
+>>>>>>> 073ea8f7ea8d8efc98df06290f3c3b08fc0a578d
   return (
     <>
       <ModalOverlay visible={visible} />
@@ -76,12 +96,16 @@ function ReadMeModal({
         tabIndex="-1"
         visible={visible}
       >
+<<<<<<< HEAD
         {selectedCollection.art_uu.art_desc}
         <ModalInner
           tabIndex="0"
           className="modal-inner"
           onClick={close}
         ></ModalInner>
+=======
+        <ModalInner tabIndex="0" className="modal-inner"></ModalInner>
+>>>>>>> 073ea8f7ea8d8efc98df06290f3c3b08fc0a578d
       </ModalWrapper>
     </>
   );
