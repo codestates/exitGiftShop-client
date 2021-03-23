@@ -1,18 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import picture from "../../../images/picture.png";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
 const MybidBox = styled.div`
-  background-color: white;
   width: 80%;
   height: 100%;
   border-radius: 10px;
-  color: black;
-  box-shadow: 0px 5px 4px 1px rgba(0, 0, 0, 0.3);
-  padding: 15px 15px;
+  color: white;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -31,14 +29,17 @@ const DetailBodyBox = styled.div`
     margin-right: 20px;
     margin-bottom: 15px;
   }
-  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-  margin-bottom: 10px;
 `;
 const TextBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   margin-bottom: 15px;
+  padding-left: 5px;
+  div {
+    font-family: "Roboto Mono", monospace;
+    font-size: 20px;
+  }
 `;
 
 const IconBox = styled.div`
@@ -49,6 +50,14 @@ const IconBox = styled.div`
 `;
 
 const Likes = () => {
+  const [click, setClick] = useState(true);
+
+  const handlCilck = () => {
+    setClick(true);
+  };
+  const handleClick2 = () => {
+    setClick(false);
+  };
   return (
     <>
       <MybidBox>
@@ -56,7 +65,7 @@ const Likes = () => {
           <div>
             <img src={picture} alt="" />
             <TextBox>
-              <span>Beeple's CROSSROAD #1/3</span>
+              <div>BEEPLE's CROSSROAD #1/3</div>
               <span>Recent bid : KRW 33,965,000,000</span>
               <span>02 : 59 : 39</span>
             </TextBox>
@@ -71,7 +80,7 @@ const Likes = () => {
           <div>
             <img src={picture} alt="" />
             <TextBox>
-              <span>Beeple's CROSSROAD #1/3</span>
+              <div>Beeple's CROSSROAD #1/3</div>
               <span>Recent bid : KRW 33,965,000,000</span>
               <span>02 : 59 : 39</span>
             </TextBox>
@@ -86,7 +95,7 @@ const Likes = () => {
           <div>
             <img src={picture} alt="" />
             <TextBox>
-              <span>Beeple's CROSSROAD #1/3</span>
+              <div>Beeple's CROSSROAD #1/3</div>
               <span>Recent bid : KRW 33,965,000,000</span>
               <span>02 : 59 : 39</span>
             </TextBox>

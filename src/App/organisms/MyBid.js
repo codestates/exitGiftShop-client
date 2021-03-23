@@ -15,6 +15,8 @@ const StyledMain = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-top: 70px;
+  padding-left: 60px;
+  padding-right: 60px;
   height: 600px;
   overflow: auto;
 
@@ -28,7 +30,7 @@ const MainSectionLeft = styled.section`
   width: 100%;
   height: 100%;
   border-right: 1px solid rgba(62, 62, 62, 0.8);
-  padding: 45px 85px;
+  padding: 45px 90px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -43,7 +45,7 @@ const MainSectionRight = styled.section`
   width: 100%;
   height: 100%;
   border-left: 1px solid rgba(62, 62, 62, 0.8);
-  padding: 45px 85px;
+  padding: 45px 90px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -58,7 +60,15 @@ const MainSectionRight = styled.section`
 `;
 
 const LeftBtnBox = styled.div`
-  width: 80%;
+  width: 71.5%;
+  display: flex;
+  margin-bottom: 25px;
+  font-size: 20px;
+  color: black;
+`;
+
+const RightBtnBox = styled.div`
+  width: 81.5%;
   display: flex;
   margin-bottom: 25px;
   font-size: 20px;
@@ -69,15 +79,20 @@ const MybidBtnBox = styled.button`
   outline: none;
   cursor: pointer;
   margin: 0px 5px;
-  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 3px;
+  margin: px;
   width: 120px;
-  height: 45px;
+  height: 35px;
   border-radius: 3px;
   background-color: ${(props) => (props.current ? "white" : "gray")};
+  span {
+    padding-bottom: 2px;
+  }
 `;
 
 function Mybid({ location: { pathname } }) {
@@ -88,17 +103,17 @@ function Mybid({ location: { pathname } }) {
           <LeftBtnBox>
             <Link to="/mybid/account">
               <MybidBtnBox current={pathname === "/mybid/account"}>
-                Account
+                <span>Account</span>
               </MybidBtnBox>
             </Link>
             <Link to="/mybid/wallet">
               <MybidBtnBox current={pathname === "/mybid/wallet"}>
-                Wallet
+                <span>Wallet</span>
               </MybidBtnBox>
             </Link>
             <Link to="/mybid/invite">
               <MybidBtnBox current={pathname === "/mybid/invite"}>
-                Invite
+                <span>Invite</span>
               </MybidBtnBox>
             </Link>
           </LeftBtnBox>
@@ -115,17 +130,23 @@ function Mybid({ location: { pathname } }) {
         </MainSectionLeft>
 
         <MainSectionRight>
-          <LeftBtnBox>
+          <RightBtnBox>
             <Link>
-              <MybidBtnBox>Active Bid</MybidBtnBox>
+              <MybidBtnBox>
+                <span>Active Bid</span>
+              </MybidBtnBox>
             </Link>
             <Link>
-              <MybidBtnBox>Tx History</MybidBtnBox>
+              <MybidBtnBox>
+                <span>Tx History</span>
+              </MybidBtnBox>
             </Link>
             <Link>
-              <MybidBtnBox>Likes</MybidBtnBox>
+              <MybidBtnBox>
+                <span>Likes</span>
+              </MybidBtnBox>
             </Link>
-          </LeftBtnBox>
+          </RightBtnBox>
           <Switch>
             <Route path="/mybid" component={Likes} />
             <Route component={Pagenotfound} />

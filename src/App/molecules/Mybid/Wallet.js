@@ -9,12 +9,12 @@ import { Link } from "react-router-dom";
 
 const MybidBox = styled.div`
   background-color: white;
-  width: 80%;
+  width: 70%;
   height: 100%;
   border-radius: 10px;
   color: black;
   box-shadow: 0px 5px 4px 1px rgba(0, 0, 0, 0.3);
-  padding: 15px 15px;
+  padding: 15px 30px;
 `;
 
 const TextBox = styled.div`
@@ -24,6 +24,7 @@ const TextBox = styled.div`
   align-items: center;
   text-align: center;
   h1 {
+    font-family: "Abhaya Libre", serif;
     font-size: 30px;
   }
   span {

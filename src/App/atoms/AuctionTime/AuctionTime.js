@@ -1,34 +1,46 @@
+import { faCertificate } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useRef, useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 const TimeBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: -80px;
+  margin-bottom: 50px;
   svg {
     font-size: 30px;
     margin-right: 15px;
   }
 `;
+
 const TimerStlye = styled.div`
-  font-family: "Roboto Mono", monospace;
-  font-size: 35px;
+  font-family: "Montserrat", Arial, sans-serif;
+  font-size: 48px;
+  color: #fff;
   font-weight: bold;
+  padding-top: 35px;
   display: flex;
   flex: column;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
+  text-shadow: 0 0 10px red;
+}
 `;
 
 const TimerChild = styled.section`
+  display: flex;
+  flex-direction: row;
   box-sizing: border-box;
   width: 100%;
   padding-left: 15px;
   padding-right: 15px;
   text-align: center;
+  small {
+    font-size: 24px;
+  }
 `;
 
 const AuctionTime = () => {
@@ -83,28 +95,28 @@ const AuctionTime = () => {
           <TimerChild>
             <p>{timerDays}</p>
             <p>
-              <small>DAY</small>
+              <small>D</small>
             </p>
           </TimerChild>
           <span>:</span>
           <TimerChild>
             <p>{timerHours}</p>
             <p>
-              <small>HOUR</small>
+              <small>H</small>
             </p>
           </TimerChild>
           <span>:</span>
           <TimerChild>
             <p>{timerMinutes}</p>
             <p>
-              <small>MIN</small>
+              <small>M</small>
             </p>
           </TimerChild>
           <span>:</span>
           <TimerChild>
             <p>{timerSeconds}</p>
             <p>
-              <small>SEC</small>
+              <small>S</small>
             </p>
           </TimerChild>
         </TimerStlye>
