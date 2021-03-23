@@ -1,11 +1,19 @@
+<<<<<<< HEAD
+import React, { useEffect, useState } from "react";
+=======
 import React, { useState } from "react";
+>>>>>>> 073ea8f7ea8d8efc98df06290f3c3b08fc0a578d
 import styled from "styled-components";
 import googleImg from "../../../images/google.jpg";
 import gmailImg from "../../../images/gmail.png";
 import SignUp from "../SignUp/SignUp";
+<<<<<<< HEAD
+import axios from "axios";
+=======
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUser } from "../../../reducers/user";
 import { siginin } from "../../../reducers/login";
+>>>>>>> 073ea8f7ea8d8efc98df06290f3c3b08fc0a578d
 
 const ModalOverlay = styled.div`
   box-sizing: border-box;
@@ -190,6 +198,15 @@ function LoginModal({
     SetSignUpModal(false);
   };
 
+<<<<<<< HEAD
+  const [inputs, setInputs] = useState({
+    user_email: "",
+    user_password: "",
+  });
+
+  const { user_email, user_password } = inputs;
+
+=======
   const dispatch = useDispatch();
   const { currentUser, currentUserLoading, currentUserError } = useSelector(
     (state) => state.user
@@ -220,6 +237,7 @@ function LoginModal({
   //   return <p>Loading</p>;
   // }
 
+>>>>>>> 073ea8f7ea8d8efc98df06290f3c3b08fc0a578d
   const inputHandler = (e) => {
     const { name, value } = e.target;
 
@@ -228,6 +246,30 @@ function LoginModal({
       [name]: value,
     });
   };
+<<<<<<< HEAD
+  const loginRequestHandler = async () => {
+    const token = await axios.post(
+      "https://localhost:4000/signin",
+      {
+        user_email: user_email,
+        user_password: user_password,
+      },
+      { headers: { "Content-Type": "application/json" }, withCredentials: true }
+    );
+    console.log(token);
+    handleResponseSuccess();
+  };
+
+  const handleResponseSuccess = async () => {
+    const refreshToken = await axios.get(
+      "https://localhost:4000/refreshTokenRequest",
+      { withCredentials: true }
+    );
+    console.log(refreshToken);
+  };
+=======
+
+>>>>>>> 073ea8f7ea8d8efc98df06290f3c3b08fc0a578d
   return (
     <>
       {!signUpModal ? (
@@ -257,6 +299,32 @@ function LoginModal({
               </GoogleLogInBtnBox>
               <OrStlye>Or</OrStlye>
               <LogInInfo>
+<<<<<<< HEAD
+                <div>
+                  <span>Email</span>
+                  <ModalInput
+                    name="user_email"
+                    onChange={(e) => {
+                      inputHandler(e);
+                    }}
+                  />
+                  <span>Password</span>
+                  <ModalInput
+                    type="password"
+                    name="user_password"
+                    onChange={(e) => {
+                      inputHandler(e);
+                    }}
+                  />
+                </div>
+
+                <ModalBtnBox>
+                  <ModalBtn>Explore</ModalBtn>
+                  <ModalBtn type="submit" onClick={loginRequestHandler}>
+                    Login
+                  </ModalBtn>
+                </ModalBtnBox>
+=======
                 <form>
                   <div>
                     <span>Email</span>
@@ -293,6 +361,7 @@ function LoginModal({
                   </ModalBtnBox>
                 </form>
 
+>>>>>>> 073ea8f7ea8d8efc98df06290f3c3b08fc0a578d
                 <ForgotPasswordBox>
                   <SignUpTextBtn onClick={handleSignOn}> Sign up</SignUpTextBtn>
                 </ForgotPasswordBox>
