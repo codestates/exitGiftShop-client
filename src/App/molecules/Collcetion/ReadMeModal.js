@@ -51,6 +51,8 @@ function ReadMeModal({
 }) {
   const dispatch = useDispatch();
 
+  useEffect(() => {}, [dispatch]);
+
   const onMaskClick = (e) => {
     if (e.target === e.currentTarget) {
       onClose(e);
@@ -64,9 +66,9 @@ function ReadMeModal({
   };
 
   const { selectedCollection } = useSelector((state) => state.auction);
-  // useEffect(() => {
-  //   dispatch(selectedCollection());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(selectedCollection());
+  }, [dispatch]);
   return (
     <>
       <ModalOverlay visible={visible} />
