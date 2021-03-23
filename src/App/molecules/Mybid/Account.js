@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const MybidBox = styled.div`
   background-color: white;
-  width: 80%;
+  width: 70%;
   height: 100%;
   border-radius: 10px;
   color: black;

@@ -32,7 +32,6 @@ const ItemBox = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 20px 50px;
-
   > :first-child {
     width: 60%;
     height: 85%;
@@ -68,6 +67,12 @@ const ItemBox = styled.div`
   }
 `;
 
+const ImgWrapper = styled.div`
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+`;
+
 function Collection() {
   const dispatch = useDispatch();
   const file_path = `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/file/`;
@@ -79,7 +84,7 @@ function Collection() {
   const handleModalOff = () => {
     setCollectionModalOn(false);
   };
-  
+
   // todo: 하드코딩 > data.map으로 데이터뿌려주기
   const { auctions } = useSelector((state) => state.auction);
   useEffect(() => {
@@ -92,15 +97,21 @@ function Collection() {
         <GridSection>
           {auctions.map((auction, i) => {
             return (
-              <ItemBox>
-                <img src={file_path + auction.art_uu.art_file_id} alt="img" />
+              <ItemBox key={i}>
+                <div>
+                  <img src={file_path + auction.art_uu.art_file_id} alt="img" />
+                </div>
                 <div>
                   <h1>{auction.art_uu.art_title}</h1>
                   <p>{auction.art_uu.art_desc}</p>
-                  <button onClick={() => {
-                    dispatch(selectedCollection(auction))
-                    handleModalOn()
-                  }}>Read more</button>
+                  <button
+                    onClick={() => {
+                      dispatch(selectedCollection(auction));
+                      handleModalOn();
+                    }}
+                  >
+                    Read more
+                  </button>
                 </div>
               </ItemBox>
             );
