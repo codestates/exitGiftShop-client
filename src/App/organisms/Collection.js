@@ -9,7 +9,21 @@ const StyledMain = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 86%;
-  overflow: auto;
+  overflow-y: hidden;
+  &::-webkit-scrollbar {
+    /* 세로 스크롤 넓이 */
+    width: 8px;
+
+    /* 가로 스크롤 높이 */
+    height: 8px;
+
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.4);
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+  }
 
   @media screen and (max-width: 1300px) {
     flex-wrap: wrap;
@@ -32,6 +46,7 @@ const ItemBox = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 20px 50px;
+
   > :first-child {
     width: 60%;
     height: 85%;
@@ -41,36 +56,53 @@ const ItemBox = styled.div`
   > :last-child {
     display: flex;
     width: 100%;
-    height: 85%;
+    height: 53%;
     flex-direction: column;
     justify-content: flex-end;
     font-size: 20px;
+    }
   }
   h1 {
     margin-bottom: 20px;
-    line-height: 150%;
-    font-size: 35px;
+    line-height: 110%;
+    font-family: "Roboto Mono", monospace;
+    font-size: 40px;
+    font-weight: 800;
   }
   p {
-    line-height: 150%;
+    line-height: 400%;
   }
   button {
     background-color: rgba(0, 0, 0, 0);
     color: white;
+    font-family:'Roboto', sans-serif;
+    font-size:15px;
+    border-width: thin;
     border: none;
     outline: none;
     cursor: pointer;
     opacity: 0.8;
     margin-top: 20px;
-    font-size: 20px;
     text-align: left;
   }
 `;
 
 const ImgWrapper = styled.div`
+  width: 25%;
   position: relative;
-  box-sizing: border-box;
   overflow: hidden;
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-width: 100%;
+    height: auto;
+    -webkit-transform: translate(0%, -25%);
+    -ms-transform: translate(0%, -25%);
+    transform: translate(0%, -25%);
+  }
 `;
 
 function Collection() {
@@ -97,20 +129,24 @@ function Collection() {
           {auctions.map((auction, i) => {
             return (
               <ItemBox key={i}>
-                <div>
+                <ImgWrapper>
                   <img src={file_path + auction.art_uu.art_file_id} alt="img" />
-                </div>
+                </ImgWrapper>
                 <div>
                   <h1>{auction.art_uu.art_title}</h1>
-                  <p>{auction.art_uu.art_desc}</p>
-                  <button
-                    onClick={() => {
-                      dispatch(selectedCollection(auction));
-                      handleModalOn();
-                    }}
-                  >
-                    Read more
-                  </button>
+                  <p>
+                    {auction.art_uu.art_desc}
+                    <span>
+                      <button
+                        onClick={() => {
+                          dispatch(selectedCollection(auction));
+                          handleModalOn();
+                        }}
+                      >
+                        Read more
+                      </button>
+                    </span>
+                  </p>
                 </div>
               </ItemBox>
             );

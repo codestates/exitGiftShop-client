@@ -9,6 +9,7 @@ const MybidBox = styled.div`
   color: black;
   box-shadow: 0px 5px 4px 1px rgba(0, 0, 0, 0.3);
   padding: 15px 0px;
+  padding-right: 15px;
 `;
 
 const RefTitle = styled.div`

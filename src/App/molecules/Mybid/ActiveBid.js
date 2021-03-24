@@ -13,7 +13,6 @@ const MybidBox = styled.div`
   width: 80%;
   height: 100%;
   border-radius: 10px;
-  color: white;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
