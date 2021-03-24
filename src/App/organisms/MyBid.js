@@ -13,6 +13,7 @@ import ActiveBid from "../molecules/Mybid/ActiveBid";
 import TxHistory from "../molecules/Mybid/TxHistory";
 import { useSelector, useDispatch } from "react-redux";
 import { myBidRightChange } from "../../reducers/auction";
+import Password from "../molecules/Mybid/Password";
 
 const StyledMain = styled.div`
   display: flex;
@@ -133,11 +134,12 @@ function Mybid({ location: { pathname } }) {
           <Switch>
             <Route path="/" exact component={Ongoing} />
             <Route path="/mybid" exact component={Wallet} />
-            <Route path="/mybid/account" component={Account} />
+            <Route path="/mybid/account" exact component={Account} />
             <Route path="/mybid/wallet" component={Wallet} />
             <Route path="/mybid/invite" component={Invite} />
             <Route path="/mybid/faucetbeta" component={FaucetBeta} />
             <Route path="/mybid/settings" component={Settings} />
+            <Route path="/mybid/account/password" component={Password} />
             <Route component={Pagenotfound} />
           </Switch>
         </MainSectionLeft>

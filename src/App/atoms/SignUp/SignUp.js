@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import { useDispatch } from "react-redux";
+import { signup, signin } from "../../../reducers/user";
 const ModalOverlay = styled.div`
   box-sizing: border-box;
   display: ${(props) => (props.visible ? "block" : "none")};
@@ -57,10 +58,10 @@ const ModalInner = styled.div`
     &:hover {
       background-color: #ce7777;
       color: white;
-      transition: 0.3s ease-in-out;
+      transition: background-color 0.3s ease-in-out;
     }
     &:active {
-      box-shadow: 0px 1px 2px 2px rgba(0, 0, 0, 0.3);
+      transform: translate3d(2px, 2px, 0px);
     }
   }
 `;
@@ -139,6 +140,38 @@ function SignUp({
       setValidate(true);
     }
   };
+  const dispatch = useDispatch();
+  const [inputs, setInputs] = useState({
+    user_email: "",
+    user_password: "",
+    user_password2: "",
+  });
+  const { user_email, user_password, user_password2 } = inputs;
+  const handleSignUp = async (e) => {
+    if (user_password !== user_password2) {
+      return;
+    }
+    const login = dispatch(signup({ user_email, user_password }));
+    if (!login) {
+      return;
+    }
+    if (login.type === "user/signup/rejected") {
+      return;
+    }
+
+    dispatch(signin());
+    onClose(e);
+    return;
+  };
+
+  const inputHandler = (e) => {
+    const { name, value } = e.target;
+
+    setInputs({
+      ...inputs,
+      [name]: value,
+    });
+  };
 
   return (
     <>
@@ -154,17 +187,41 @@ function SignUp({
             <SignupBox>
               <div>
                 <span>Email</span>
-                <input type="email" required placeholder="email"></input>
+                <input
+                  type="email"
+                  required
+                  placeholder="email"
+                  name="user_email"
+                  onChange={(e) => {
+                    inputHandler(e);
+                  }}
+                ></input>
               </div>
 
               <div>
                 <span>Password</span>
-                <input type="password" required placeholder="password"></input>
+                <input
+                  type="password"
+                  required
+                  placeholder="password"
+                  name="user_password"
+                  onChange={async (e) => {
+                    await inputHandler(e);
+                  }}
+                ></input>
               </div>
 
               <div>
                 <span>Confirm Password</span>
-                <input type="password" required placeholder="password"></input>
+                <input
+                  type="password"
+                  required
+                  placeholder="password"
+                  name="user_password2"
+                  onChange={async (e) => {
+                    await inputHandler(e);
+                  }}
+                ></input>
               </div>
             </SignupBox>
             {validate ? (
@@ -173,11 +230,11 @@ function SignUp({
               </ErrorMsg>
             ) : (
               <ErrorMsg>
-                <span>비밀번호가 맞지 않습니다</span>
+                <span>Incorrect password</span>
               </ErrorMsg>
             )}
             <div>
-              <button>Sign up and Login</button>
+              <button onClick={handleSignUp}>Sign up and Login</button>
             </div>
           </form>
         </ModalInner>

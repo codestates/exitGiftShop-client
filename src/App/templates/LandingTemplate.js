@@ -12,6 +12,8 @@ import LandingThird from "../Pages/LandingThird";
 import LandingLast from "../Pages/LandingLast";
 import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchLogout, signout } from "../../reducers/user";
 
 const StyleNav = styled.div`
   color: white;
@@ -70,9 +72,9 @@ const NavList = styled.div`
 `;
 
 const LogoutBtn = styled(FontAwesomeIcon)`
-  cursor: pointer;
-  color: #ce7777;
-  margin-right: 160px;
+  cursor: ${(props) => (props.login ? "pointer" : "")};
+  color: ${(props) => (props.login ? "#ce7777" : "gray")};
+  margin-right: 50px;
   margin-left: 30px;
 `;
 function LandingTemplate() {
@@ -90,6 +92,14 @@ function LandingTemplate() {
     normalScrollElements: "collection",
     keyboardScrolling: false,
   };
+  const disPatch = useDispatch();
+  const { islogin } = useSelector((state) => state.user);
+
+  const handleLogin = () => {
+    disPatch(fetchLogout());
+    disPatch(signout());
+  };
+
   return (
     <>
       <Header>
@@ -123,7 +133,16 @@ function LandingTemplate() {
               </Item>
             </NavList>
           </ListStyle>
-          <LogoutBtn icon={faPowerOff} />
+
+          {islogin ? (
+            <>
+              <LogoutBtn onClick={handleLogin} login={true} icon={faPowerOff} />
+            </>
+          ) : (
+            <>
+              <LogoutBtn login={false} icon={faPowerOff} />
+            </>
+          )}
         </StyleNav>
       </Header>
       <ScrollToTopOnMount />
