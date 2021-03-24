@@ -7,10 +7,9 @@ import SignBidBtn from "../../atoms/Sign/SignInBtn";
 import FollowBtn from "../../atoms/FollowBtn";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-// import {
-//   put,
-//   selected
-// } from "../../../reducers/auction";
+import {
+  postLike
+} from "../../../reducers/auction";
 
 const DetailTitleTextBox = styled.div`
   display: flex;
@@ -114,9 +113,8 @@ const StyleTwit = styled.div`
 
 function DetailContent() {
   const dispatch = useDispatch();
-  const { auctions, selectedAuction, loading, error } = useSelector(
-    (state) => state.auction
-  );
+  const { auctions, selectedAuction, loading, error } = useSelector((state) => state.auction);
+  const { currentUser } = useSelector((state) => state.user);
   useEffect(() => {}, [dispatch]);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Cannot display</p>;
@@ -135,7 +133,17 @@ function DetailContent() {
               : selectedAuction.art_uu.art_title}
           </h1>
           <div>
-            <FontAwesomeIcon icon={faHeart} />
+            { Object.keys(currentUser).length === 0 ?
+              <FontAwesomeIcon icon={faHeart} />
+              :
+              Object.keys(selectedAuction).length === 0
+              ? <FontAwesomeIcon icon={faHeart} onClick={() => dispatch(postLike(
+                { auction_uuid: auctions[0].uuid, user_uuid: currentUser.uuid }
+              ))} />
+              : <FontAwesomeIcon icon={faHeart} onClick={() => dispatch(postLike(
+                { auction_uuid: selectedAuction.uuid, user_uuid: currentUser.uuid }
+              ))} />
+            }
             <FontAwesomeIcon icon={faShareAlt} rotation={270} />
           </div>
         </DetailTitleTextBox>

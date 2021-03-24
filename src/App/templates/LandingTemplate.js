@@ -90,6 +90,7 @@ function LandingTemplate() {
     fitToSectionDelay: 500,
     autoScrolling: false,
     normalScrollElements: "collection",
+    keyboardScrolling: false,
   };
   const disPatch = useDispatch();
   const { islogin } = useSelector((state) => state.user);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Link, Route, Switch, withRouter } from "react-router-dom";
 import Account from "../molecules/Mybid/Account";
@@ -9,6 +9,10 @@ import Ongoing from "./Ongoing";
 import FaucetBeta from "../molecules/Mybid/faucetBeta";
 import Settings from "../molecules/Mybid/settings";
 import Likes from "../molecules/Mybid/Likes";
+import ActiveBid from "../molecules/Mybid/ActiveBid";
+import TxHistory from "../molecules/Mybid/TxHistory";
+import { useSelector, useDispatch } from "react-redux";
+import { myBidRightChange } from "../../reducers/auction";
 import Password from "../molecules/Mybid/Password";
 
 const StyledMain = styled.div`
@@ -96,9 +100,18 @@ const MybidBtnBox = styled.button`
   }
 `;
 
+
 function Mybid({ location: { pathname } }) {
+  const dispatch = useDispatch();
+  const { myBidRight } = useSelector((state) => state.auction);
+  const { currentUser } = useSelector((state) => state.user);
+  useEffect(() => {
+    
+  }, [dispatch]);
+  
   return (
     <>
+      { Object.keys(currentUser).length !== 0 ? 
       <StyledMain>
         <MainSectionLeft>
           <LeftBtnBox>
@@ -134,29 +147,53 @@ function Mybid({ location: { pathname } }) {
         <MainSectionRight>
           <RightBtnBox>
             <Link>
-              <MybidBtnBox>
+              <MybidBtnBox onClick={() => {dispatch(myBidRightChange(`ActiveBid`))}}>
                 <span>Active Bid</span>
               </MybidBtnBox>
             </Link>
             <Link>
-              <MybidBtnBox>
+              <MybidBtnBox onClick={() => {dispatch(myBidRightChange(`TxHistory`))}}>
                 <span>Tx History</span>
               </MybidBtnBox>
             </Link>
             <Link>
-              <MybidBtnBox>
+              <MybidBtnBox onClick={() => {dispatch(myBidRightChange(`Likes`))}}>
                 <span>Likes</span>
               </MybidBtnBox>
             </Link>
           </RightBtnBox>
-          <Switch>
-            <Route path="/mybid" component={Likes} />
-            <Route component={Pagenotfound} />
-          </Switch>
+          {
+            myBidRight === `TxHistory` ?
+            <TxHistory/ >
+            : myBidRight === `Likes`?
+            <Likes />
+            : myBidRight === `ActiveBid` ?
+            <ActiveBid />
+            : <TxHistory />
+          }
         </MainSectionRight>
       </StyledMain>
+      :      
+      <StyledMain>
+        <MainSectionLeft>
+          <LeftBtnBox>
+            <MybidBtnBox>
+             <span>로그인이 필요한 기능입니다...</span>;
+            </MybidBtnBox>
+          </LeftBtnBox>
+        </MainSectionLeft>
+
+        <MainSectionRight>
+          <RightBtnBox>
+            <MybidBtnBox>
+             <span>로그인이 필요한 기능입니다...</span>;
+            </MybidBtnBox>
+          </RightBtnBox>
+        </MainSectionRight>
+       </StyledMain>
+      }
     </>
-  );
+    );
 }
 
 export default withRouter(Mybid);

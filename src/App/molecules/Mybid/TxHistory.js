@@ -1,31 +1,30 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
+// import picture from "../../../images/picture.png";
 // import { faHeart } from "@fortawesome/free-regular-svg-icons";
 // import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  getUserLikes
+  getUserBids
 } from "../../../reducers/user";
 import moment from 'moment';
-
+import Countdown from 'react-countdown';
 
 const MybidBox = styled.div`
   width: 80%;
   height: 100%;
   border-radius: 10px;
+  color: white;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-right: 15px;
   overflow-y: scroll;
   &::-webkit-scrollbar {
     /* 세로 스크롤 넓이 */
-    width: 2px;
-
+    width: 8px;
     /* 가로 스크롤 높이 */
     height: 8px;
-
     border-radius: 6px;
     background: rgba(255, 255, 255, 0.4);
   }
@@ -33,9 +32,7 @@ const MybidBox = styled.div`
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 6px;
   }
-  scroll-y: hidden;
 `;
-
 const DetailBodyBox = styled.div`
   display: flex;
   justify-content: space-between;
@@ -69,33 +66,28 @@ const IconBox = styled.div`
   justify-content: space-around;
   margin-bottom: 15px;
 `;
+const Completionist = () => <span>loading...</span>;
 
-const Likes = () => {
+const TxHistory = () => {
   const dispatch = useDispatch();
-  const { currentUser, getLikes } = useSelector((state) => state.user);
+  const { currentUser, getBids } = useSelector((state) => state.user);
   useEffect(() => {
-    dispatch(getUserLikes(currentUser.uuid));
+    dispatch(getUserBids(currentUser.uuid));
   }, [dispatch]);
-
-  // const [click, setClick] = useState(true);
-  // const handlCilck = () => {
-  //   setClick(true);
-  // };
-  // const handleClick2 = () => {
-  //   setClick(false);
-  // };
   const file_path = `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/file/`;
   return (
     <>
       <MybidBox>
-        {getLikes.map((like, i) => {
+      {getBids.map((bid, i) => {
         return <DetailBodyBox key={i}>
           <div>
-            <img src={file_path + like.likes_auction_uu.art_uu.art_file_id} alt="" />
+            <img src={file_path + bid.bid_auction_uu.art_uu.art_file_id} alt="" />
             <TextBox>
-              <div>{like.likes_auction_uu.art_uu.art_title}</div>
-              <span>Recent bid : KRW {like.likes_auction_uu.auction_now_price}</span>
-              <span>{moment(like.updatedAt).format('[[]MM/DD[]] h:mm:ss a')}</span>
+              <div>{bid.bid_auction_uu.art_uu.art_title}</div>
+              <span>bid price : KRW {bid.bid_price}</span>
+              <Countdown date={+moment(bid.bid_auction_uu.auction_end_time) }>
+                <Completionist />
+              </Countdown>
             </TextBox>
           </div>
 
@@ -110,4 +102,4 @@ const Likes = () => {
   );
 };
 
-export default Likes;
+export default TxHistory;

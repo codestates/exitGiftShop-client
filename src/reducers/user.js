@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import CryptoJS from "crypto-js";
 import axios from "axios";
 
 export const fetchUser = createAsyncThunk(
@@ -195,6 +194,23 @@ export const currentPassword = createAsyncThunk(
   }
 );
 
+export const getUserLikes = createAsyncThunk("auction/getLikes", async (uuid) => {
+  const likes = await axios.get(
+    `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/user/likes/${uuid}`);
+  if (!likes) {
+    return;
+  }
+  return likes.data;
+});
+export const getUserBids = createAsyncThunk("auction/getBids", async (uuid) => {
+  const bids = await axios.get(
+    `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/user/bid/${uuid}`);
+  if (!bids) {
+    return;
+  }
+  return bids.data;
+});
+
 export const user = createSlice({
   name: "user",
   initialState: {
@@ -202,7 +218,8 @@ export const user = createSlice({
     currentUser: {},
     currentUserError: "",
     islogin: false,
-    // isvalidateCheck: true,
+    getLikes: [],
+    getBids: [],
   },
   reducers: {
     signin: (state) => {
@@ -211,16 +228,7 @@ export const user = createSlice({
     signout: (state) => {
       state.islogin = false;
     },
-    // isvalidate: (state, action) => {
-    //   if (action.payload.user_password === action.payload.user_password2) {
-    //     state.isvalidateCheck = true;
-    //   } else if (
-    //     action.payload.user_password !== action.payload.user_password2
-    //   ) {
-    //     state.isvalidateCheck = false;
-    //   }
-    // },
-    userBid: (state, action) => {
+    currentUserUp: (state, action) => {
       state.currentUser = action.payload;
     },
   },
@@ -240,6 +248,12 @@ export const user = createSlice({
       state.currentUserLoading = false;
       state.currentUser = {};
       state.currentUserError = action.payload;
+    },
+    [getUserLikes.fulfilled]: (state, action) => {
+      state.getLikes = action.payload;
+    },
+    [getUserBids.fulfilled]: (state, action) => {
+      state.getBids = action.payload;
     },
     [fetchLogout.pending]: (state) => {
       state.currentUserLoading = true;
@@ -333,8 +347,8 @@ export const user = createSlice({
     },
   },
 });
-export const { signin, signout, isvalidate } = user.actions;
+
+export const { signin, signout, currentUserUp } = user.actions;
 export const handleLogin = (state) => state.user.islogin;
 
-export const { siginin, userBid } = user.actions;
 export default user.reducer;
