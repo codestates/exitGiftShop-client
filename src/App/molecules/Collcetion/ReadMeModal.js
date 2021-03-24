@@ -1,38 +1,43 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
+import { getAuctions } from "../../../reducers/auction";
 
 const ModalOverlay = styled.div`
   box-sizing: border-box;
   display: ${(props) => (props.visible ? "block" : "none")};
-  position: fixed;
+  position: relative;
+  top: -1000px;
   left: 0px;
   bottom: 0;
   right: 0px;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 999;
+  z-index: 1;
 `;
 
 const ModalWrapper = styled.div`
-  box-sizing: border-box;
-  position: fixed;
+  box-sizing: content-box;
+  position: absolute;
+  background-color: white;
+  margin: 20px;
+  padding: 20px;
+  top: 1889px;
+  left: 80px;
+  width: 1400px;
   display: ${(props) => (props.visible ? "block" : "none")};
-  z-index: 1000;
-  outline: 0;
+  z-index: 2;
+  transform: scale(0.95);
 `;
 
 const ModalInner = styled.div`
   box-sizing: border-box;
-  position: relative;
-  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
+  position: -webkit-sticky;
+  position: sticky;
+  top: 200px;
+  box-shadow: 10px 10px
   background-color: #fff;
   border-radius: 10px;
-  width: 350px;
-  max-width: 960px;
-  top: 10%;
   transform: translateY(-50%);
-  margin: 0 auto;
-  padding: 15px 20px;
+  padding: 20px;
   color: black;
   outline: none;
   display: flex;
@@ -49,6 +54,7 @@ function ReadMeModal({
   visible,
   children,
 }) {
+  const file_path = `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/file/`;
   const dispatch = useDispatch();
   useEffect(() => {}, [dispatch]);
 
@@ -75,12 +81,10 @@ function ReadMeModal({
         tabIndex="-1"
         visible={visible}
       >
-        {selectedCollection.art_uu.art_desc}
-        <ModalInner
-          tabIndex="0"
-          className="modal-inner"
-          onClick={close}
-        ></ModalInner>
+        <ModalInner tabIndex="0" className="modal-inner" onClick={close}>
+          <div>{selectedCollection.art_uu.art_title}</div>
+          <div>{selectedCollection.art_uu.art_desc}</div>
+        </ModalInner>
       </ModalWrapper>
     </>
   );
