@@ -14,6 +14,8 @@ import TxHistory from "../molecules/Mybid/TxHistory";
 import { useSelector, useDispatch } from "react-redux";
 import { myBidRightChange } from "../../reducers/auction";
 import Password from "../molecules/Mybid/Password";
+import MockWallet from "../molecules/Mybid/MockWallet";
+import MockTxHistory from "../molecules/Mybid/MockTxHistory";
 
 const StyledMain = styled.div`
   display: flex;
@@ -44,9 +46,10 @@ const MainSectionLeft = styled.section`
   @media screen and (max-width: 1300px) {
     border: none;
   }
-`;
+  `;
 
 const MainSectionRight = styled.section`
+  
   width: 100%;
   height: 100%;
   border-left: 1px solid rgba(62, 62, 62, 0.8);
@@ -73,11 +76,11 @@ const LeftBtnBox = styled.div`
 `;
 
 const RightBtnBox = styled.div`
-  width: 81.5%;
-  display: flex;
-  margin-bottom: 25px;
-  font-size: 20px;
-  color: black;
+width: 81.5%;
+display: flex;
+margin-bottom: 25px;
+font-size: 20px;
+color: black;
 `;
 
 const MybidBtnBox = styled.button`
@@ -177,18 +180,44 @@ function Mybid({ location: { pathname } }) {
       <StyledMain>
         <MainSectionLeft>
           <LeftBtnBox>
-            <MybidBtnBox>
-             <span>로그인이 필요한 기능입니다...</span>;
-            </MybidBtnBox>
+            <Link >
+              <MybidBtnBox >
+                <span>Account</span>
+              </MybidBtnBox>
+            </Link>
+            <Link >
+              <MybidBtnBox >
+                <span>Wallet</span>
+              </MybidBtnBox>
+            </Link>
+            <Link >
+              <MybidBtnBox >
+                <span>Invite</span>
+              </MybidBtnBox>
+            </Link>
           </LeftBtnBox>
+          <MockWallet />
         </MainSectionLeft>
 
         <MainSectionRight>
-          <RightBtnBox>
-            <MybidBtnBox>
-             <span>로그인이 필요한 기능입니다...</span>;
-            </MybidBtnBox>
+        <RightBtnBox>
+            <Link>
+              <MybidBtnBox>
+                <span>Active Bid</span>
+              </MybidBtnBox>
+            </Link>
+            <Link>
+              <MybidBtnBox>
+                <span>Tx History</span>
+              </MybidBtnBox>
+            </Link>
+            <Link>
+              <MybidBtnBox >
+                <span>Likes</span>
+              </MybidBtnBox>
+            </Link>
           </RightBtnBox>
+          <MockTxHistory/>
         </MainSectionRight>
        </StyledMain>
       }

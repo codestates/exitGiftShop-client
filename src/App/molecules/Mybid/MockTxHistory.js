@@ -1,13 +1,5 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-// import picture from "../../../images/picture.png";
-// import { faHeart } from "@fortawesome/free-regular-svg-icons";
-// import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  getUserBids
-} from "../../../reducers/user";
 import moment from 'moment';
 import Countdown from 'react-countdown';
 
@@ -69,34 +61,50 @@ const IconBox = styled.div`
 const Completionist = () => <span>loading...</span>;
 
 const TxHistory = () => {
-  const dispatch = useDispatch();
-  const { currentUser, getBids } = useSelector((state) => state.user);
-  useEffect(() => {
-    dispatch(getUserBids(currentUser.uuid));
-  }, [dispatch]);
   const file_path = `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/file/`;
   return (
     <>
       <MybidBox>
-      {getBids.map((bid, i) => {
-        return <DetailBodyBox key={i}>
+          <DetailBodyBox>
           <div>
-            <img src={file_path + bid.bid_auction_uu.art_uu.art_file_id} alt="" />
+            <img src={file_path + "2"} alt="" />
             <TextBox>
-              <div>{bid.bid_auction_uu.art_uu.art_title}</div>
-              <span>bid price : {bid.bid_price.toLocaleString(`ko-KR`, { style: `currency`, currency: `KRW` })}</span>
-              <Countdown date={+moment(bid.bid_auction_uu.auction_end_time) }>
+              <div>apple</div>
+              <span>bid price : {(1000).toLocaleString(`ko-KR`, { style: `currency`, currency: `KRW` })}</span>
+              <Countdown date={+moment().add(1000000, 's')}>
                 <Completionist />
               </Countdown>
             </TextBox>
           </div>
-
-          {/* <IconBox>
-            <FontAwesomeIcon icon={faHeart} />
-            <FontAwesomeIcon icon={faSignOutAlt} rotation={270} />
-          </IconBox> */}
         </DetailBodyBox>
-        })}
+      </MybidBox>
+      <MybidBox>
+          <DetailBodyBox>
+          <div>
+            <img src={file_path + "3"} alt="" />
+            <TextBox>
+              <div>pie</div>
+              <span>bid price : {(700000).toLocaleString(`ko-KR`, { style: `currency`, currency: `KRW` })}</span>
+              <Countdown date={+moment().add(333000, 's')}>
+                <Completionist />
+              </Countdown>
+            </TextBox>
+          </div>
+        </DetailBodyBox>
+      </MybidBox>
+      <MybidBox>
+          <DetailBodyBox>
+          <div>
+            <img src={file_path + "4"} alt="" />
+            <TextBox>
+              <div>beeple</div>
+              <span>bid price : {(10000000).toLocaleString(`ko-KR`, { style: `currency`, currency: `KRW` })}</span>
+              <Countdown date={+moment().add(3453, 's')}>
+                <Completionist />
+              </Countdown>
+            </TextBox>
+          </div>
+        </DetailBodyBox>
       </MybidBox>
     </>
   );

@@ -110,7 +110,6 @@ const StyleTwit = styled.div`
     margin-top: 20px;
   }
 `;
-
 function DetailContent() {
   const dispatch = useDispatch();
   const { auctions, selectedAuction, loading, error } = useSelector((state) => state.auction);
@@ -164,34 +163,32 @@ function DetailContent() {
               Bids)
             </span>
             <div>
-              KRW{" "}
               {Object.keys(selectedAuction).length === 0
                 ? auctions.map((auction, i) => {
                     if (i === 0) {
-                      return auction.auction_now_price;
+                      return auction.auction_now_price.toLocaleString(`ko-KR`, { style: `currency`, currency: `KRW` });
                     }
                     return "";
                   })
-                : selectedAuction.auction_now_price}
+                : selectedAuction.auction_now_price.toLocaleString(`ko-KR`, { style: `currency`, currency: `KRW` })}
             </div>
           </LastBid>
           <HammerPrice>
             <div>Hammer Price </div>
             <span>
-              KRW{" "}
               {Object.keys(selectedAuction).length === 0
                 ? auctions.map((auction, i) => {
                     if (i === 0) {
                       if (auction.auction_hammer_price === 0) {
                         return `-`;
                       }
-                      return auction.auction_hammer_price;
+                      return auction.auction_hammer_price.toLocaleString(`ko-KR`, { style: `currency`, currency: `KRW` });
                     }
                     return "";
                   })
                 : selectedAuction.auction_hammer_price === 0
                 ? `-`
-                : selectedAuction.auction_hammer_price}
+                : selectedAuction.auction_hammer_price.toLocaleString(`ko-KR`, { style: `currency`, currency: `KRW` })}
             </span>
           </HammerPrice>
         </DetailMainTextBox>
