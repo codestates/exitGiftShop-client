@@ -109,19 +109,19 @@ const Support = () => {
       </ContactStyle>
       <Partners>
         <a href="https://www.bondly.finance/index.html">
-          <img src="/src/images/bondly_logo.png" alt="logo1" />
+          <img src={file_path + `6`} alt="logo1" />
         </a>
         <a href="https://www.bondly.finance/index.html">
-          <img src="/src/images/mmca_logo.png" alt="logo2" />
+          <img src={file_path + `7`} alt="logo2" />
         </a>
         <a href="https://www.bondly.finance/index.html">
-          <img src="../imgaes/plasm_logo.png" alt="logo3" />
+          <img src={file_path + `8`} alt="logo3" />
         </a>
         <a href="https://www.bondly.finance/index.html">
-          <img src="../imgaes/klaytn_logo.png" alt="logo4" />
+          <img src={file_path + `9`} alt="logo4" />
         </a>
         <a href="https://www.bondly.finance/index.html">
-          <img src="../imgaes/seoul_logo.png" alt="logo5" />
+          <img src={file_path + `10`} alt="logo5" />
         </a>
       </Partners>
       <Footer>
@@ -135,13 +135,13 @@ const Support = () => {
         </FootText>
         <Socials>
           <a href="https://www.bondly.finance/index.html">
-            <img src="../imgaes/seoul_logo.png" alt="facebook" />
+            <img src={file_path + `10`} alt="facebook" />
           </a>
           <a href="https://www.bondly.finance/index.html">
-            <img src="../imgaes/seoul_logo.png" alt="Youtube" />
+            <img src={file_path + `10`} alt="Youtube" />
           </a>
           <a href="https://www.bondly.finance/index.html">
-            <img src="../imgaes/seoul_logo.png" alt="LinkedIn" />
+            <img src={file_path + `10`} alt="LinkedIn" />
           </a>
         </Socials>
       </Footer>
