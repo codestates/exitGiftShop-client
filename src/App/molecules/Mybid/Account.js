@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { editNick } from "../../../reducers/user";
+import { Link } from "react-router-dom";
 
 const MybidBox = styled.div`
   background-color: white;
@@ -147,7 +148,7 @@ const Account = () => {
                   <InputStyle>
                     <input
                       onChange={handleInput}
-                      placeholder={currentUser.user_nick}
+                      placeholder={currentUser.user_nick || "null"}
                     ></input>
                     <button onClick={handleEditNick}>Edit</button>
                   </InputStyle>
@@ -172,7 +173,7 @@ const Account = () => {
           <DetailBodyBox>
             <EditBox2>
               <h1>Password</h1>
-              <button>Edit</button>
+              <Link to="/mybid/account/password">Edit</Link>
             </EditBox2>
 
             <span>

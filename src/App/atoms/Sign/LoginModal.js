@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import gmailImg from "../../../images/gmail.png";
 import SignUp from "../SignUp/SignUp";

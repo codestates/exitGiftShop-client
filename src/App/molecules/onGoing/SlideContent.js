@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Coverflow from "react-coverflow";
 import { useSelector, useDispatch } from "react-redux";
-import { getAuctions, selected } from "../../../reducers/auction";
+import { selected } from "../../../reducers/auction";
 
 const StyleCover = styled.div`
   .coverflow__container__1P-xE {
@@ -54,9 +54,6 @@ function SlideContent() {
   const { auctions, loading, error } = useSelector((state) => state.auction);
   const file_path = `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/file/`;
 
-  useEffect(() => {
-    dispatch(getAuctions());
-  }, [dispatch]);
 
   const renderSlide = () => {
     if (loading) return <p>Loading...</p>;

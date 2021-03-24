@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import CryptoJS from "crypto-js";
 import axios from "axios";
 
 export const fetchUser = createAsyncThunk(
@@ -11,14 +12,12 @@ export const fetchUser = createAsyncThunk(
         user_password: data.user_password,
       },
       {
-        headers: { "Content-Type": "application/json" },
         withCredentials: true,
       }
     );
     if (!res) {
       return;
     }
-
     const data2 = await axios.get(
       `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/refreshtokenrequest`,
       {
@@ -28,7 +27,6 @@ export const fetchUser = createAsyncThunk(
     if (!data2) {
       return;
     }
-    console.log(data2.data.data.userInfo.uuid);
     const userUuid = data2.data.data.userInfo.uuid;
     const data3 = await axios.get(
       `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/user/${userUuid}`,
@@ -161,6 +159,41 @@ export const editNick = createAsyncThunk(
     return user.data;
   }
 );
+export const editPassword = createAsyncThunk(
+  "user/editPassword",
+  async (data, thunkAPI) => {
+    const res = await axios.put(
+      `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/user/${data.currentUser.uuid}`,
+      {
+        user_password: data.user_password,
+      },
+      {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      }
+    );
+    if (!res) {
+      return;
+    }
+    return res.data;
+  }
+);
+
+export const currentPassword = createAsyncThunk(
+  "user/currentPassword",
+  async (data, thunkAPI) => {
+    const res = await axios.get(
+      `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/user/${data.currentUser.uuid}`,
+      {
+        withCredentials: true,
+      }
+    );
+    if (!res) {
+      return;
+    }
+    return res.data.user_password;
+  }
+);
 
 export const user = createSlice({
   name: "user",
@@ -187,6 +220,9 @@ export const user = createSlice({
     //     state.isvalidateCheck = false;
     //   }
     // },
+    userBid: (state, action) => {
+      state.currentUser = action.payload;
+    },
   },
   extraReducers: {
     [fetchUser.pending]: (state) => {
@@ -198,6 +234,7 @@ export const user = createSlice({
       state.currentUserLoading = false;
       state.currentUser = action.payload;
       state.currentUserError = "";
+      state.islogin = true;
     },
     [fetchUser.rejected]: (state, action) => {
       state.currentUserLoading = false;
@@ -264,9 +301,40 @@ export const user = createSlice({
       state.currentUser = {};
       state.currentUserError = action.payload;
     },
+    [editPassword.pending]: (state) => {
+      state.currentUserLoading = true;
+      state.currentUser = {};
+      state.currentUserError = "";
+    },
+    [editPassword.fulfilled]: (state, action) => {
+      state.currentUserLoading = false;
+      state.currentUser = action.payload;
+      state.currentUserError = "";
+    },
+    [editPassword.rejected]: (state, action) => {
+      state.currentUserLoading = false;
+      state.currentUser = {};
+      state.currentUserError = action.payload;
+    },
+    [currentPassword.pending]: (state) => {
+      state.currentUserLoading = true;
+      state.currentUser = {};
+      state.currentUserError = "";
+    },
+    [currentPassword.fulfilled]: (state, action) => {
+      state.currentUserLoading = false;
+      state.currentUser = {};
+      state.currentUserError = "";
+    },
+    [currentPassword.rejected]: (state, action) => {
+      state.currentUserLoading = false;
+      state.currentUser = {};
+      state.currentUserError = action.payload;
+    },
   },
 });
 export const { signin, signout, isvalidate } = user.actions;
 export const handleLogin = (state) => state.user.islogin;
 
+export const { siginin, userBid } = user.actions;
 export default user.reducer;
