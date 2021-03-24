@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { getAuctions } from "../../../reducers/auction";
 
 const ModalOverlay = styled.div`
   box-sizing: border-box;
@@ -46,15 +45,8 @@ const ModalInner = styled.div`
   align-items: center;
 `;
 
-function ReadMeModal({
-  className,
-  onClose,
-  maskClosable,
-  closable,
-  visible,
-  children,
-}) {
-  const file_path = `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/file/`;
+function ReadMeModal({ className, onClose, maskClosable, visible }) {
+  // const file_path = `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/file/`;
   const dispatch = useDispatch();
   useEffect(() => {}, [dispatch]);
 

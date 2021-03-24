@@ -89,7 +89,7 @@ const Socials = styled.div`
 `;
 
 const Support = () => {
-  const file_path = `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/file/`;
+  //   const file_path = `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/file/`;
   return (
     <MainStyle>
       <ContactStyle>
