@@ -50,9 +50,11 @@ function SignBidBtn() {
     let userObj = {};
     if (Object.keys(selectedAuction).length === 0) {
       if (currentUser.wallet_now_deposit < auctions[0].auction_now_price) {
+        alert(`현금이 부족합니다`);
         return;
       }
       if (currentUser.pd <= 0) {
+        alert(`패들이 부족합니다`);
         return;
       }
       userObj.wallet_now_deposit =
