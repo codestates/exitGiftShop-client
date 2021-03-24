@@ -136,7 +136,7 @@ function Wallet() {
           <div></div>
           <TextBox>
             <h1>{currentUser.user_nick}</h1>
-            <span>{currentUser.user_email}</span>
+            <span>{currentUser.wallet_now_deposit}</span>
             <div>{currentUser.uuid}</div>
           </TextBox>
           <Link to="/mybid/settings">
