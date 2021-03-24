@@ -2,9 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
-import Countdown from 'react-countdown';
-
-
+import Countdown from "react-countdown";
 
 const TimeBox = styled.div`
   display: flex;
@@ -17,9 +15,8 @@ const TimeBox = styled.div`
     margin-right: 15px;
   }
 `;
-
 const TimerStlye = styled.div`
-  font-family: "Montserrat", Arial, sans-serif;
+  font-family: “Montserrat”, Arial, sans-serif;
   font-size: 48px;
   color: #fff;
   font-weight: bold;
@@ -31,7 +28,6 @@ const TimerStlye = styled.div`
   width: 100%;
   height: 100%;
   text-shadow: 0 0 10px red;
-}
 `;
 
 const TimerChild = styled.section`
@@ -46,30 +42,26 @@ const TimerChild = styled.section`
     font-size: 24px;
   }
 `;
-
-
 const Completionist = () => <span>loading...</span>;
-
 const AuctionTime = () => {
-  const {  auctions, selectedAuction } = useSelector((state) => state.auction);
+  const { auctions, selectedAuction } = useSelector((state) => state.auction);
   const dispatch = useDispatch();
-
- 
-  useEffect(() => {
-  },[dispatch]);
-  
+  useEffect(() => {}, [dispatch]);
   return (
     <>
       <TimeBox>
         <TimerStlye>
-        <Countdown date={
-          Object.keys(auctions).length === 0 ? +moment().add(7,`d`) :
-            Object.keys(selectedAuction).length !== 0 
-            ? +moment(selectedAuction.auction_end_time) 
-            : +moment(auctions[0].auction_end_time)
-        }>
-        <Completionist />
-        </Countdown>
+          <Countdown
+            date={
+              Object.keys(auctions).length === 0
+                ? +moment().add(7, `d`)
+                : Object.keys(selectedAuction).length !== 0
+                ? +moment(selectedAuction.auction_end_time)
+                : +moment(auctions[0].auction_end_time)
+            }
+          >
+            <Completionist />
+          </Countdown>
         </TimerStlye>
       </TimeBox>
     </>

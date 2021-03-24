@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import picture from "../../../images/picture.png";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
 
 const MybidBox = styled.div`
   width: 80%;
@@ -67,14 +66,6 @@ const IconBox = styled.div`
 `;
 
 const Likes = () => {
-  const [click, setClick] = useState(true);
-
-  const handlCilck = () => {
-    setClick(true);
-  };
-  const handleClick2 = () => {
-    setClick(false);
-  };
   return (
     <>
       <MybidBox>
