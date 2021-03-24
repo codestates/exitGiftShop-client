@@ -91,6 +91,7 @@ function LandingTemplate() {
     autoScrolling: false,
     normalScrollElements: "collection",
     keyboardScrolling: false,
+    arrowNavigation: false,
   };
   const disPatch = useDispatch();
   const { islogin } = useSelector((state) => state.user);

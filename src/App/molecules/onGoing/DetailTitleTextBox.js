@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { TwitterTweetEmbed } from "react-twitter-embed";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import { faShareAlt } from "@fortawesome/free-solid-svg-icons";
+// import { faShareAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SignBidBtn from "../../atoms/Sign/SignInBtn";
-import FollowBtn from "../../atoms/FollowBtn";
+// import FollowBtn from "../../atoms/FollowBtn";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -110,6 +110,7 @@ const StyleTwit = styled.div`
     margin-top: 20px;
   }
 `;
+
 function DetailContent() {
   const dispatch = useDispatch();
   const { auctions, selectedAuction, loading, error } = useSelector((state) => state.auction);
@@ -143,7 +144,7 @@ function DetailContent() {
                 { auction_uuid: selectedAuction.uuid, user_uuid: currentUser.uuid }
               ))} />
             }
-            <FontAwesomeIcon icon={faShareAlt} rotation={270} />
+            {/* <FontAwesomeIcon icon={faShareAlt} rotation={270} /> */}
           </div>
         </DetailTitleTextBox>
 
@@ -202,7 +203,7 @@ function DetailContent() {
 
         <BtnBox>
           <SignBidBtn />
-          <FollowBtn />
+          {/* <FollowBtn /> */}
         </BtnBox>
       </DetailWrapper>
     </>
