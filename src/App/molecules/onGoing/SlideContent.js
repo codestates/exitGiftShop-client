@@ -85,7 +85,7 @@ function SlideContent() {
       <StyleCover>
         <Coverflow
           width={600}
-          height={500}
+          height={600}
           displayQuantityOfSide={1}
           navigation={false}
           enableHeading={false}

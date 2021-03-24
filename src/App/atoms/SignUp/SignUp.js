@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useDispatch, useSelector } from "react-redux";
-import { signup, signin, isvalidate } from "../../../reducers/user";
+import { useDispatch } from "react-redux";
+import { signup, signin } from "../../../reducers/user";
 const ModalOverlay = styled.div`
   box-sizing: border-box;
   display: ${(props) => (props.visible ? "block" : "none")};

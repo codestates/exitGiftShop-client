@@ -135,6 +135,32 @@ export const signup = createAsyncThunk(
     return data3.data;
   }
 );
+export const editNick = createAsyncThunk(
+  "user/editNick",
+  async (data, thunkAPI) => {
+    const res = await axios.put(
+      `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/user/${data.uuid}`,
+      {
+        user_nick: data.user_nick,
+      },
+      {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      }
+    );
+    if (!res) {
+      return;
+    }
+    const user = await axios.get(
+      `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/user/${data.uuid}`,
+      { withCredentials: true }
+    );
+    if (!user) {
+      return;
+    }
+    return user.data;
+  }
+);
 
 export const user = createSlice({
   name: "user",
@@ -219,6 +245,21 @@ export const user = createSlice({
       state.currentUserError = "";
     },
     [signup.rejected]: (state, action) => {
+      state.currentUserLoading = false;
+      state.currentUser = {};
+      state.currentUserError = action.payload;
+    },
+    [editNick.pending]: (state) => {
+      state.currentUserLoading = true;
+      state.currentUser = {};
+      state.currentUserError = "";
+    },
+    [editNick.fulfilled]: (state, action) => {
+      state.currentUserLoading = false;
+      state.currentUser = action.payload;
+      state.currentUserError = "";
+    },
+    [editNick.rejected]: (state, action) => {
       state.currentUserLoading = false;
       state.currentUser = {};
       state.currentUserError = action.payload;

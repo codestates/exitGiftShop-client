@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { editNick } from "../../../reducers/user";
 
 const MybidBox = styled.div`
   background-color: white;
-  width: 80%;
+  width: 70%;
   height: 100%;
   border-radius: 10px;
   color: black;
@@ -98,8 +99,15 @@ const InputStyle = styled.div`
 `;
 
 const Account = () => {
-  const { currentUser, islogin } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const { currentUser } = useSelector((state) => state.user);
   const [modify, setModify] = useState(false);
+  const [userNick, setUserNick] = useState({
+    user_nick: "",
+    current_user: "",
+  });
+
+  const { user_nick, current_user } = userNick;
 
   const handleModify = () => {
     setModify(true);
@@ -109,7 +117,21 @@ const Account = () => {
     e.target[0].value = currentUser.user_nick || "null";
     console.log(e.target[0].value);
   };
-  const handleInput = (e) => {};
+  const handleInput = (e) => {
+    const { value } = e.target;
+    setUserNick({ user_nick: value });
+  };
+
+  const handleErrorBtn = (e) => {
+    e.preventDefault();
+  };
+  const handleEditNick = async (e) => {
+    e.preventDefault();
+    const uuId = currentUser.uuid;
+    const nick = userNick.user_nick;
+    const data = await dispatch(editNick({ user_nick: nick, uuid: uuId }));
+    setUserNick({ user_nick: data.payload.user_nick });
+  };
   return (
     <>
       <MybidBox>
@@ -125,17 +147,17 @@ const Account = () => {
                   <InputStyle>
                     <input
                       onChange={handleInput}
-                      placeholder={currentUser.user_nick || "null"}
+                      placeholder={currentUser.user_nick}
                     ></input>
-                    <button>Edit</button>
+                    <button onClick={handleEditNick}>Edit</button>
                   </InputStyle>
                 </form>
               </>
             ) : (
               <>
                 <EditBox onClick={handleModify}>
-                  <h1>{currentUser.user_nick || "null"}</h1>
-                  <button>Edit</button>
+                  <h1>{currentUser.user_nick}</h1>
+                  <button onClick={handleErrorBtn}>Edit</button>
                 </EditBox>
               </>
             )}

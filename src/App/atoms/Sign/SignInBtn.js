@@ -12,7 +12,9 @@ const Btn = styled.div`
     margin-top: 20px;
     outline: none;
     cursor: pointer;
+    font-family: "Roboto", sans-serif;
     font-size: 20px;
+    font-weight: 500;
   }
 `;
 const BtnStyle = styled.button`
@@ -42,7 +44,7 @@ function SignBidBtn() {
         </>
       ) : (
         <>
-          <BtnStyle onClick={handleModalOn}>Sign in to bid</BtnStyle>
+          <button onClick={handleModalOn}>Sign in to Bid</button>
         </>
       )}
 

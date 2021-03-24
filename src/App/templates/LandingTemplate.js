@@ -24,7 +24,7 @@ const StyleNav = styled.div`
   display: flex;
   align-items: center;
   padding: 0px 50px;
-  font-size: 28px;
+  font-size: 20px;
   font-weight: 600;
   width: 100%;
   /* background-color: rgba(5, 5, 5, 1);

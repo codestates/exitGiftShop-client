@@ -12,7 +12,9 @@ const Btn = styled.div`
     cursor: pointer;
     margin-left: 10px;
     background-color: #e98d8d;
+    font-family: "Roboto", sans-serif;
     font-size: 20px;
+    font-weight: 500;
     color: white;
     font-weight: 600;
     &:active {
@@ -24,7 +26,7 @@ const Btn = styled.div`
 function FollowBtn() {
   return (
     <Btn>
-      <button>Follow auction</button>
+      <button>Follow Auction</button>
     </Btn>
   );
 }

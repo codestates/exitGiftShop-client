@@ -32,7 +32,6 @@ const ItemBox = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 20px 50px;
-
   > :first-child {
     width: 60%;
     height: 85%;
@@ -93,7 +92,9 @@ function Collection() {
           {auctions.map((auction, i) => {
             return (
               <ItemBox key={i}>
-                <img src={file_path + auction.art_uu.art_file_id} alt="img" />
+                <div>
+                  <img src={file_path + auction.art_uu.art_file_id} alt="img" />
+                </div>
                 <div>
                   <h1>{auction.art_uu.art_title}</h1>
                   <p>{auction.art_uu.art_desc}</p>
