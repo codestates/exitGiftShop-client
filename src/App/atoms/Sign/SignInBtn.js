@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import LoginModal from "./LoginModal";
-import { siginin, currentUserUp } from "../../../reducers/user";
+import { currentUserUp } from "../../../reducers/user";
 import { postBid } from "../../../reducers/auction";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
@@ -42,11 +42,6 @@ function SignBidBtn() {
 
   const handleModalOff = () => {
     setLoginModalOn(false);
-  };
-  const handleIslogin = () => {
-    if (currentUser.uuid) {
-      dispatch(siginin());
-    }
   };
 
   const handleBiding = async () => {
