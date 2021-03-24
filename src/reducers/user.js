@@ -38,6 +38,23 @@ export const fetchUser = createAsyncThunk(
   }
 );
 
+export const getUserLikes = createAsyncThunk("auction/getLikes", async (uuid) => {
+  const likes = await axios.get(
+    `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/user/likes/${uuid}`);
+  if (!likes) {
+    return;
+  }
+  return likes.data;
+});
+export const getUserBids = createAsyncThunk("auction/getBids", async (uuid) => {
+  const bids = await axios.get(
+    `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/user/bid/${uuid}`);
+  if (!bids) {
+    return;
+  }
+  return bids.data;
+});
+
 export const user = createSlice({
   name: "user",
   initialState: {
@@ -45,12 +62,14 @@ export const user = createSlice({
     currentUser: {},
     currentUserError: "",
     islogin: false,
+    getLikes: [],
+    getBids: [],
   },
   reducers: {
     siginin: (state) => {
       state.islogin = true;
     },
-    userBid: (state, action) => {
+    currentUserUp: (state, action) => {
       state.currentUser = action.payload;
     }
   },
@@ -71,7 +90,13 @@ export const user = createSlice({
       state.currentUser = {};
       state.currentUserError = action.payload;
     },
+    [getUserLikes.fulfilled]: (state, action) => {
+      state.getLikes = action.payload;
+    },
+    [getUserBids.fulfilled]: (state, action) => {
+      state.getBids = action.payload;
+    },
   },
 });
-export const { siginin, userBid } = user.actions;
+export const { siginin,currentUserUp } = user.actions;
 export default user.reducer;

@@ -1,4 +1,3 @@
-/* eslint-disable array-callback-return */
 import React, { useEffect } from "react";
 import styled from "styled-components";
 // import picture from "../../../images/picture.png";
@@ -6,8 +5,11 @@ import styled from "styled-components";
 // import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector, useDispatch } from "react-redux";
-import Countdown from 'react-countdown';
+import {
+  getUserBids
+} from "../../../reducers/user";
 import moment from 'moment';
+import Countdown from 'react-countdown';
 
 const MybidBox = styled.div`
   width: 80%;
@@ -64,40 +66,40 @@ const IconBox = styled.div`
   justify-content: space-around;
   margin-bottom: 15px;
 `;
-
 const Completionist = () => <span>loading...</span>;
 
-const ActiveBid = () => {
+const TxHistory = () => {
   const dispatch = useDispatch();
-  const { auctions } = useSelector((state) => state.auction);
-  useEffect(() => {}, [dispatch]);
+  const { currentUser, getBids } = useSelector((state) => state.user);
+  useEffect(() => {
+    dispatch(getUserBids(currentUser.uuid));
+  }, [dispatch]);
   const file_path = `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/file/`;
   return (
     <>
       <MybidBox>
-        { auctions.map((auction, i) => {
-            return <DetailBodyBox key={i}>
-              <div>
-                <img src={file_path + auction.art_uu.art_file_id} alt="" />
-                <TextBox>
-                  <div>{auction.art_uu.art_title}</div>
-                  <span>Recent bid : KRW {auction.bids[0].bid_price}</span>
-                  <Countdown date={+moment(auction.auction_end_time) }>
-                    <Completionist />
-                  </Countdown>
-                </TextBox>
-              </div>
+      {getBids.map((bid, i) => {
+        return <DetailBodyBox key={i}>
+          <div>
+            <img src={file_path + bid.bid_auction_uu.art_uu.art_file_id} alt="" />
+            <TextBox>
+              <div>{bid.bid_auction_uu.art_uu.art_title}</div>
+              <span>bid price : KRW {bid.bid_price}</span>
+              <Countdown date={+moment(bid.bid_auction_uu.auction_end_time) }>
+                <Completionist />
+              </Countdown>
+            </TextBox>
+          </div>
 
-              {/* <IconBox>
-                <FontAwesomeIcon icon={faHeart} />
-                <FontAwesomeIcon icon={faSignOutAlt} rotation={270} />
-              </IconBox> */}
-            </DetailBodyBox>
-          })
-        }
+          {/* <IconBox>
+            <FontAwesomeIcon icon={faHeart} />
+            <FontAwesomeIcon icon={faSignOutAlt} rotation={270} />
+          </IconBox> */}
+        </DetailBodyBox>
+        })}
       </MybidBox>
     </>
   );
 };
 
-export default ActiveBid;
+export default TxHistory;

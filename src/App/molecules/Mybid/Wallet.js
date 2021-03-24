@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
@@ -6,6 +6,7 @@ import paddle from "../../../images/paddle.png";
 import bitcoin from "../../../images/bitcoin.png";
 import puzzle from "../../../images/puzzle.png";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
 const MybidBox = styled.div`
   background-color: white;
@@ -112,6 +113,12 @@ const DetailBodyBox = styled(Link)`
 `;
 
 function Wallet() {
+  const dispatch = useDispatch();
+  const { currentUser } = useSelector((state) => state.user);
+  useEffect(() => {
+  }, [dispatch]);
+
+
   const [click, setClick] = useState(true);
 
   const handlCilck = () => {
@@ -128,9 +135,9 @@ function Wallet() {
           {/* <Link to="/mybid/faucetbeta"></Link> */}
           <div></div>
           <TextBox>
-            <h1>Mr.Rhee</h1>
-            <span>￦ 23,950,000,000</span>
-            <div>0x3937b58f</div>
+            <h1>{currentUser.user_nick}</h1>
+            <span>{currentUser.user_email}</span>
+            <div>{currentUser.uuid}</div>
           </TextBox>
           <Link to="/mybid/settings">
             <FontAwesomeIcon icon={faCog} size="2x" />
@@ -163,7 +170,7 @@ function Wallet() {
                   <span>Puzzle</span>
                 </div>
                 <div>
-                  <span>Assets</span>
+                  <span>{currentUser.puzzles.length}</span>
                 </div>
               </DetailBodyBox>
               <DetailBodyBox to="/mybid/faucetbeta">
@@ -171,11 +178,17 @@ function Wallet() {
                   <LogoImg src={bitcoin} alt="bitcoin" />
                   <span>Bitcoin</span>
                 </div>
+                <div>
+                  <span>{currentUser.wallet_now_coin}</span>
+                </div>
               </DetailBodyBox>
               <DetailBodyBox to="/mybid/faucetbeta">
                 <div>
                   <LogoImg src={paddle} alt="paddle" />
                   <span>Paddle</span>
+                </div>
+                <div>
+                  <span>{currentUser.pd}</span>
                 </div>
               </DetailBodyBox>
             </>

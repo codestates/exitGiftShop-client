@@ -31,7 +31,6 @@ const TimerStlye = styled.div`
   width: 100%;
   height: 100%;
   text-shadow: 0 0 10px red;
-}
 `;
 
 const TimerChild = styled.section`

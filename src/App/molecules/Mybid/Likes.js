@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import picture from "../../../images/picture.png";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+// import { faHeart } from "@fortawesome/free-regular-svg-icons";
+// import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  getUserLikes
+} from "../../../reducers/user";
+import moment from 'moment';
+
 
 const MybidBox = styled.div`
   width: 80%;
@@ -14,6 +18,19 @@ const MybidBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    /* 세로 스크롤 넓이 */
+    width: 8px;
+    /* 가로 스크롤 높이 */
+    height: 8px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.4);
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+  }
 `;
 const DetailBodyBox = styled.div`
   display: flex;
@@ -50,62 +67,40 @@ const IconBox = styled.div`
 `;
 
 const Likes = () => {
-  const [click, setClick] = useState(true);
+  const dispatch = useDispatch();
+  const { currentUser, getLikes } = useSelector((state) => state.user);
+  useEffect(() => {
+    dispatch(getUserLikes(currentUser.uuid));
+  }, [dispatch]);
 
-  const handlCilck = () => {
-    setClick(true);
-  };
-  const handleClick2 = () => {
-    setClick(false);
-  };
+  // const [click, setClick] = useState(true);
+  // const handlCilck = () => {
+  //   setClick(true);
+  // };
+  // const handleClick2 = () => {
+  //   setClick(false);
+  // };
+  const file_path = `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/file/`;
   return (
     <>
       <MybidBox>
-        <DetailBodyBox>
+        {getLikes.map((like, i) => {
+        return <DetailBodyBox key={i}>
           <div>
-            <img src={picture} alt="" />
+            <img src={file_path + like.likes_auction_uu.art_uu.art_file_id} alt="" />
             <TextBox>
-              <div>BEEPLE's CROSSROAD #1/3</div>
-              <span>Recent bid : KRW 33,965,000,000</span>
-              <span>02 : 59 : 39</span>
+              <div>{like.likes_auction_uu.art_uu.art_title}</div>
+              <span>Recent bid : KRW {like.likes_auction_uu.auction_now_price}</span>
+              <span>{moment(like.updatedAt).format('[[]MM/DD[]] h:mm:ss a')}</span>
             </TextBox>
           </div>
 
-          <IconBox>
+          {/* <IconBox>
             <FontAwesomeIcon icon={faHeart} />
             <FontAwesomeIcon icon={faSignOutAlt} rotation={270} />
-          </IconBox>
+          </IconBox> */}
         </DetailBodyBox>
-        <DetailBodyBox>
-          <div>
-            <img src={picture} alt="" />
-            <TextBox>
-              <div>Beeple's CROSSROAD #1/3</div>
-              <span>Recent bid : KRW 33,965,000,000</span>
-              <span>02 : 59 : 39</span>
-            </TextBox>
-          </div>
-
-          <IconBox>
-            <FontAwesomeIcon icon={faHeart} />
-            <FontAwesomeIcon icon={faSignOutAlt} rotation={270} />
-          </IconBox>
-        </DetailBodyBox>
-        <DetailBodyBox>
-          <div>
-            <img src={picture} alt="" />
-            <TextBox>
-              <div>Beeple's CROSSROAD #1/3</div>
-              <span>Recent bid : KRW 33,965,000,000</span>
-              <span>02 : 59 : 39</span>
-            </TextBox>
-          </div>
-
-          <IconBox>
-            <FontAwesomeIcon icon={faHeart} />
-            <FontAwesomeIcon icon={faSignOutAlt} rotation={270} />
-          </IconBox>
-        </DetailBodyBox>
+        })}
       </MybidBox>
     </>
   );
