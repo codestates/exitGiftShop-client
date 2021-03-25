@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { TwitterTweetEmbed } from "react-twitter-embed";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 // import { faShareAlt } from "@fortawesome/free-solid-svg-icons";
@@ -110,12 +110,113 @@ const StyleTwit = styled.div`
   }
 `;
 
+const LoadingWrapper = styled.div`
+  position: relative;
+  @keyframes ldio-06nekuxio24 {
+    0% {
+      transform: translate(10.620000000000001px, 70.8px) scale(0);
+    }
+    25% {
+      transform: translate(10.620000000000001px, 70.8px) scale(0);
+    }
+    50% {
+      transform: translate(10.620000000000001px, 70.8px) scale(1);
+    }
+    75% {
+      transform: translate(70.8px, 70.8px) scale(1);
+    }
+    100% {
+      transform: translate(130.98px, 70.8px) scale(1);
+    }
+  }
+  @keyframes ldio-06nekuxio24-r {
+    0% {
+      transform: translate(130.98px, 70.8px) scale(1);
+    }
+    100% {
+      transform: translate(130.98px, 70.8px) scale(0);
+    }
+  }
+  @keyframes ldio-06nekuxio24-c {
+    0% {
+      background: #ffffff;
+    }
+    25% {
+      background: #ff6b7d;
+    }
+    50% {
+      background: #ffffff;
+    }
+    75% {
+      background: #ff6b7d;
+    }
+    100% {
+      background: #ffffff;
+    }
+  }
+  .ldio-06nekuxio24 div {
+    position: absolute;
+    width: 25.4px;
+    height: 25.4px;
+    border-radius: 50%;
+    transform: translate(70.8px, 70.8px) scale(1);
+    background: #ffffff;
+    animation: ldio-06nekuxio24 2.272727272727273s infinite
+      cubic-bezier(0, 0.5, 0.5, 1);
+  }
+  .ldio-06nekuxio24 div:nth-child(1) {
+    background: #ff6b7d;
+    transform: translate(130.98px, 70.8px) scale(1);
+    animation: ldio-06nekuxio24-r 0.5681818181818182s infinite
+        cubic-bezier(0, 0.5, 0.5, 1),
+      ldio-06nekuxio24-c 2.272727272727273s infinite step-start;
+  }
+  .ldio-06nekuxio24 div:nth-child(2) {
+    animation-delay: -0.5681818181818182s;
+    background: #ffffff;
+  }
+  .ldio-06nekuxio24 div:nth-child(3) {
+    animation-delay: -1.1363636363636365s;
+    background: #ff6b7d;
+  }
+  .ldio-06nekuxio24 div:nth-child(4) {
+    animation-delay: -1.7045454545454546s;
+    background: #ffffff;
+  }
+  .ldio-06nekuxio24 div:nth-child(5) {
+    animation-delay: -2.272727272727273s;
+    background: #ff6b7d;
+  }
+  .loadingio-spinner-ellipsis-aqiq5jfllq8 {
+    width: 177px;
+    height: 177px;
+    display: inline-block;
+    overflow: hidden;
+    background: none;
+  }
+  .ldio-06nekuxio24 {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform: translateZ(0) scale(1);
+    backface-visibility: hidden;
+    transform-origin: 0 0;
+  }
+  .ldio-06nekuxio24 div {
+    box-sizing: content-box;
+  }
+`;
+
+const LoadingStyle = styled.div``;
+
 function DetailContent() {
+  const [time, setTime] = useState(true);
   const dispatch = useDispatch();
   const { auctions, selectedAuction, loading, error } = useSelector(
     (state) => state.auction
   );
   const { currentUser } = useSelector((state) => state.user);
+
   useEffect(() => {}, [dispatch]);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Cannot display</p>;
