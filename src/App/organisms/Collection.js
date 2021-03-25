@@ -142,6 +142,7 @@ function Collection() {
                     </span>
                   </p>
                 </div>
+                
               </ItemBox>
             );
           })}
