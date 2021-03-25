@@ -30,18 +30,6 @@ const TimerStlye = styled.div`
   text-shadow: 0 0 10px #f48c96;
 `;
 
-const TimerChild = styled.section`
-  display: flex;
-  flex-direction: row;
-  box-sizing: border-box;
-  width: 100%;
-  padding-left: 15px;
-  padding-right: 15px;
-  text-align: center;
-  small {
-    font-size: 24px;
-  }
-`;
 const Completionist = () => <span>loading...</span>;
 const AuctionTime = () => {
   const { auctions, selectedAuction } = useSelector((state) => state.auction);

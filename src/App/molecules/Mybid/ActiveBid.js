@@ -57,12 +57,6 @@ const TextBox = styled.div`
   }
 `;
 
-const IconBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  margin-bottom: 15px;
-`;
 
 const Completionist = () => <span>loading...</span>;
 
@@ -87,10 +81,6 @@ const ActiveBid = () => {
                 </TextBox>
               </div>
 
-              {/* <IconBox>
-                <FontAwesomeIcon icon={faHeart} />
-                <FontAwesomeIcon icon={faSignOutAlt} rotation={270} />
-              </IconBox> */}
             </DetailBodyBox>
           })
         }
