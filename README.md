@@ -42,6 +42,6 @@
 | ---------------- | ----------- | ------------ | --------------- | -------------- |
 | `React`          | `Express`   | `S3`         | `GitHub_Project`| `Gabia`        |
 | `React-Hooks`    | `mariaDB`   | `EC2`        | `GitHub_Wiki`   | `OAuth`        |
-|                  | `Dbeaver`   | `RDS`        | `Slack`         | `Lets Encrypt` |
+| `Redux`          | `Dbeaver`   | `RDS`        | `Slack`         | `Lets Encrypt` |
 |                  | `Sequelize` | `Route53`    |                 |                |
 |                  | `Swagger`   | `ACM`        |                 |                |
