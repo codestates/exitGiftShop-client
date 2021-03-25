@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import gmailImg from "../../../images/gmail.png";
 import SignUp from "../SignUp/SignUp";
@@ -52,7 +52,7 @@ const ModalInner = styled.div`
 `;
 
 const ModalBtn = styled.button`
-  background-color: #4285f4;
+  background-color: #ce7777;
   color: white;
   border: none;
   margin: 0px 3px;
@@ -75,7 +75,6 @@ const ModalBtnBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 5px;
 `;
 
 const ModalInput = styled.input`
@@ -104,7 +103,7 @@ const GoogleLogInBtnBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 15px 0px;
+  margin: 25px 0px;
   padding: 15px 0px;
   width: 100%;
 `;
@@ -137,13 +136,12 @@ const AllLogoBox = styled.div`
   width: 50%;
   justify-content: center;
   align-items: center;
-  margin-bottom: 35px;
 `;
 
 const OrStlye = styled.span`
   font-size: 1rem;
   position: absolute;
-  bottom: 260px;
+  bottom: 303px;
   width: 40px;
   text-align: center;
   background-color: rgba(255, 255, 255, 1);
@@ -162,6 +160,15 @@ const GoogleStyle = styled(GoogleLogin)`
   }
 `;
 
+const ValidateStyle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  margin-bottom: 5px;
+  opacity: 1;
+  color: red;
+`;
 function LoginModal({
   className,
   onClose,
@@ -181,6 +188,7 @@ function LoginModal({
   // todo: OAuth 구글 자동로그인
   // todo: sign up 누르면 회원가입창으로 이동
   const [signUpModal, SetSignUpModal] = useState(false);
+  const [isValidate, setIsValidate] = useState(true);
 
   const handleSignOn = (e) => {
     SetSignUpModal(true);
@@ -213,7 +221,9 @@ function LoginModal({
     onClose(response);
   };
   const validateCheck = (e) => {
-    e.preventDefault();
+    if (user_email && user_password) {
+      setIsValidate(false);
+    }
   };
   // todo:일반로그인 유효성검사 새로고침안되게 하고 Invailid account메세지 알림 css수정해야됨
 
@@ -247,7 +257,11 @@ function LoginModal({
               </GoogleLogInBtnBox>
               <OrStlye>Or</OrStlye>
               <LogInInfo>
-                <form onSubmit={validateCheck}>
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                  }}
+                >
                   <div>
                     <span>Email</span>
                     <ModalInput
@@ -268,8 +282,18 @@ function LoginModal({
                       }}
                     />
                   </div>
+                  <ValidateStyle>
+                    {isValidate ? (
+                      <>
+                        <span></span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Invalid Email or Password</span>
+                      </>
+                    )}
+                  </ValidateStyle>
                   <ModalBtnBox>
-                    <ModalBtn>Explore</ModalBtn>
                     <ModalBtn
                       onClick={async (e) => {
                         const login = await dispatch(
@@ -279,6 +303,7 @@ function LoginModal({
                           return;
                         }
                         if (login.type === "user/fetchUser/rejected") {
+                          validateCheck();
                           return;
                         }
                         dispatch(signin());

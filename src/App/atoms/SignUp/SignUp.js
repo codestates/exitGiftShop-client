@@ -124,6 +124,8 @@ function SignUp({
   children,
 }) {
   const [validate, setValidate] = useState(true);
+  const [valiEmail, setvaliEmail] = useState(true);
+  const [valiPassword, setValiPassword] = useState(true);
 
   const onMaskClick = (e) => {
     if (e.target === e.currentTarget) {
@@ -131,6 +133,9 @@ function SignUp({
     }
   };
 
+  const validateEmailCheck = () => {
+    setvaliEmail(false);
+  };
   const validateCheck = (e) => {
     e.preventDefault();
 
@@ -148,20 +153,33 @@ function SignUp({
   });
   const { user_email, user_password, user_password2 } = inputs;
   const handleSignUp = async (e) => {
+    if (!validatePassword(user_password)) {
+      setValiPassword(false);
+      return;
+    }
+    setValiPassword(true);
     if (user_password !== user_password2) {
       return;
     }
-    const login = dispatch(signup({ user_email, user_password }));
+    const login = await dispatch(signup({ user_email, user_password }));
     if (!login) {
       return;
     }
     if (login.type === "user/signup/rejected") {
+      if (login.error.message.includes("409")) {
+        validateEmailCheck();
+        return;
+      }
       return;
     }
 
     dispatch(signin());
     onClose(e);
     return;
+  };
+
+  const validatePassword = (password) => {
+    return /[\w\d]{4,}/.test(password) ? true : false;
   };
 
   const inputHandler = (e) => {
@@ -224,13 +242,21 @@ function SignUp({
                 ></input>
               </div>
             </SignupBox>
-            {validate ? (
+            {!valiPassword ? (
               <ErrorMsg>
-                <div></div>
+                <span>Password must be more than 4 characters</span>
+              </ErrorMsg>
+            ) : !validate ? (
+              <ErrorMsg>
+                <span>Incorrect password</span>
+              </ErrorMsg>
+            ) : !valiEmail ? (
+              <ErrorMsg>
+                <span>Duplicate email</span>
               </ErrorMsg>
             ) : (
               <ErrorMsg>
-                <span>Incorrect password</span>
+                <div></div>
               </ErrorMsg>
             )}
             <div>
