@@ -4,12 +4,10 @@ import { faHeart } from "@fortawesome/free-regular-svg-icons";
 // import { faShareAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SignBidBtn from "../../atoms/Sign/SignInBtn";
-// import FollowBtn from "../../atoms/FollowBtn";
+import FollowBtn from "../../atoms/FollowBtn";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  postLike
-} from "../../../reducers/auction";
+import { postLike } from "../../../reducers/auction";
 
 const DetailTitleTextBox = styled.div`
   display: flex;
@@ -113,7 +111,9 @@ const StyleTwit = styled.div`
 
 function DetailContent() {
   const dispatch = useDispatch();
-  const { auctions, selectedAuction, loading, error } = useSelector((state) => state.auction);
+  const { auctions, selectedAuction, loading, error } = useSelector(
+    (state) => state.auction
+  );
   const { currentUser } = useSelector((state) => state.user);
   useEffect(() => {}, [dispatch]);
   if (loading) return <p>Loading...</p>;
@@ -133,17 +133,33 @@ function DetailContent() {
               : selectedAuction.art_uu.art_title}
           </h1>
           <div>
-            { Object.keys(currentUser).length === 0 ?
+            {Object.keys(currentUser).length === 0 ? (
               <FontAwesomeIcon icon={faHeart} />
-              :
-              Object.keys(selectedAuction).length === 0
-              ? <FontAwesomeIcon icon={faHeart} onClick={() => dispatch(postLike(
-                { auction_uuid: auctions[0].uuid, user_uuid: currentUser.uuid }
-              ))} />
-              : <FontAwesomeIcon icon={faHeart} onClick={() => dispatch(postLike(
-                { auction_uuid: selectedAuction.uuid, user_uuid: currentUser.uuid }
-              ))} />
-            }
+            ) : Object.keys(selectedAuction).length === 0 ? (
+              <FontAwesomeIcon
+                icon={faHeart}
+                onClick={() =>
+                  dispatch(
+                    postLike({
+                      auction_uuid: auctions[0].uuid,
+                      user_uuid: currentUser.uuid,
+                    })
+                  )
+                }
+              />
+            ) : (
+              <FontAwesomeIcon
+                icon={faHeart}
+                onClick={() =>
+                  dispatch(
+                    postLike({
+                      auction_uuid: selectedAuction.uuid,
+                      user_uuid: currentUser.uuid,
+                    })
+                  )
+                }
+              />
+            )}
             {/* <FontAwesomeIcon icon={faShareAlt} rotation={270} /> */}
           </div>
         </DetailTitleTextBox>
@@ -167,11 +183,17 @@ function DetailContent() {
               {Object.keys(selectedAuction).length === 0
                 ? auctions.map((auction, i) => {
                     if (i === 0) {
-                      return auction.auction_now_price.toLocaleString(`ko-KR`, { style: `currency`, currency: `KRW` });
+                      return auction.auction_now_price.toLocaleString(`ko-KR`, {
+                        style: `currency`,
+                        currency: `KRW`,
+                      });
                     }
                     return "";
                   })
-                : selectedAuction.auction_now_price.toLocaleString(`ko-KR`, { style: `currency`, currency: `KRW` })}
+                : selectedAuction.auction_now_price.toLocaleString(`ko-KR`, {
+                    style: `currency`,
+                    currency: `KRW`,
+                  })}
             </div>
           </LastBid>
           <HammerPrice>
@@ -183,13 +205,19 @@ function DetailContent() {
                       if (auction.auction_hammer_price === 0) {
                         return `-`;
                       }
-                      return auction.auction_hammer_price.toLocaleString(`ko-KR`, { style: `currency`, currency: `KRW` });
+                      return auction.auction_hammer_price.toLocaleString(
+                        `ko-KR`,
+                        { style: `currency`, currency: `KRW` }
+                      );
                     }
                     return "";
                   })
                 : selectedAuction.auction_hammer_price === 0
                 ? `-`
-                : selectedAuction.auction_hammer_price.toLocaleString(`ko-KR`, { style: `currency`, currency: `KRW` })}
+                : selectedAuction.auction_hammer_price.toLocaleString(`ko-KR`, {
+                    style: `currency`,
+                    currency: `KRW`,
+                  })}
             </span>
           </HammerPrice>
         </DetailMainTextBox>
@@ -203,7 +231,7 @@ function DetailContent() {
 
         <BtnBox>
           <SignBidBtn />
-          {/* <FollowBtn /> */}
+          <FollowBtn />
         </BtnBox>
       </DetailWrapper>
     </>
