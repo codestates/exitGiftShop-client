@@ -89,6 +89,7 @@ const DetailWrapper = styled.div`
   align-items: flex-stretch;
   padding-right: 60px;
   padding-top: 60px;
+  width: 70%;
 `;
 
 const BtnBox = styled.div`

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import moment from 'moment';
 import Countdown from 'react-countdown';
@@ -52,12 +52,12 @@ const TextBox = styled.div`
   }
 `;
 
-const IconBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  margin-bottom: 15px;
-`;
+// const IconBox = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-around;
+//   margin-bottom: 15px;
+// `;
 const Completionist = () => <span>loading...</span>;
 
 const TxHistory = () => {
@@ -77,8 +77,8 @@ const TxHistory = () => {
             </TextBox>
           </div>
         </DetailBodyBox>
-      </MybidBox>
-      <MybidBox>
+      {/* </MybidBox>
+      <MybidBox> */}
           <DetailBodyBox>
           <div>
             <img src={file_path + "3"} alt="" />
@@ -91,8 +91,8 @@ const TxHistory = () => {
             </TextBox>
           </div>
         </DetailBodyBox>
-      </MybidBox>
-      <MybidBox>
+      {/* </MybidBox>
+      <MybidBox> */}
           <DetailBodyBox>
           <div>
             <img src={file_path + "4"} alt="" />

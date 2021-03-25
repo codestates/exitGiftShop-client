@@ -32,20 +32,7 @@ const SelectBtn = styled.div`
 const SlideImg = styled.img`
   border-radius: 10px;
 `;
-const FontStyle = styled.div`
-  position: absolute;
-  width: 300px;
-  height: 380px;
-  opacity: 0;
-  top: 0px;
-  text-align: center;
-  svg {
-    position: absolute;
-    top: 90px;
-    left: 90px;
-    color: rgba(20, 20, 20, 0.7);
-  }
-`;
+
 
 const fn = (e) => {};
 
