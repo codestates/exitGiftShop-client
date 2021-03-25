@@ -118,7 +118,7 @@ const DetailBodyBox = styled(Link)`
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 `;
 
-function Wallet() {
+function MockWallet() {
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
   useEffect(() => {
@@ -141,11 +141,11 @@ function Wallet() {
           {/* <Link to="/mybid/faucetbeta"></Link> */}
           <div></div>
           <TextBox>
-            <h1>{currentUser.user_nick}</h1>
-            <span>{currentUser.wallet_now_deposit.toLocaleString(`ko-KR`, { style: `currency`, currency: `KRW` })}</span>
-            <div>{currentUser.uuid}</div>
+            <h1>Guest</h1>
+            <span>{(100000000000).toLocaleString(`ko-KR`, { style: `currency`, currency: `KRW` })}</span>
+            <div>a4e2cfab-6700-4e59-b886-b6abfd1493c7</div>
           </TextBox>
-          <Link to="/mybid/settings">
+          <Link>
             <FontAwesomeIcon icon={faCog} size="2x" />
           </Link>
         </BidTitle>
@@ -176,7 +176,7 @@ function Wallet() {
                   <span>Puzzle</span>
                 </div>
                 <div>
-                  <span>{currentUser.puzzles.length}</span>
+                  <span>10</span>
                 </div>
               </DetailBodyBox>
               <DetailBodyBox to="/mybid/faucetbeta">
@@ -185,7 +185,7 @@ function Wallet() {
                   <span>Bitcoin</span>
                 </div>
                 <div>
-                  <span>{currentUser.wallet_now_coin}</span>
+                  <span>10</span>
                 </div>
               </DetailBodyBox>
               <DetailBodyBox to="/mybid/faucetbeta">
@@ -194,7 +194,7 @@ function Wallet() {
                   <span>Paddle</span>
                 </div>
                 <div>
-                  <span>{currentUser.pd}</span>
+                  <span>10</span>
                 </div>
               </DetailBodyBox>
             </>
@@ -229,4 +229,4 @@ function Wallet() {
   );
 }
 
-export default Wallet;
+export default MockWallet;

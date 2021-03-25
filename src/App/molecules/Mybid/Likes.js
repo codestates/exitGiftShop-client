@@ -94,7 +94,7 @@ const Likes = () => {
             <img src={file_path + like.likes_auction_uu.art_uu.art_file_id} alt="" />
             <TextBox>
               <div>{like.likes_auction_uu.art_uu.art_title}</div>
-              <span>Recent bid : KRW {like.likes_auction_uu.auction_now_price}</span>
+              <span>Recent bid : {like.likes_auction_uu.auction_now_price.toLocaleString(`ko-KR`, { style: `currency`, currency: `KRW` })}</span>
               <span>{moment(like.updatedAt).format('[[]MM/DD[]] h:mm:ss a')}</span>
             </TextBox>
           </div>
