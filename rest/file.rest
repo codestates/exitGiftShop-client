@@ -1,9 +1,0 @@
-# 테스트 완료
-
-
-GET https://back.exitgift.shop:4000/file
-
-###
-
-# 이미지 파일이 응답되기때문에 렉걸림
-GET https://back.exitgift.shop:4000/file/1
