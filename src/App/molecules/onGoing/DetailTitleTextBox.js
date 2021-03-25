@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { TwitterTweetEmbed } from "react-twitter-embed";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 // import { faShareAlt } from "@fortawesome/free-solid-svg-icons";
@@ -156,8 +156,8 @@ const LoadingWrapper = styled.div`
   }
   .ldio-06nekuxio24 div {
     position: absolute;
-    width: 35.4px;
-    height: 35.4px;
+    width: 25.4px;
+    height: 25.4px;
     border-radius: 50%;
     transform: translate(70.8px, 70.8px) scale(1);
     background: #ffffff;
@@ -210,11 +210,13 @@ const LoadingWrapper = styled.div`
 const LoadingStyle = styled.div``;
 
 function DetailContent() {
+  const [time, setTime] = useState(true);
   const dispatch = useDispatch();
   const { auctions, selectedAuction, loading, error } = useSelector(
     (state) => state.auction
   );
   const { currentUser } = useSelector((state) => state.user);
+
   useEffect(() => {}, [dispatch]);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Cannot display</p>;
@@ -327,15 +329,6 @@ function DetailContent() {
             tweetId={"463440424141459456"}
             options={{ cards: "hidden", width: 550 }}
           />
-          {/* <LoadingWrapper className="loadingio-spinner-ellipsis-aqiq5jfllq8">
-            <LoadingStyle className="ldio-06nekuxio24">
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
-            </LoadingStyle>
-          </LoadingWrapper> */}
         </StyleTwit>
 
         <BtnBox>

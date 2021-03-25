@@ -42,7 +42,7 @@ const GridSection = styled.div`
   margin: 1em;
 
   > div {
-    height: 300px;
+    height: 310px;
   }
 `;
 
@@ -51,7 +51,6 @@ const ItemBox = styled.div`
   box-sizing: border-box;
   height: 1em;
   justify-content: space-between;
-  padding: 20px 50px;
   padding-bottom: 2em;
 
   > :first-child {
@@ -66,12 +65,12 @@ const ItemBox = styled.div`
   > :last-child {
     display: flex;
     width: 100%;
-    height: 53%;
+    height: 35%;
     flex-direction: column;
     justify-content: flex-end;
     font-size: 20px;
-    }
   }
+
   h1 {
     margin-bottom: 0.1em;
     font-family: "Roboto Mono", monospace;
@@ -80,20 +79,24 @@ const ItemBox = styled.div`
     font-weight: 800;
   }
   div {
-    margin-top: -2.5em;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+  }
+  :not(:first-child) div {
+    padding-bottom: 15px;
   }
   button {
     background-color: rgba(0, 0, 0, 0);
     color: white;
-    font-family:'Roboto', sans-serif;
-    font-size:15px;
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
     color: #dedede;
     border-width: thin;
     border: none;
     outline: none;
     cursor: pointer;
     opacity: 0.8;
-    margin-top: 20px;
     text-align: left;
   }
 `;
@@ -144,6 +147,7 @@ function Collection() {
           })}
           {CollectionModalOn && (
             <ReadMeModal
+              className="modal"
               visible={CollectionModalOn}
               closable={true}
               maskClosable={true}
