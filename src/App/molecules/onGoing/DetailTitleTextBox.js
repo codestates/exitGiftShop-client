@@ -4,7 +4,7 @@ import { faHeart } from "@fortawesome/free-regular-svg-icons";
 // import { faShareAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SignBidBtn from "../../atoms/Sign/SignInBtn";
-// import FollowBtn from "../../atoms/FollowBtn";
+import FollowBtn from "../../atoms/FollowBtn";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -203,7 +203,7 @@ function DetailContent() {
 
         <BtnBox>
           <SignBidBtn />
-          {/* <FollowBtn /> */}
+          <FollowBtn />
         </BtnBox>
       </DetailWrapper>
     </>
