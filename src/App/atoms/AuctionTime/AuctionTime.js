@@ -27,7 +27,7 @@ const TimerStlye = styled.div`
   justify-content: center;
   width: 100%;
   height: 100%;
-  text-shadow: 0 0 10px red;
+  text-shadow: 0 0 10px #f48c96;
 `;
 
 const TimerChild = styled.section`
