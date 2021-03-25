@@ -108,7 +108,6 @@ const Account = () => {
     current_user: "",
   });
 
-  const { user_nick, current_user } = userNick;
 
   const handleModify = () => {
     setModify(true);

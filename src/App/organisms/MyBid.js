@@ -201,21 +201,15 @@ function Mybid({ location: { pathname } }) {
 
         <MainSectionRight>
         <RightBtnBox>
-            <Link>
               <MybidBtnBox>
                 <span>Active Bid</span>
               </MybidBtnBox>
-            </Link>
-            <Link>
               <MybidBtnBox>
                 <span>Tx History</span>
               </MybidBtnBox>
-            </Link>
-            <Link>
               <MybidBtnBox >
                 <span>Likes</span>
               </MybidBtnBox>
-            </Link>
           </RightBtnBox>
           <MockTxHistory/>
         </MainSectionRight>

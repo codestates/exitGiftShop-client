@@ -60,12 +60,7 @@ const TextBox = styled.div`
   }
 `;
 
-const IconBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  margin-bottom: 15px;
-`;
+
 const Completionist = () => <span>loading...</span>;
 
 const TxHistory = () => {
@@ -73,7 +68,7 @@ const TxHistory = () => {
   const { currentUser, getBids } = useSelector((state) => state.user);
   useEffect(() => {
     dispatch(getUserBids(currentUser.uuid));
-  }, [dispatch]);
+  });
   const file_path = `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/file/`;
   return (
     <>

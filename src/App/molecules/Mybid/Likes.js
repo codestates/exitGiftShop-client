@@ -63,19 +63,19 @@ const TextBox = styled.div`
   }
 `;
 
-const IconBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  margin-bottom: 15px;
-`;
+// const IconBox = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-around;
+//   margin-bottom: 15px;
+// `;
 
 const Likes = () => {
   const dispatch = useDispatch();
   const { currentUser, getLikes } = useSelector((state) => state.user);
   useEffect(() => {
     dispatch(getUserLikes(currentUser.uuid));
-  }, [dispatch]);
+  });
 
   // const [click, setClick] = useState(true);
   // const handlCilck = () => {

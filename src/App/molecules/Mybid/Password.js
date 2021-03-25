@@ -56,11 +56,11 @@ const DetailBodyBox = styled.div`
     outline: none;
   }
 `;
-const EditBox = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
+// const EditBox = styled.div`
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+// `;
 
 function Password() {
   const dispatch = useDispatch();
