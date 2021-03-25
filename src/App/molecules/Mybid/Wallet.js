@@ -18,6 +18,7 @@ const MybidBox = styled.div`
   padding: 15px 30px;
 `;
 
+
 const TextBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -26,23 +27,25 @@ const TextBox = styled.div`
   text-align: center;
   h1 {
     font-family: "Abhaya Libre", serif;
-    font-size: 30px;
+    font-size: 2.5em;
   }
   span {
-    font-size: 20px;
+    font-size: 1.5em;
     opacity: 0.6;
   }
   div {
-    background-color: gray;
+    background-color: #ccc;
+    font-size: 1em;
     border-radius: 10px;
-    height: 25px;
-    width: 70%;
+    height: 30px;
+    width: 120%;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 5px;
   }
 `;
+
 
 const LogoImg = styled.img`
   width: 40px;
@@ -56,6 +59,7 @@ const BidTitle = styled.div`
   align-items: flex-start;
   margin-left: 15px;
 `;
+
 
 const BidDetail = styled.div`
   display: flex;
@@ -78,6 +82,8 @@ const BidDetail = styled.div`
     font-size: 20px;
   }
 `;
+
+
 const DetailHeaderBox = styled.div`
   display: flex;
   justify-content: space-between;
@@ -136,7 +142,7 @@ function Wallet() {
           <div></div>
           <TextBox>
             <h1>{currentUser.user_nick}</h1>
-            <span>{currentUser.user_email}</span>
+            <span>{currentUser.wallet_now_deposit.toLocaleString(`ko-KR`, { style: `currency`, currency: `KRW` })}</span>
             <div>{currentUser.uuid}</div>
           </TextBox>
           <Link to="/mybid/settings">

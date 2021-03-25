@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faSearch } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Coverflow from "react-coverflow";
 import { useSelector, useDispatch } from "react-redux";
 import { selected } from "../../../reducers/auction";
 
 const StyleCover = styled.div`
   .coverflow__container__1P-xE {
-    background-color: rgba(0, 0, 0, 0);
+    background-color: #0000;
   }
   .coverflow__figure__3bk_C {
     box-shadow: none;
@@ -70,9 +70,9 @@ function SlideContent() {
           alt="piture"
           style={{ display: "block", width: "100%" }}
         />
-        <FontStyle>
+        {/* <FontStyle>
           <FontAwesomeIcon icon={faSearch} size="2x" />
-        </FontStyle>
+        </FontStyle> */}
       </SelectBtn>
     ));
   };

@@ -18,7 +18,9 @@ const GlobalStyles = createGlobalStyle`
         padding-top:130px;
         overflow:hidden;
     }
-   
+    .fa-heart:hover {
+        cursor: pointer;
+    }
 `;
 
 export default GlobalStyles;

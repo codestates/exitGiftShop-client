@@ -1715,10 +1715,10 @@
     "@babel/runtime" "^7.12.5"
     "@testing-library/dom" "^7.28.1"
 
-"@testing-library/user-event@^13.0.10":
-  "integrity" "sha512-LORQD86zMtv/lP1RpulfBm5wGjTwmzqCRBx15nOYcH55ojsGoaTNsL76V5eoZWefl+T2SvG0kqY6mwOxJ1/5Og=="
-  "resolved" "https://registry.npmjs.org/@testing-library/user-event/-/user-event-13.0.10.tgz"
-  "version" "13.0.10"
+"@testing-library/user-event@^13.0.13":
+  "integrity" "sha512-C36WYVk/BsFy/proxRSVx3igUZg7qc6FxXKt0X3+vx2+mR9yid0JLyNSeevs11BSNs60I1qdSLz8+jovr8pYcQ=="
+  "resolved" "https://registry.npmjs.org/@testing-library/user-event/-/user-event-13.0.13.tgz"
+  "version" "13.0.13"
   dependencies:
     "@babel/runtime" "^7.12.5"
 

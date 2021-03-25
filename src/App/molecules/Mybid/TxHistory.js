@@ -84,7 +84,7 @@ const TxHistory = () => {
             <img src={file_path + bid.bid_auction_uu.art_uu.art_file_id} alt="" />
             <TextBox>
               <div>{bid.bid_auction_uu.art_uu.art_title}</div>
-              <span>bid price : KRW {bid.bid_price}</span>
+              <span>bid price : {bid.bid_price.toLocaleString(`ko-KR`, { style: `currency`, currency: `KRW` })}</span>
               <Countdown date={+moment(bid.bid_auction_uu.auction_end_time) }>
                 <Completionist />
               </Countdown>

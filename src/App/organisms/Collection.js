@@ -6,16 +6,20 @@ import { getAuctions, selectedCollection } from "../../reducers/auction";
 
 const StyledMain = styled.div`
   display: flex;
+  box-sizing: content-box;
   justify-content: space-between;
-  align-items: center;
-  height: 86%;
+  object-position: center center;
+  height: 51em;
   overflow-y: hidden;
+  padding-top: 1em;
+  padding-left: 20em;
+  padding-right: 20em;
+  overflow-y: scroll;
   &::-webkit-scrollbar {
     /* 세로 스크롤 넓이 */
-    width: 8px;
-
+    width: 10px;
     /* 가로 스크롤 높이 */
-    height: 8px;
+    height: 6px;
 
     border-radius: 6px;
     background: rgba(255, 255, 255, 0.4);
@@ -24,7 +28,7 @@ const StyledMain = styled.div`
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 6px;
   }
-
+  scroll-y: hidden;
   @media screen and (max-width: 1300px) {
     flex-wrap: wrap;
     border: none;
@@ -32,10 +36,10 @@ const StyledMain = styled.div`
 `;
 
 const GridSection = styled.div`
-  display: grid;
-  grid-template-rows: repeat(3, auto);
-  width: 1400px;
-  margin: auto;
+  display: flex;
+  flex-direction: column;
+  width: 100em;
+  margin: 1em;
 
   > div {
     height: 300px;
@@ -44,14 +48,20 @@ const GridSection = styled.div`
 
 const ItemBox = styled.div`
   display: flex;
+  box-sizing: border-box;
+  height: 1em;
   justify-content: space-between;
   padding: 20px 50px;
+  padding-bottom: 2em;
 
   > :first-child {
-    width: 60%;
-    height: 85%;
-    background-color: rgba(97, 97, 97, 1);
+    box-sizing: content-box;
+    width: 55em;
+    object-fit: cover;
+    overflow: hidden;
     margin-right: 50px;
+    border-radius: 15px;
+    padding: 0.5em;
   }
   > :last-child {
     display: flex;
@@ -63,20 +73,21 @@ const ItemBox = styled.div`
     }
   }
   h1 {
-    margin-bottom: 20px;
-    line-height: 110%;
+    margin-bottom: 0.1em;
     font-family: "Roboto Mono", monospace;
-    font-size: 40px;
+    font-size: 35px;
+    color: #dedede;
     font-weight: 800;
   }
-  p {
-    line-height: 400%;
+  div {
+    margin-top: -2.5em;
   }
   button {
     background-color: rgba(0, 0, 0, 0);
     color: white;
     font-family:'Roboto', sans-serif;
     font-size:15px;
+    color: #dedede;
     border-width: thin;
     border: none;
     outline: none;
@@ -84,24 +95,6 @@ const ItemBox = styled.div`
     opacity: 0.8;
     margin-top: 20px;
     text-align: left;
-  }
-`;
-
-const ImgWrapper = styled.div`
-  width: 25%;
-  position: relative;
-  overflow: hidden;
-  img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    max-width: 100%;
-    height: auto;
-    -webkit-transform: translate(0%, -25%);
-    -ms-transform: translate(0%, -25%);
-    transform: translate(0%, -25%);
   }
 `;
 
@@ -129,9 +122,7 @@ function Collection() {
           {auctions.map((auction, i) => {
             return (
               <ItemBox key={i}>
-                <ImgWrapper>
-                  <img src={file_path + auction.art_uu.art_file_id} alt="img" />
-                </ImgWrapper>
+                <img src={file_path + auction.art_uu.art_file_id} alt="img" />
                 <div>
                   <h1>{auction.art_uu.art_title}</h1>
                   <p>

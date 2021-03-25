@@ -80,7 +80,7 @@ const ActiveBid = () => {
                 <img src={file_path + auction.art_uu.art_file_id} alt="" />
                 <TextBox>
                   <div>{auction.art_uu.art_title}</div>
-                  <span>Recent bid : KRW {auction.bids[0].bid_price}</span>
+                  <span>Recent bid : {auction.bids[0].bid_price.toLocaleString(`ko-KR`, { style: `currency`, currency: `KRW` })}</span>
                   <Countdown date={+moment(auction.auction_end_time) }>
                     <Completionist />
                   </Countdown>
