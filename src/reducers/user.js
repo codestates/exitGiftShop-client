@@ -174,7 +174,20 @@ export const editPassword = createAsyncThunk(
     if (!res) {
       return;
     }
-    return res.data;
+    const res2 = await axios.post(
+      `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/signin`,
+      {
+        user_email: data.user_email,
+        user_password: res.data.user_password,
+      },
+      {
+        withCredentials: true,
+      }
+    );
+    if (!res2) {
+      return;
+    }
+    return res2.data;
   }
 );
 
@@ -194,17 +207,22 @@ export const currentPassword = createAsyncThunk(
   }
 );
 
-export const getUserLikes = createAsyncThunk("auction/getLikes", async (uuid) => {
-  const likes = await axios.get(
-    `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/user/likes/${uuid}`);
-  if (!likes) {
-    return;
+export const getUserLikes = createAsyncThunk(
+  "auction/getLikes",
+  async (uuid) => {
+    const likes = await axios.get(
+      `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/user/likes/${uuid}`
+    );
+    if (!likes) {
+      return;
+    }
+    return likes.data;
   }
-  return likes.data;
-});
+);
 export const getUserBids = createAsyncThunk("auction/getBids", async (uuid) => {
   const bids = await axios.get(
-    `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/user/bid/${uuid}`);
+    `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/user/bid/${uuid}`
+  );
   if (!bids) {
     return;
   }
@@ -332,17 +350,14 @@ export const user = createSlice({
     },
     [currentPassword.pending]: (state) => {
       state.currentUserLoading = true;
-      state.currentUser = {};
       state.currentUserError = "";
     },
     [currentPassword.fulfilled]: (state, action) => {
       state.currentUserLoading = false;
-      state.currentUser = {};
       state.currentUserError = "";
     },
     [currentPassword.rejected]: (state, action) => {
       state.currentUserLoading = false;
-      state.currentUser = {};
       state.currentUserError = action.payload;
     },
   },

@@ -64,15 +64,14 @@ const EditBox = styled.div`
 
 function Password() {
   const dispatch = useDispatch();
-  const [validate, setValidate] = useState();
+  const [validate, setValidate] = useState(true);
+  const [valiCurrentPassword, setVailCurrentPassword] = useState(true);
   const [inputs, setInputs] = useState({
     current_password: "",
     user_password: "",
     user_password2: "",
   });
   const validateCheck = (e) => {
-    e.preventDefault();
-
     if (e.target[1].value !== e.target[2].value) {
       setValidate(false);
     } else {
@@ -82,13 +81,23 @@ function Password() {
   const { current_password, user_password, user_password2 } = inputs;
   const { currentUser } = useSelector((state) => state.user);
 
+  // const validatePassword = (password) => {
+  //   return /[\w\d]{4,}/.test(password) ? true : false;
+  // };
+
   const handlePassword = async (e) => {
+    if (!current_password || !user_password || !user_password2) {
+      return;
+    }
     const data = await dispatch(currentPassword({ currentUser }));
-    const payload = data.payload;
-    const bytes = CryptoJS.AES.decrypt(payload, process.env.REACT_APP_SALT);
+    const bytes = CryptoJS.AES.decrypt(
+      data.payload,
+      process.env.REACT_APP_SALT
+    );
     let originalText = bytes.toString(CryptoJS.enc.Utf8);
 
     if (originalText !== current_password) {
+      setVailCurrentPassword();
       return;
     }
     if (user_password !== user_password2) {
@@ -102,6 +111,8 @@ function Password() {
     if (data2.type === "user/editPassword/rejected") {
       return;
     }
+    console.log(data2);
+    return;
   };
 
   const inputhandler = (e) => {
@@ -125,7 +136,6 @@ function Password() {
                 onChange={inputhandler}
                 name="current_password"
               ></input>
-              <EditBox></EditBox>
             </DetailBodyBox>
             <DetailBodyBox>
               <h1>New Password</h1>
@@ -135,7 +145,6 @@ function Password() {
                 onChange={inputhandler}
                 name="user_password"
               ></input>
-              <EditBox></EditBox>
             </DetailBodyBox>
             <DetailBodyBox>
               <h1>Confirm New Password</h1>
@@ -145,16 +154,17 @@ function Password() {
                 onChange={inputhandler}
                 name="user_password2"
               ></input>
-              <EditBox></EditBox>
             </DetailBodyBox>
-            {validate ? (
+            {!valiCurrentPassword ? (
               <>
-                <span>변경완료</span>
+                <span>현재 비밀번호가 같지않습니다</span>
+              </>
+            ) : !validate ? (
+              <>
+                <span>확인 비밀번호가 다릅니다</span>
               </>
             ) : (
-              <>
-                <span>Incorrect password</span>
-              </>
+              <></>
             )}
             <div>
               <button onClick={handlePassword}>Edit</button>
