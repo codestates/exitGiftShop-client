@@ -13,16 +13,15 @@
   <p align="center">
     <a href="https://www.exitgift.shop">🏠 Homepage   </a>
     <a href="https://youtu.be/uBEj5ZkDewI">📺  시연 영상   </a>
-    <a href="https://www.miricanvas.com/v/1b33h1">📗 발표 자료   </a>
-    <a href="https://github.com/codestates/exitGiftShop-client/wiki/Wire-Frame">:mag: Wire Frame   </a>
     <a href="https://github.com/codestates/exitGiftShop-client/wiki">📖 Wiki   </a>
+    <a href="https://github.com/codestates/exitGiftShop-client/wiki/Wire-Frame">:mag: Wire Frame   </a>
+    <a href="https://github.com/codestates/exitGiftShop-client/wiki/System-Architecture">:hammer_and_wrench: System Architecture   </a>
     <br />
     <a href="https://github.com/codestates/exitGiftShop-client/wiki/Feature-List">:package: Feature List   </a>
     <a href="https://github.com/codestates/exitGiftShop-client/wiki/Database-Scheme">🗄 Database Scheme   </a>
-    <a href="https://github.com/codestates/exitGiftShop-client/wiki/System-Architecture">:hammer_and_wrench: System Architecture   </a>
     <a href="https://github.com/codestates/exitGiftShop-client/wiki/Work-Flow">🌈  Feature Work Flow   </a>
     <a href="https://back.exitgift.shop:4000/docs/">📘 Api Docs</a>
-    
+    <a href="https://www.miricanvas.com/v/1b33h1">📗 발표 자료   </a>
   </p>
 
 ## 프로젝트 소개
