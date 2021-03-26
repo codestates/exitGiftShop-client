@@ -12,20 +12,13 @@
 > ✏ 아트경매의 FOMO열기를 온라인으로 옮기다.
   <p align="center">
     <a href="https://www.exitgift.shop">🏠 Homepage </a>
-    ·
-    <a href="https://github.com/codestates/exitGiftShop-client/wiki">📖 Wiki</a>
-    ·
-    <a href="https://github.com/codestates/exitGiftShop-client/wiki/Wire-Frame">:mag: Wire Frame</a>
-    ·
+    <a href="https://github.com/codestates/exitGiftShop-client/wiki">📖 Wiki </a>
+    <a href="https://github.com/codestates/exitGiftShop-client/wiki/Wire-Frame">:mag: Wire Frame </a>
     <a href="https://github.com/codestates/exitGiftShop-client/wiki/Work-Flow">🌈  Feature Work Flow</a>
     <br />
-    ·
-    <a href="https://github.com/codestates/exitGiftShop-client/wiki/Feature-List">:package: Feature List</a>
-    ·
-    <a href="https://github.com/codestates/exitGiftShop-client/wiki/System-Architecture">:hammer_and_wrench: System Architecture</a>
-    ·
-    <a href="https://github.com/codestates/exitGiftShop-client/wiki/Database-Scheme">🗄 Database Scheme</a>
-    ·
+    <a href="https://github.com/codestates/exitGiftShop-client/wiki/Feature-List">:package: Feature List </a>
+    <a href="https://github.com/codestates/exitGiftShop-client/wiki/System-Architecture">:hammer_and_wrench: System Architecture </a>
+    <a href="https://github.com/codestates/exitGiftShop-client/wiki/Database-Scheme">🗄 Database Scheme </a>
     <a href="https://back.exitgift.shop:4000/docs/">📘 Api Docs</a>
     
   </p>
